@@ -1,25 +1,40 @@
 package tp.server;
 
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 public class StoneGroup {
-    int id;
-    LinkedList<Stone> stones;
-    int color;
+    LinkedHashSet<Stone> stones = new LinkedHashSet<Stone>();
+    LinkedHashSet<Point> border = new LinkedHashSet<Point>();
+    Color color;
     int liberties;
-    LinkedList<Point> border;
-    Status status;
-    enum Status {alive,dead}
 
-    void addStone() {
+    StoneGroup(Stone stone) {
+        stones.add(stone);
+        color = stone.getColor();
+    }
 
+    void addStones(StoneGroup group) {
+        stones.addAll(group.getStones());
+        border.addAll(group.getBorder());
+    }
+
+    public LinkedHashSet<Stone> getStones() {
+        return stones;
+    }
+
+    public LinkedHashSet<Point> getBorder() {
+        return border;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getLiberties() {
+        return liberties;
     }
 
     void setLiberties() {
-
-    }
-
-    void setStatus() {
 
     }
 }

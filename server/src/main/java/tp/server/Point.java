@@ -1,6 +1,11 @@
 package tp.server;
 
 public class Point {
-    int x;
-    int y;
+    protected int x;
+    protected int y;
+    Status status;
+
+    enum Status {
+        alive, dead, seki
+    }
 }

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_linux_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_linux_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_linux_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_linux_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Stone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1UG4feA8XT8XYfgqpUUvjcFDraT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager" selected="JUnit.BoardTest">
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.testGroupCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
+      <option name="METHOD_NAME" value="testGroupCreation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.testGroupMerging" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
+      <option name="METHOD_NAME" value="testGroupMerging" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.testMoveRejection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
+      <option name="METHOD_NAME" value="testMoveRejection" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.testStonePlacement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
+      <option name="METHOD_NAME" value="testStonePlacement" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="JUnit.BoardTest.testGroupCreation" />
+        <item itemvalue="JUnit.BoardTest.testGroupMerging" />
+        <item itemvalue="JUnit.BoardTest.testStonePlacement" />
+        <item itemvalue="JUnit.BoardTest.testMoveRejection" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="" />
+      <created>1574969702168</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574969702168</updated>
+      <workItem from="1574969703459" duration="9188000" />
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1574979526112">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/57.27.1863.1053@57.27.1863.1053" timestamp="1574979526112" />
+    <state width="1817" height="278" key="GridCell.Tab.0.bottom" timestamp="1574980607148">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="278" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607148" />
+    <state width="1817" height="278" key="GridCell.Tab.0.center" timestamp="1574980607148">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="278" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607148" />
+    <state width="1817" height="278" key="GridCell.Tab.0.left" timestamp="1574980607147">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="278" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607147" />
+    <state width="1817" height="278" key="GridCell.Tab.0.right" timestamp="1574980607148">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="278" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607148" />
+    <state width="1817" height="344" key="GridCell.Tab.1.bottom" timestamp="1574980428704">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="344" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1574980428704" />
+    <state width="1817" height="344" key="GridCell.Tab.1.center" timestamp="1574980428704">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="344" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1574980428704" />
+    <state width="1817" height="344" key="GridCell.Tab.1.left" timestamp="1574980428704">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="344" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1574980428704" />
+    <state width="1817" height="344" key="GridCell.Tab.1.right" timestamp="1574980428704">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="344" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1574980428704" />
+    <state x="721" y="307" width="568" height="500" key="extract.method.dialog" timestamp="1574975962897">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state x="721" y="307" width="568" height="500" key="extract.method.dialog/57.27.1863.1053@57.27.1863.1053" timestamp="1574975962897" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1574980607128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tp.server.*</FILTER>
+    </SUITE>
+  </component>
+</project>
