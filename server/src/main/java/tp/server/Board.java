@@ -24,6 +24,11 @@ public class Board {
         return groups;
     }
 
+    /**
+     * Checks if the move violates the rules
+     * @param stone the stone to be placed in the move
+     * @return true if the move is okay
+     */
     boolean verifyMove(Stone stone) {
         if (colorBoard[stone.getX()][stone.getY()] != 0) return false;
         return true;
@@ -39,12 +44,20 @@ public class Board {
         else return false;
     }
 
+    /**
+     * Includes the new stone in colorBoard and groupBoard
+     * @param newStone the stone to be included
+     */
     private void addStone(Stone newStone) {
         colorBoard[newStone.getX()][newStone.getY()] = newStone.getColorValue();
         updateGroups(newStone);
     }
 
 
+    /**
+     * Merges groups after a new stone has been added
+     * @param newStone the new stone
+     */
     private void updateGroups(Stone newStone) {
         StoneGroup newGroup = new StoneGroup(newStone);
         int stoneX = newStone.getX();
@@ -66,6 +79,9 @@ public class Board {
         redrawGroupBoard();
     }
 
+    /**
+     * Updates the groupBoard to portray the groups that currently exist
+     */
     private void redrawGroupBoard() {
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 19; j++) {

@@ -8,11 +8,18 @@ public class StoneGroup {
     Color color;
     int liberties;
 
+    /**
+     * @param stone the stone that starts the group
+     */
     StoneGroup(Stone stone) {
         stones.add(stone);
         color = stone.getColor();
     }
 
+    /**
+     * Connects this group with the provided one
+     * @param group the group to add
+     */
     void addStones(StoneGroup group) {
         stones.addAll(group.getStones());
         border.addAll(group.getBorder());
