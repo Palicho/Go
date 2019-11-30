@@ -2,6 +2,7 @@ package tp.server;
 
 import org.junit.Test;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 import static org.junit.Assert.*;
@@ -68,6 +69,67 @@ public class BoardTest {
         assertEquals(0, board.getGroupIdAt(0, 0));
         assertEquals(0, board.getGroupIdAt(0, 1));
         assertEquals(0, board.getGroupIdAt(0, 2));
+
+        board.reset();
+    }
+
+    @Test
+    public void testClusterGeneration() {
+        Board board = Board.getInstance();
+        board.move(Color.WHITE,1,0);
+        board.move(Color.WHITE,1,1);
+        board.move(Color.WHITE,0,2);
+
+        EmptyCluster cluster = board.getCluster(0,0);
+        assertEquals(2, cluster.size());
+
+        cluster = board.getCluster(3,3);
+        assertEquals(356, cluster.size());
+
+        board.reset();
+    }
+
+    @Test
+    public void testSekiExecution() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE,0,2);
+        board.move(Color.WHITE,1,0);
+        board.move(Color.WHITE,1,1);
+
+        board.move(Color.BLACK,17,0);
+        board.move(Color.BLACK,18,1);
+
+        board.evaluateTerritoryPoints();
+
+        assertEquals(0, board.getScore(Color.BLACK));
+        assertEquals(0, board.getScore(Color.WHITE));
+
+        board.reset();
+    }
+
+    @Test
+    public void testTerritoryEvaluation() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE,0,2);
+        board.move(Color.WHITE,0,3);
+        board.move(Color.WHITE,1,0);
+        board.move(Color.WHITE,1,1);
+        board.move(Color.WHITE,1,2);
+        board.move(Color.WHITE,2,0);
+        board.move(Color.WHITE,2,1);
+
+        board.move(Color.BLACK,16,0);
+        board.move(Color.BLACK,17,0);
+        board.move(Color.BLACK,17,1);
+        board.move(Color.BLACK,18,1);
+        board.move(Color.BLACK,18,2);
+
+        board.evaluateTerritoryPoints();
+
+        assertEquals(1, board.getScore(Color.BLACK));
+        assertEquals(2, board.getScore(Color.WHITE));
 
         board.reset();
     }
