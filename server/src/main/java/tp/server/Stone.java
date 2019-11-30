@@ -1,12 +1,10 @@
 package tp.server;
 
 public class Stone extends Point {
-
     Color color;
 
     Stone(Color color, int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.color = color;
     }
 

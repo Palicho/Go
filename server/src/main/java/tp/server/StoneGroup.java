@@ -7,6 +7,7 @@ public class StoneGroup {
     LinkedHashSet<Point> border = new LinkedHashSet<Point>();
     Color color;
     int liberties;
+    int id;
 
     /**
      * @param stone the stone that starts the group
@@ -41,7 +42,11 @@ public class StoneGroup {
         return liberties;
     }
 
-    void setLiberties() {
+    void setLiberties(int liberties) {
+        this.liberties= liberties;
+    }
 
+    public int getId() {
+        return id;
     }
 }
