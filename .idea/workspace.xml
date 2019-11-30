@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_linux_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_linux_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_linux_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_linux_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Stone.java" afterDir="false" />
@@ -56,7 +35,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.BoardTest">
+  <component name="RunManager" selected="JUnit.BoardTest.testGroupMerging">
     <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -138,11 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="JUnit.BoardTest.testGroupCreation" />
         <item itemvalue="JUnit.BoardTest.testGroupMerging" />
+        <item itemvalue="JUnit.BoardTest.testGroupCreation" />
         <item itemvalue="JUnit.BoardTest.testStonePlacement" />
         <item itemvalue="JUnit.BoardTest.testMoveRejection" />
+        <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
   </component>
@@ -172,27 +151,38 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1574979526112">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/57.27.1863.1053@57.27.1863.1053" timestamp="1574979526112" />
-    <state width="1817" height="278" key="GridCell.Tab.0.bottom" timestamp="1574980607148">
+    <state width="1817" height="278" key="GridCell.Tab.0.bottom" timestamp="1575134241103">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607148" />
-    <state width="1817" height="278" key="GridCell.Tab.0.center" timestamp="1574980607148">
+    <state width="1817" height="278" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1575134241103" />
+    <state width="1817" height="278" key="GridCell.Tab.0.center" timestamp="1575134241101">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607148" />
-    <state width="1817" height="278" key="GridCell.Tab.0.left" timestamp="1574980607147">
+    <state width="1817" height="278" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1575134241101" />
+    <state width="1817" height="278" key="GridCell.Tab.0.left" timestamp="1575134241100">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607147" />
-    <state width="1817" height="278" key="GridCell.Tab.0.right" timestamp="1574980607148">
+    <state width="1817" height="278" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1575134241100" />
+    <state width="1817" height="278" key="GridCell.Tab.0.right" timestamp="1575134241102">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1574980607148" />
+    <state width="1817" height="278" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1575134241102" />
     <state width="1817" height="344" key="GridCell.Tab.1.bottom" timestamp="1574980428704">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>

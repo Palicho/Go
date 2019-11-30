@@ -1,19 +1,18 @@
 package tp.server;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 public class Board {
-    int[][] colorBoard;
-    int[][] groupBoard;
+    Point[][] board;
 
     private LinkedList<StoneGroup> groups;
     public static Board instance = new Board();
 
     private Board() {
-        colorBoard = new int[19][19];
-        groupBoard = new int[19][19];
+        board = new Point[19][19];
         groups = new LinkedList<>();
-        redrawGroupBoard();
+        redrawBoard();
     }
 
     public static Board getInstance() {
@@ -26,83 +25,80 @@ public class Board {
 
     /**
      * Checks if the move violates the rules
-     * @param stone the stone to be placed in the move
-     * @return true if the move is okay
+     * @param c the color of the new stone
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @return false if it does
      */
-    boolean verifyMove(Stone stone) {
-        if (colorBoard[stone.getX()][stone.getY()] != 0) return false;
+    boolean verifyMove(Color c, int x, int y) {
+        if (board[x][y] instanceof Stone) return false;
         return true;
     }
 
     public boolean move(Color color, int x, int y) {
         //todo: make this for real
-        Stone newStone = new Stone(color, x, y);
-        if (verifyMove(newStone)) {
-            addStone(newStone);
+
+        if (verifyMove(color, x, y)) {
+            updateGroups(color, x, y);
             return true;
         }
         else return false;
     }
 
-    /**
-     * Includes the new stone in colorBoard and groupBoard
-     * @param newStone the stone to be included
-     */
-    private void addStone(Stone newStone) {
-        colorBoard[newStone.getX()][newStone.getY()] = newStone.getColorValue();
-        updateGroups(newStone);
-    }
-
 
     /**
-     * Merges groups after a new stone has been added
-     * @param newStone the new stone
+     * Adds a new stone and merges groups
+     * @param color the color of the new stone
+     * @param stoneX the x coordinate of the new stone
+     * @param stoneY the y coordinate of the new stone
      */
-    private void updateGroups(Stone newStone) {
-        StoneGroup newGroup = new StoneGroup(newStone);
-        int stoneX = newStone.getX();
-        int stoneY = newStone.getY();
+    private void updateGroups(Color color, int stoneX, int stoneY) {
+        StoneGroup newGroup = new StoneGroup(color, stoneX, stoneY);
         int[] x = {stoneX+1, stoneX, stoneX-1, stoneX};
         int[] y = {stoneY, stoneY+1, stoneY, stoneY-1};
         StoneGroup neighbor;
         for (int i=0; i<4; i++) {
             if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
-                if (colorBoard[x[i]][y[i]] == newStone.getColorValue()) {
-                    neighbor = groups.get(groupBoard[x[i]][y[i]]);
+                Point element = board[x[i]][y[i]];
+                if (element instanceof Stone && ((Stone) element).getColor() == color) {
+                    neighbor = groups.get(((Stone) element).getGroupId());
                     newGroup.addStones(neighbor);
                     groups.remove(neighbor);
-                    redrawGroupBoard();
+                    redrawBoard();
                 }
             }
         }
         groups.add(newGroup);
-        redrawGroupBoard();
+        newGroup.setId(groups.indexOf(newGroup));
+        redrawBoard();
     }
 
-    /**
-     * Updates the groupBoard to portray the groups that currently exist
-     */
-    private void redrawGroupBoard() {
+    private void redrawBoard() {
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 19; j++) {
-                groupBoard[i][j] = -1;
+                board[i][j] = new Point(i,j);
             }
         }
 
         for (StoneGroup group: groups) {
-            int id = groups.indexOf(group);
             for (Stone stone: group.getStones()) {
-                groupBoard[stone.getX()][stone.getY()] = id;
+                board[stone.getX()][stone.getY()] = stone;
             }
         }
     }
 
     public Color getColorAt(int x, int y) {
-        return Color.getColorByValue(colorBoard[x][y]);
+        if (board[x][y] instanceof Stone) {
+             return ((Stone) board[x][y]).getColor();
+        }
+        else return null;
     }
 
     public int getGroupIdAt(int x, int y) {
-        return groupBoard[x][y];
+        if (board[x][y] instanceof Stone) {
+            return ((Stone) board[x][y]).getGroupId();
+        }
+        else return -1;
     }
 
     public void reset() {
@@ -115,46 +111,63 @@ public class Board {
      * @return border
      *
      */
-    public LinkedList<Point> getGroupBorder(StoneGroup stoneGroup){
-
+    public LinkedHashSet<Point> getGroupBorder(StoneGroup stoneGroup){
         int x, y;
-        LinkedList<Point> border= new LinkedList<Point>();
+        LinkedHashSet<Point> border= new LinkedHashSet<>();
 
-        for( Stone stone : stoneGroup.getStones()){
+        for (Stone stone : stoneGroup.getStones()) {
 
-          x=stone.getX();
-          y=stone.getY();
+          x = stone.getX();
+          y = stone.getY();
 
           //top
             if(x-1 >= 0){
-                if( colorBoard[x-1][y] == -1){
-                    border.add(new Point(x-1, y));
-                }
+                border.add(board[x-1][y]);
             }
             //left
             if(y-1 >= 0){
-                if( colorBoard[x][y-1] == -1){
-                    border.add(new Point(x, y-1));
-                }
+                border.add(board[x][y-1]);
             }
 
             //bottom
             if(x+1<19){
-                if( colorBoard[x+1][y] == -1){
-                    border.add(new Point(x+1, y));
-                }
+                border.add(board[x+1][y]);
             }
 
             //right
             if(y+1<19){
-                if( colorBoard[x][y+1] == -1){
-                    border.add(new Point(x, y+1));
-                }
+                border.add(board[x][y+1]);
             }
-
 
         }
 
         return border;
     }
+
+    public LinkedHashSet<Point> getTileBorder(int x, int y){
+        LinkedHashSet<Point> border= new LinkedHashSet<>();
+
+            //top
+            if(x-1 >= 0){
+                border.add(board[x-1][y]);
+            }
+            //left
+            if(y-1 >= 0){
+                border.add(board[x][y-1]);
+            }
+
+            //bottom
+            if(x+1<19){
+                border.add(board[x+1][y]);
+            }
+
+            //right
+            if(y+1<19){
+                border.add(board[x][y+1]);
+            }
+
+        return border;
+    }
+
+
 }
