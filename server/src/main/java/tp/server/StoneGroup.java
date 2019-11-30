@@ -11,15 +11,31 @@ public class StoneGroup {
     Status status;
     enum Status {alive,dead}
 
-    void addStone() {
+    void addStone(int x, int y) {
+        Stone stone = new Stone(x,y);
+        stones.add(stone);
+    }
+
+    void setLiberties(int liberties) {
+        this.liberties= liberties;
 
     }
 
-    void setLiberties() {
+    void setStatus(Status status) {
+        this.status= status;
 
     }
 
-    void setStatus() {
+    public void setBorder(LinkedList<Point> border) {
+        this.border = border;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+
+    public LinkedList<Stone> getStones() {
+        return stones;
     }
 }

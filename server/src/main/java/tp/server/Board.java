@@ -20,4 +20,52 @@ public class Board {
 
     }
 
+    /**
+     *
+     * @param stoneGroup
+     * @return border
+     *
+     */
+    public LinkedList<Point> getGroupBorder(StoneGroup stoneGroup){
+
+        int x, y;
+        LinkedList<Point> border= new LinkedList<Point>();
+
+        for( Stone stone : stoneGroup.getStones()){
+
+          x=stone.getX();
+          y=stone.getY();
+
+          //top
+            if(x-1 >= 0){
+                if( colorBoard[x-1][y] == -1){
+                    border.add(new Point(x-1, y));
+                }
+            }
+            //left
+            if(y-1 >= 0){
+                if( colorBoard[x][y-1] == -1){
+                    border.add(new Point(x, y-1));
+                }
+            }
+
+            //bottom
+            if(x+1<19){
+                if( colorBoard[x+1][y] == -1){
+                    border.add(new Point(x+1, y));
+                }
+            }
+
+            //right
+            if(y+1<19){
+                if( colorBoard[x][y+1] == -1){
+                    border.add(new Point(x, y+1));
+                }
+            }
+
+
+        }
+
+        return border;
+    }
 }
