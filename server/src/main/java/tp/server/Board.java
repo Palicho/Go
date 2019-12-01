@@ -3,6 +3,7 @@ package tp.server;
 import java.util.LinkedList;
 
 public class Board {
+
     int[][] colorBoard;
     int[][] groupBoard;
 
@@ -26,18 +27,167 @@ public class Board {
 
     /**
      * Checks if the move violates the rules
-     * @param stone the stone to be placed in the move
+     * @param x stone vertical position in board
+     * @param y stone horizontal postion in board
+     * @param color stone color
      * @return true if the move is okay
      */
-    boolean verifyMove(Stone stone) {
-        if (colorBoard[stone.getX()][stone.getY()] != 0) return false;
+    public boolean verifyMove(int x, int y, Color color) {
+
+        if ( isPositionFree(x ,y )){
+            if( haveLiberties(x, y)){
+                return true;
+            }
+            else{
+                if(willJoin(x,y, color)){
+                    return true;
+                }
+
+                if(willKill(x, y, color)){
+                    if( !isKo(x, y, color)){
+                        return true;
+                    }
+
+                }
+
+            }
+        }
+        return false;
+
+    }
+
+    boolean isPositionFree(int x, int y){
+        if (colorBoard[x][y] != -1) return false;
         return true;
     }
+
+
+
+    boolean haveLiberties(int x, int y){
+            StoneGroup stoneGroup;
+        //top
+        if(x-1>=0){
+            if(colorBoard[x-1][y]==-1){
+                return true;
+            }
+        }
+        //left
+        if(y-1 >= 0){
+            if(colorBoard[x][y-1]==-1){
+                return true;
+            }
+        }
+
+        //bottom
+        if(x+1<19){
+            if(colorBoard[x+1][y]==-1){
+                return true;
+            }
+        }
+
+        //right
+        if(y+1<19){
+            if(colorBoard[x][y+1]==-1){
+                return true;
+            }
+        }
+
+        return  false;
+    }
+
+
+    boolean willJoin(int x , int y, Color color){
+        StoneGroup stoneGroup;
+        //top
+        if(x-1>=0){
+            stoneGroup=getGroupById(getGroupIdAt(x-1,y));
+            if( stoneGroup.getColor()==color && stoneGroup.getLiberties()-1 != 0){
+                return true;
+            }
+        }
+        //left
+        if(y-1 >= 0){
+            stoneGroup=getGroupById(getGroupIdAt(x,y-1));
+            if( stoneGroup.getColor()==color &&  stoneGroup.getLiberties()-1 != 0){
+                return true;
+            }
+        }
+
+        //bottom
+        if(x+1<19){
+            stoneGroup=getGroupById(getGroupIdAt(x+1,y));
+            if( stoneGroup.getColor()==color && stoneGroup.getLiberties()-1 != 0){
+                return true;
+            }
+        }
+
+        //right
+        if(y+1<19){
+            stoneGroup=getGroupById(getGroupIdAt(x,y+1));
+            if( stoneGroup.getColor()==color && stoneGroup.getLiberties()-1 != 0){
+                return true;
+            }
+        }
+
+        return  false;
+    }
+
+
+    boolean willKill(int x , int y, Color color){
+        StoneGroup stoneGroup;
+        //top
+        if(x-1>=0){
+            stoneGroup=getGroupById(getGroupIdAt(x-1,y));
+            if( stoneGroup.getColor()!=color && stoneGroup.getLiberties()-1 == 0){
+                return true;
+            }
+        }
+        //left
+        if(y-1 >= 0){
+            stoneGroup=getGroupById(getGroupIdAt(x,y-1));
+            if( stoneGroup.getColor()!=color &&  stoneGroup.getLiberties()-1 == 0){
+                return true;
+            }
+        }
+
+        //bottom
+        if(x+1<19){
+            stoneGroup=getGroupById(getGroupIdAt(x+1,y));
+            if( stoneGroup.getColor()!=color && stoneGroup.getLiberties()-1 == 0){
+                return true;
+            }
+        }
+
+        //right
+        if(y+1<19){
+            stoneGroup=getGroupById(getGroupIdAt(x,y+1));
+            if( stoneGroup.getColor()!=color && stoneGroup.getLiberties()-1 == 0){
+                return true;
+            }
+        }
+
+        return  false;
+    }
+
+    public boolean isKo(int x, int y, Color c){
+        //to do: make the impossible
+        return false;
+    }
+
+    public StoneGroup getGroupById( int id){
+        for ( StoneGroup stoneGroup : groups){
+            if(stoneGroup.getId()== id){
+                return stoneGroup;
+            }
+        }
+        return null;
+    }
+
 
     public boolean move(Color color, int x, int y) {
         //todo: make this for real
         Stone newStone = new Stone(color, x, y);
-        if (verifyMove(newStone)) {
+        if (verifyMove(newStone.getX(), newStone.getY(), newStone.getColor())) {
             addStone(newStone);
             return true;
         }
