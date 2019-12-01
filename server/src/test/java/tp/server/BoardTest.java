@@ -161,4 +161,83 @@ public class BoardTest {
         board.reset();
     }
 
+    @Test
+    public void testStoneStrangulation() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 0);
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 1);
+        board.move(Color.BLACK, 2, 0);
+
+        assertEquals(3, board.getGroups().size());
+        assertEquals(3, board.getScore(Color.BLACK));
+        board.reset();
+    }
+
+    @Test
+    public void testRegularKo() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 2, 1);
+        board.move(Color.WHITE, 1, 2);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 3);
+        board.move(Color.BLACK, 2, 2);
+        board.move(Color.BLACK, 1, 1);
+
+        assertEquals(1, board.getKoFlaggedTiles().size());
+        assertFalse(board.move(Color.WHITE, 1, 2));
+
+        board.reset();
+    }
+
+    @Test
+    public void testMultiKo() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 2, 1);
+        board.move(Color.WHITE, 1, 2);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 3);
+        board.move(Color.BLACK, 2, 2);
+        board.move(Color.BLACK, 2, 0);
+        board.move(Color.BLACK, 3, 1);
+
+        board.move(Color.BLACK, 1, 1);
+
+        assertEquals(2, board.getKoFlaggedTiles().size());
+        assertFalse(board.move(Color.WHITE, 1, 2));
+        assertFalse(board.move(Color.WHITE, 2, 1));
+
+        board.reset();
+    }
+
+    @Test
+    public void testBoardBorderKo() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 1);
+
+        board.move(Color.BLACK, 0, 0);
+
+        assertEquals(1, board.getKoFlaggedTiles().size());
+        assertFalse(board.move(Color.WHITE, 0, 1));
+
+        board.reset();
+    }
+
 }

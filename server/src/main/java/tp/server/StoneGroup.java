@@ -47,8 +47,12 @@ public class StoneGroup {
         return liberties;
     }
 
-    void setLiberties(int liberties) {
-        this.liberties = liberties;
+    void setLiberties() {
+        int l = 0;
+        for (Point p: border) {
+            if (!(p instanceof Stone)) l++;
+        }
+        liberties = l;
     }
 
     public void setId(int id) {

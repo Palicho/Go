@@ -8,12 +8,14 @@ public class Board {
     int[] score;
 
     private LinkedList<StoneGroup> groups;
+    private LinkedHashSet<Point> koFlaggedTiles;
     public static Board instance = new Board();
 
     private Board() {
         board = new Point[19][19];
         score = new int[2];
         groups = new LinkedList<>();
+        koFlaggedTiles = new LinkedHashSet<>();
         redrawBoard();
     }
 
@@ -25,22 +27,188 @@ public class Board {
         return groups;
     }
 
+    public LinkedHashSet<Point> getKoFlaggedTiles() {
+        return koFlaggedTiles;
+    }
+
     /**
      * Checks if the move violates the rules
      *
-     * @param c the color of the new stone
-     * @param x the x coordinate
-     * @param y the y coordinate
-     * @return false if it does
+     * @param x     stone vertical position in board
+     * @param y     stone horizontal postion in board
+     * @param color stone color
+     * @return true if the move is okay
      */
-    boolean verifyMove(Color c, int x, int y) {
-        return !(board[x][y] instanceof Stone);
+    public boolean verifyMove(int x, int y, Color color) {
+
+        if (isPositionFree(x, y)) {
+            if (haveLiberties(x, y)) {
+                return true;
+            } else {
+                if (willJoin(x, y, color)) {
+                    return true;
+                }
+
+                if (willKill(x, y, color)) {
+                    if (!isKo(x, y, color)) {
+                        return true;
+                    }
+
+                }
+
+            }
+        }
+        return false;
+
     }
 
-    public boolean move(Color color, int x, int y) {
-        //todo: make this for real
+    boolean isPositionFree(int x, int y) {
+        if (getColorAt(x, y) != null) return false;
+        return true;
+    }
 
-        if (verifyMove(color, x, y)) {
+
+    boolean haveLiberties(int x, int y) {
+        StoneGroup stoneGroup;
+        //top
+        if (x - 1 >= 0) {
+            if (getColorAt(x - 1, y) == null) {
+                return true;
+            }
+        }
+        //left
+        if (y - 1 >= 0) {
+            if (getColorAt(x, y - 1) == null) {
+                return true;
+            }
+        }
+
+        //bottom
+        if (x + 1 < 19) {
+            if (getColorAt(x + 1, y) == null) {
+                return true;
+            }
+        }
+
+        //right
+        if (y + 1 < 19) {
+            if (getColorAt(x, y + 1) == null) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    boolean willJoin(int x, int y, Color color) {
+        StoneGroup stoneGroup;
+        //top
+        if (x - 1 >= 0) {
+            stoneGroup = getGroupById(getGroupIdAt(x - 1, y));
+            if (stoneGroup.getColor() == color && stoneGroup.getLiberties() - 1 != 0) {
+                return true;
+            }
+        }
+        //left
+        if (y - 1 >= 0) {
+            stoneGroup = getGroupById(getGroupIdAt(x, y - 1));
+            if (stoneGroup.getColor() == color && stoneGroup.getLiberties() - 1 != 0) {
+                return true;
+            }
+        }
+
+        //bottom
+        if (x + 1 < 19) {
+            stoneGroup = getGroupById(getGroupIdAt(x + 1, y));
+            if (stoneGroup.getColor() == color && stoneGroup.getLiberties() - 1 != 0) {
+                return true;
+            }
+        }
+
+        //right
+        if (y + 1 < 19) {
+            stoneGroup = getGroupById(getGroupIdAt(x, y + 1));
+            if (stoneGroup.getColor() == color && stoneGroup.getLiberties() - 1 != 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    boolean willKill(int x, int y, Color color) {
+        StoneGroup stoneGroup;
+        //top
+        if (x - 1 >= 0) {
+            stoneGroup = getGroupById(getGroupIdAt(x - 1, y));
+            if (stoneGroup.getColor() != color && stoneGroup.getLiberties() - 1 == 0) {
+                return true;
+            }
+        }
+        //left
+        if (y - 1 >= 0) {
+            stoneGroup = getGroupById(getGroupIdAt(x, y - 1));
+            if (stoneGroup.getColor() != color && stoneGroup.getLiberties() - 1 == 0) {
+                return true;
+            }
+        }
+
+        //bottom
+        if (x + 1 < 19) {
+            stoneGroup = getGroupById(getGroupIdAt(x + 1, y));
+            if (stoneGroup.getColor() != color && stoneGroup.getLiberties() - 1 == 0) {
+                return true;
+            }
+        }
+
+        //right
+        if (y + 1 < 19) {
+            stoneGroup = getGroupById(getGroupIdAt(x, y + 1));
+            if (stoneGroup.getColor() != color && stoneGroup.getLiberties() - 1 == 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isKo(int x, int y, Color c) {
+        boolean ko = false;
+        if (koFlaggedTiles.isEmpty()) {
+            for (Point p: getTileBorder(x,y)) {
+                LinkedHashSet<Point> border = getTileBorder(p.getX(),p.getY());
+                border.remove(board[x][y]);
+                boolean willBeKo = true;
+                for (Point bp: border)
+                    if (!(bp instanceof Stone) || ((Stone) bp).getColor() != c) {
+                        willBeKo = false;
+                        break;
+                    }
+                if (willBeKo) koFlaggedTiles.add(p);
+            }
+        }
+        else {
+            for (Point koPoint: koFlaggedTiles) {
+                if (koPoint.getX() == x && koPoint.getY() == y) {
+                    ko = true;
+                    break;
+                }
+            }
+            koFlaggedTiles = new LinkedHashSet<>();
+        }
+        return ko;
+    }
+
+    public StoneGroup getGroupById(int id) {
+        if (id < groups.size()) return groups.get(id);
+        return null;
+    }
+
+
+    public boolean move(Color color, int x, int y) {
+        if (verifyMove(x, y, color)) {
             updateGroups(color, x, y);
             return true;
         } else return false;
@@ -56,7 +224,7 @@ public class Board {
      */
     private void updateGroups(Color color, int stoneX, int stoneY) {
         StoneGroup newGroup = new StoneGroup(color, stoneX, stoneY);
-        newGroup.setBorder(getTileBorder(stoneX,stoneY));
+        newGroup.setBorder(getTileBorder(stoneX, stoneY));
 
         int[] x = {stoneX + 1, stoneX, stoneX - 1, stoneX};
         int[] y = {stoneY, stoneY + 1, stoneY, stoneY - 1};
@@ -65,11 +233,20 @@ public class Board {
         for (int i = 0; i < 4; i++) {
             if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
                 Point element = board[x[i]][y[i]];
-                if (element instanceof Stone && ((Stone) element).getColor() == color) {
+                if (element instanceof Stone) {
                     neighbor = groups.get(((Stone) element).getGroupId());
-                    newGroup.addStones(neighbor);
-                    removeGroup(neighbor);
+                    if (neighbor.getColor() == color) {
+                        newGroup.addStones(neighbor);
+                        removeGroup(neighbor);
+                    }
+                    else {
+                        if (neighbor.getLiberties() == 1) {
+                            removeGroup(neighbor);
+                            score[color.getValue()] += neighbor.getStones().size();
+                        }
+                    }
                 }
+
             }
         }
 
@@ -101,6 +278,11 @@ public class Board {
             for (Stone stone : group.getStones()) {
                 board[stone.getX()][stone.getY()] = stone;
             }
+        }
+
+        for (StoneGroup group: groups) {
+            group.setBorder(getBorder(group.getStones()));
+            group.setLiberties();
         }
     }
 
@@ -144,7 +326,7 @@ public class Board {
      * @return border a set of points that belong to the border
      */
     public <Tile extends Point> LinkedHashSet<Point> getBorder(LinkedHashSet<Tile> set) {
-        int x,y;
+        int x, y;
         LinkedHashSet<Point> border = new LinkedHashSet<>();
 
         for (Tile p : set) {
@@ -161,6 +343,7 @@ public class Board {
 
     /**
      * Provides a set of tiles around the specified point
+     *
      * @param x the x coordinate of the point
      * @param y the y coordinate of the point
      * @return a set of tiles around the point that fit onto the board
@@ -207,12 +390,11 @@ public class Board {
                 validTerritory = true;
                 for (Point p : getBorder(ec.getPoints())) {
                     if (p instanceof Stone) {
-                        Stone s = (Stone)p;
+                        Stone s = (Stone) p;
                         if (!(groups.get(s.getGroupId()).isAlive())) {
                             validTerritory = false;
                             break;
-                        }
-                        else if (s.isSeki()) {
+                        } else if (s.isSeki()) {
                             validTerritory = false;
                             break;
                         }
@@ -227,6 +409,7 @@ public class Board {
 
     /**
      * Gets a cluster of empty tiles starting with the provided point
+     *
      * @param x the x coordinate of the point
      * @param y the y coordinate of the point
      * @return a set of empty tiles along with info about their stone neighbors
@@ -245,6 +428,7 @@ public class Board {
 
     /**
      * Provides the score of the specified player
+     *
      * @param color the player represented by the color they use
      * @return the score
      */
