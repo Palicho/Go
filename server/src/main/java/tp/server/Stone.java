@@ -1,23 +1,15 @@
 package tp.server;
 
 public class Stone extends Point {
-    Color color;
-    int groupId;
-    boolean seki;
+    private Color color;
+    private int groupId;
+    private boolean seki;
 
     Stone(Color color, int x, int y) {
         super(x, y);
         this.check();
         this.color = color;
         this.seki = false;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public Color getColor() {
@@ -33,10 +25,10 @@ public class Stone extends Point {
     }
 
     public void setSeki() {
-        seki = true;
+        this.seki = true;
     }
 
-    public boolean seki() {
+    public boolean isSeki() {
         return seki;
     }
 }

@@ -56,6 +56,8 @@ public class Board {
      */
     private void updateGroups(Color color, int stoneX, int stoneY) {
         StoneGroup newGroup = new StoneGroup(color, stoneX, stoneY);
+        newGroup.setBorder(getTileBorder(stoneX,stoneY));
+
         int[] x = {stoneX + 1, stoneX, stoneX - 1, stoneX};
         int[] y = {stoneY, stoneY + 1, stoneY, stoneY - 1};
         StoneGroup neighbor;
@@ -66,18 +68,22 @@ public class Board {
                 if (element instanceof Stone && ((Stone) element).getColor() == color) {
                     neighbor = groups.get(((Stone) element).getGroupId());
                     newGroup.addStones(neighbor);
-                    groups.remove(neighbor);
-
-                    for (StoneGroup sg : groups) {
-                        sg.setId(groups.indexOf(sg));
-                    }
-                    redrawBoard();
+                    removeGroup(neighbor);
                 }
             }
         }
 
         groups.add(newGroup);
         newGroup.setId(groups.indexOf((newGroup)));
+        redrawBoard();
+        newGroup.setBorder(getBorder(newGroup.getStones()));
+    }
+
+    private void removeGroup(StoneGroup group) {
+        groups.remove(group);
+        for (StoneGroup sg : groups) {
+            sg.setId(groups.indexOf(sg));
+        }
         redrawBoard();
     }
 
@@ -100,9 +106,10 @@ public class Board {
 
     /**
      * Provides the color of the stone on the specified tile
+     *
      * @param x x coordinate
      * @param y y coordinate
-     * @return  the color, or null if the tile is empty
+     * @return the color, or null if the tile is empty
      */
     public Color getColorAt(int x, int y) {
         if (board[x][y] instanceof Stone) {
@@ -112,6 +119,7 @@ public class Board {
 
     /**
      * Provides the id of the group that the stone on the specified tile belongs to
+     *
      * @param x x coordinate
      * @param y y coordinate
      * @return the id of the group, or -1 if the tile is empty
@@ -130,24 +138,33 @@ public class Board {
     }
 
     /**
-     * Provides the border of the specified set of points
+     * Provides the border of the specified set of tiles
+     *
      * @param set the set to find the border of
      * @return border a set of points that belong to the border
      */
-    public LinkedHashSet<Point> getBorder(LinkedHashSet<Point> set) {
-        int x, y;
+    public <Tile extends Point> LinkedHashSet<Point> getBorder(LinkedHashSet<Tile> set) {
+        int x,y;
         LinkedHashSet<Point> border = new LinkedHashSet<>();
 
-        for (Point p : set) {
-
+        for (Tile p : set) {
             x = p.getX();
             y = p.getY();
 
-            border.addAll(getTileBorder(x,y));
+            border.addAll(getTileBorder(x, y));
         }
+        border.removeAll(set);
+
         return border;
     }
 
+
+    /**
+     * Provides a set of tiles around the specified point
+     * @param x the x coordinate of the point
+     * @param y the y coordinate of the point
+     * @return a set of tiles around the point that fit onto the board
+     */
     public LinkedHashSet<Point> getTileBorder(int x, int y) {
         LinkedHashSet<Point> border = new LinkedHashSet<>();
 
@@ -167,6 +184,9 @@ public class Board {
         return border;
     }
 
+    /**
+     * Adds territory points to the score array
+     */
     public void evaluateTerritoryPoints() {
         LinkedHashSet<Point> emptyPoints = new LinkedHashSet<>();
         for (Point[] p : board) for (Point point : p) if (!(point instanceof Stone)) emptyPoints.add(point);
@@ -181,20 +201,36 @@ public class Board {
                 }
             }
         }
-        boolean sekiSafe;
+        boolean validTerritory;
         for (EmptyCluster ec : emptyClusters) {
             if (ec.getOwner() != -1) {
-                sekiSafe = true;
+                validTerritory = true;
                 for (Point p : getBorder(ec.getPoints())) {
-                    if (p instanceof Stone && ((Stone) p).seki()) sekiSafe = false;
+                    if (p instanceof Stone) {
+                        Stone s = (Stone)p;
+                        if (!(groups.get(s.getGroupId()).isAlive())) {
+                            validTerritory = false;
+                            break;
+                        }
+                        else if (s.isSeki()) {
+                            validTerritory = false;
+                            break;
+                        }
+                    }
                 }
-                if (sekiSafe) {
-                    score[ec.getOwner() - 1] += ec.size();
+                if (validTerritory) {
+                    score[ec.getOwner()] += ec.size();
                 }
             }
         }
     }
 
+    /**
+     * Gets a cluster of empty tiles starting with the provided point
+     * @param x the x coordinate of the point
+     * @param y the y coordinate of the point
+     * @return a set of empty tiles along with info about their stone neighbors
+     */
     public EmptyCluster getCluster(int x, int y) {
         EmptyCluster cluster = new EmptyCluster();
         cluster.addPoint(board[x][y]);
@@ -207,9 +243,14 @@ public class Board {
         return cluster;
     }
 
+    /**
+     * Provides the score of the specified player
+     * @param color the player represented by the color they use
+     * @return the score
+     */
     public int getScore(Color color) {
         int c = color.getValue();
-        return score[c - 1];
+        return score[c];
     }
 
 }

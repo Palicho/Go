@@ -9,7 +9,11 @@ public class StoneGroup {
     int liberties;
 
     /**
-     * @param stone the stone that starts the group
+     * Create a group with the parameters of its first stone
+     *
+     * @param color the color of the group
+     * @param x     the x coordinate of the stone
+     * @param y     the y coordinate of the stone
      */
     StoneGroup(Color color, int x, int y) {
         Stone stone = new Stone(color, x, y);
@@ -19,11 +23,12 @@ public class StoneGroup {
 
     /**
      * Connects this group with the provided one
+     *
      * @param group the group to add
      */
     void addStones(StoneGroup group) {
         stones.addAll(group.getStones());
-        border.addAll(group.getBorder());
+        border.removeAll(stones);
     }
 
     public LinkedHashSet<Stone> getStones() {
@@ -43,10 +48,20 @@ public class StoneGroup {
     }
 
     void setLiberties(int liberties) {
-        this.liberties= liberties;
+        this.liberties = liberties;
     }
 
     public void setId(int id) {
-        for (Stone s: stones) s.setGroupId(id);
+        for (Stone s : stones) s.setGroupId(id);
+    }
+
+    public boolean isAlive() {
+        //todo: make this return true only if liberties > 1
+        return true;
+    }
+
+    public void setBorder(LinkedHashSet<Point> border) {
+        //border.removeAll(stones);
+        this.border = border;
     }
 }
