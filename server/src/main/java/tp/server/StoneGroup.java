@@ -21,6 +21,11 @@ public class StoneGroup {
         this.color = color;
     }
 
+    StoneGroup(Stone stone) {
+        stones.add(stone);
+        this.color= stone.getColor();
+    }
+
     /**
      * Connects this group with the provided one
      *
