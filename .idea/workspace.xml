@@ -4,12 +4,6 @@
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/EmptyCluster.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/EmptyCluster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Stone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="236" />
+    <option name="myElementSize" value="263" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -156,6 +150,7 @@
       <updated>1574969702168</updated>
       <workItem from="1574969703459" duration="9188000" />
       <workItem from="1575195855035" duration="3063000" />
+      <workItem from="1575274857512" duration="2890000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -201,22 +196,22 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1575242043808" />
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1575198571820">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1575278124493">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1575198571820" />
-    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1575198571817">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1575278124493" />
+    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1575278124493">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1575198571817" />
-    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1575198571815">
+    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1575278124493" />
+    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1575278124492">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1575198571815" />
-    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1575198571819">
+    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1575278124492" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1575278124493">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1575198571819" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1575278124493" />
     <state width="1817" height="475" key="GridCell.Tab.1.bottom" timestamp="1575197672755">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -251,15 +246,6 @@
     <state x="652" y="253" key="run.anything.popup/57.27.1863.1053@57.27.1863.1053" timestamp="1575136646647" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java</url>
-          <line>149</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="getBorder(ec.getPoints())" language="JAVA" />
@@ -267,7 +253,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1575146635310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1575277962270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
   </component>

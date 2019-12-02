@@ -41,7 +41,6 @@ public class Board {
      */
     public boolean verifyMove(Stone stone) {
 
-
         if ( isPositionFree(stone)){
             if( haveLiberties(stone)){
                 return true;
@@ -104,6 +103,9 @@ public class Board {
         LinkedList<StoneGroup> stoneGroups= new LinkedList<>();
         int stoneX = stone.getX();
         int stoneY = stone.getY();
+        int newLiberties = 0;
+        LinkedHashSet<Point> tileBorder = getTileBorder(stoneX,stoneY);
+        for (Point p: tileBorder) if (!(p instanceof Stone)) newLiberties++;
 
         int[] x = {stoneX+1, stoneX, stoneX-1, stoneX};
         int[] y = {stoneY, stoneY+1, stoneY, stoneY-1};
@@ -115,7 +117,7 @@ public class Board {
                 stoneGroup=getGroupById(getGroupIdAt(x[i],y[i]));
                 if(stoneGroup != null){
 
-                    if( stoneGroup.getColor()==stone.getColor() &&  stoneGroup.getLiberties()-1 != 0){
+                    if( stoneGroup.getColor()==stone.getColor() &&  stoneGroup.getLiberties() + newLiberties -1 != 0){
                         stoneGroups.add(stoneGroup);
                     }
                 }
