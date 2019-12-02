@@ -127,10 +127,10 @@ public class Board {
     }
 
     boolean willJoin(Stone stone){
-        if( getGroupsToJoin(stone) != null){
-            return true;
+        if( getGroupsToJoin(stone).isEmpty()){
+            return false;
         }
-        return false;
+        return true;
     }
 
 
@@ -192,10 +192,10 @@ public class Board {
 
     boolean willKill(Stone stone){
 
-        if(getGroupsToKill(stone) != null){
-            return true;
+        if(getGroupsToKill(stone).isEmpty()){
+            return false;
         }
-        return  false;
+        return  true;
     }
 
 
