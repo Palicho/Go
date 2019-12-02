@@ -2,6 +2,7 @@ package tp.server;
 
 import org.junit.Test;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 import static org.junit.Assert.*;
@@ -12,8 +13,8 @@ public class BoardTest {
         //todo: make this for real too
         Board board = Board.getInstance();
 
-        assertTrue(board.move(Color.BLACK,2,2));
-        assertFalse(board.move(Color.BLACK,2,2));
+        assertTrue(board.move(Color.BLACK, 2, 2));
+        assertFalse(board.move(Color.BLACK, 2, 2));
 
         board.reset();
     }
@@ -22,8 +23,8 @@ public class BoardTest {
     public void testStonePlacement() {
         Board board = Board.getInstance();
 
-        board.move(Color.BLACK,0,0);
-        board.move(Color.WHITE,18,18);
+        board.move(Color.BLACK, 0, 0);
+        board.move(Color.WHITE, 18, 18);
 
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 19; j++) {
@@ -39,7 +40,7 @@ public class BoardTest {
     @Test
     public void testGroupCreation() {
         Board board = Board.getInstance();
-        board.move(Color.WHITE,0,0);
+        board.move(Color.WHITE, 0, 0);
 
         LinkedList<StoneGroup> groups = board.getGroups();
         assertEquals(1, groups.size());
@@ -54,20 +55,187 @@ public class BoardTest {
     @Test
     public void testGroupMerging() {
         Board board = Board.getInstance();
-        board.move(Color.WHITE,0,0);
-        board.move(Color.WHITE,0,2);
+        board.move(Color.WHITE, 0, 0);
+        board.move(Color.WHITE, 0, 2);
         LinkedList<StoneGroup> groups = board.getGroups();
         assertEquals(2, groups.size());
         assertEquals(0, board.getGroupIdAt(0, 0));
         assertEquals(-1, board.getGroupIdAt(0, 1));
         assertEquals(1, board.getGroupIdAt(0, 2));
 
-        board.move(Color.WHITE,0,1);
+        board.move(Color.WHITE, 0, 1);
         groups = board.getGroups();
         assertEquals(1, groups.size());
         assertEquals(0, board.getGroupIdAt(0, 0));
         assertEquals(0, board.getGroupIdAt(0, 1));
         assertEquals(0, board.getGroupIdAt(0, 2));
+
+        board.reset();
+    }
+
+    @Test
+    public void testBorderGeneration() {
+        Board board = Board.getInstance();
+
+        board.move(Color.BLACK, 13,13);
+
+        board.move(Color.WHITE, 0, 2);
+        board.move(Color.WHITE, 0, 3);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 1, 1);
+        board.move(Color.WHITE, 1, 2);
+        board.move(Color.WHITE, 2, 0);
+        board.move(Color.WHITE, 2, 1);
+
+        board.move(Color.BLACK, 16, 0);
+        board.move(Color.BLACK, 17, 0);
+        board.move(Color.BLACK, 17, 1);
+        board.move(Color.BLACK, 18, 1);
+        board.move(Color.BLACK, 18, 2);
+
+        assertEquals(4, board.getGroups().get(0).getBorder().size());
+        assertEquals(7, board.getGroups().get(1).getBorder().size());
+        assertEquals(5, board.getGroups().get(2).getBorder().size());
+
+        board.reset();
+    }
+
+    @Test
+    public void testClusterGeneration() {
+        Board board = Board.getInstance();
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 1, 1);
+        board.move(Color.WHITE, 0, 2);
+
+        EmptyCluster cluster = board.getCluster(0, 0);
+        assertEquals(2, cluster.size());
+
+        cluster = board.getCluster(3, 3);
+        assertEquals(356, cluster.size());
+
+        board.reset();
+    }
+
+    @Test
+    public void testSekiExecution() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 2);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 1, 1);
+
+        board.move(Color.BLACK, 17, 0);
+        board.move(Color.BLACK, 18, 1);
+
+        board.evaluateTerritoryPoints();
+
+        assertEquals(0, board.getScore(Color.BLACK));
+        assertEquals(0, board.getScore(Color.WHITE));
+
+        board.reset();
+    }
+
+    @Test
+    public void testTerritoryEvaluation() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 2);
+        board.move(Color.WHITE, 0, 3);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 1, 1);
+        board.move(Color.WHITE, 1, 2);
+        board.move(Color.WHITE, 2, 0);
+        board.move(Color.WHITE, 2, 1);
+
+        board.move(Color.BLACK, 16, 0);
+        board.move(Color.BLACK, 17, 0);
+        board.move(Color.BLACK, 17, 1);
+        board.move(Color.BLACK, 18, 1);
+        board.move(Color.BLACK, 18, 2);
+
+        board.evaluateTerritoryPoints();
+
+        assertEquals(1, board.getScore(Color.BLACK));
+        assertEquals(2, board.getScore(Color.WHITE));
+
+        board.reset();
+    }
+
+    @Test
+    public void testStoneStrangulation() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 0);
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 1);
+        board.move(Color.BLACK, 2, 0);
+
+        assertEquals(3, board.getGroups().size());
+        assertEquals(3, board.getScore(Color.BLACK));
+        board.reset();
+    }
+
+    @Test
+    public void testRegularKo() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 2, 1);
+        board.move(Color.WHITE, 1, 2);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 3);
+        board.move(Color.BLACK, 2, 2);
+        board.move(Color.BLACK, 1, 1);
+
+        assertEquals(1, board.getKoFlaggedTiles().size());
+        assertFalse(board.move(Color.WHITE, 1, 2));
+
+        board.reset();
+    }
+
+    @Test
+    public void testMultiKo() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+        board.move(Color.WHITE, 2, 1);
+        board.move(Color.WHITE, 1, 2);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 3);
+        board.move(Color.BLACK, 2, 2);
+        board.move(Color.BLACK, 2, 0);
+        board.move(Color.BLACK, 3, 1);
+
+        board.move(Color.BLACK, 1, 1);
+
+        assertEquals(2, board.getKoFlaggedTiles().size());
+        assertFalse(board.move(Color.WHITE, 1, 2));
+        assertFalse(board.move(Color.WHITE, 2, 1));
+
+        board.reset();
+    }
+
+    @Test
+    public void testBoardBorderKo() {
+        Board board = Board.getInstance();
+
+        board.move(Color.WHITE, 0, 1);
+        board.move(Color.WHITE, 1, 0);
+
+        board.move(Color.BLACK, 0, 2);
+        board.move(Color.BLACK, 1, 1);
+
+        board.move(Color.BLACK, 0, 0);
+
+        assertEquals(1, board.getKoFlaggedTiles().size());
+        assertFalse(board.move(Color.WHITE, 0, 1));
 
         board.reset();
     }

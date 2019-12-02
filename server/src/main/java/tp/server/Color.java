@@ -1,10 +1,11 @@
 package tp.server;
 
 public enum Color {
-    BLACK(1), WHITE(2);
+    BLACK(0), WHITE(1);
 
     private int value;
-    private Color(int value) {
+
+    Color(int value) {
         this.value = value;
     }
 
@@ -13,8 +14,8 @@ public enum Color {
     }
 
     public static Color getColorByValue(int value) {
-        if (value == 1) return BLACK;
-        else if (value == 2) return WHITE;
+        if (value == 0) return BLACK;
+        else if (value == 1) return WHITE;
         else return null;
     }
 
