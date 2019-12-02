@@ -1,5 +1,6 @@
 package tp.server;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Board {
@@ -27,26 +28,25 @@ public class Board {
 
     /**
      * Checks if the move violates the rules
-     * @param x stone vertical position in board
-     * @param y stone horizontal postion in board
-     * @param color stone color
+     * @param stone stone to be added in a mve
      * @return true if the move is okay
      */
-    public boolean verifyMove(int x, int y, Color color) {
+    public boolean verifyMove(Stone stone) {
 
-        if ( isPositionFree(x ,y )){
-            if( haveLiberties(x, y)){
+        if ( isPositionFree(stone)){
+            if( haveLiberties(stone)){
                 return true;
             }
             else{
-                if(willJoin(x,y, color)){
+                if(willJoin(stone)){
                     return true;
                 }
 
-                if(willKill(x, y, color)){
-                    if( !isKo(x, y, color)){
-                        return true;
+                if(willKill(stone)){
+                    if (isKo(stone)) {
+                        return false;
                     }
+                    return true;
 
                 }
 
@@ -56,39 +56,33 @@ public class Board {
 
     }
 
-    boolean isPositionFree(int x, int y){
-        if (colorBoard[x][y] != -1) return false;
+    private boolean isKo(Stone stone) {
+        return false;
+    }
+
+    boolean isPositionFree(Stone stone){
+        if (colorBoard[stone.getX()][stone.getY()] != -1) return false;
         return true;
     }
 
 
 
-    boolean haveLiberties(int x, int y){
-            StoneGroup stoneGroup;
-        //top
-        if(x-1>=0){
-            if(colorBoard[x-1][y]==-1){
-                return true;
-            }
-        }
-        //left
-        if(y-1 >= 0){
-            if(colorBoard[x][y-1]==-1){
-                return true;
-            }
-        }
 
-        //bottom
-        if(x+1<19){
-            if(colorBoard[x+1][y]==-1){
-                return true;
-            }
-        }
+    boolean haveLiberties(Stone stone){
 
-        //right
-        if(y+1<19){
-            if(colorBoard[x][y+1]==-1){
-                return true;
+        int stoneX = stone.getX();
+        int stoneY = stone.getY();
+
+        int[] x = {stoneX+1, stoneX, stoneX-1, stoneX};
+        int[] y = {stoneY, stoneY+1, stoneY, stoneY-1};
+
+
+        for (int i=0; i<4; i++) {
+            if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
+                if( colorBoard[  x[i] ] [ y[i] ] == -1){
+                    return true;
+                }
+
             }
         }
 
@@ -96,83 +90,69 @@ public class Board {
     }
 
 
-    boolean willJoin(int x , int y, Color color){
+    ArrayList<Integer> getGroupsIdToJoin(Stone stone){
+        ArrayList<Integer> ids= new ArrayList<Integer>();
+        int stoneX = stone.getX();
+        int stoneY = stone.getY();
+
+        int[] x = {stoneX+1, stoneX, stoneX-1, stoneX};
+        int[] y = {stoneY, stoneY+1, stoneY, stoneY-1};
+
+
         StoneGroup stoneGroup;
-        //top
-        if(x-1>=0){
-            stoneGroup=getGroupById(getGroupIdAt(x-1,y));
-            if( stoneGroup.getColor()==color && stoneGroup.getLiberties()-1 != 0){
-                return true;
-            }
-        }
-        //left
-        if(y-1 >= 0){
-            stoneGroup=getGroupById(getGroupIdAt(x,y-1));
-            if( stoneGroup.getColor()==color &&  stoneGroup.getLiberties()-1 != 0){
-                return true;
+        for (int i=0; i<4; i++) {
+            if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
+                stoneGroup=getGroupById(getGroupIdAt(x[i],y[i]));
+                if( stoneGroup.getColor()==stone.getColor() &&  stoneGroup.getLiberties()-1 != 0){
+                    ids.add(getGroupIdAt(x[i],y[i]));
+                }
+
             }
         }
 
-        //bottom
-        if(x+1<19){
-            stoneGroup=getGroupById(getGroupIdAt(x+1,y));
-            if( stoneGroup.getColor()==color && stoneGroup.getLiberties()-1 != 0){
-                return true;
-            }
-        }
-
-        //right
-        if(y+1<19){
-            stoneGroup=getGroupById(getGroupIdAt(x,y+1));
-            if( stoneGroup.getColor()==color && stoneGroup.getLiberties()-1 != 0){
-                return true;
-            }
-        }
-
-        return  false;
+        return ids;
     }
 
-
-    boolean willKill(int x , int y, Color color){
-        StoneGroup stoneGroup;
-        //top
-        if(x-1>=0){
-            stoneGroup=getGroupById(getGroupIdAt(x-1,y));
-            if( stoneGroup.getColor()!=color && stoneGroup.getLiberties()-1 == 0){
-                return true;
-            }
+    boolean willJoin(Stone stone){
+        if( getGroupsIdToJoin(stone)== null){
+            return true;
         }
-        //left
-        if(y-1 >= 0){
-            stoneGroup=getGroupById(getGroupIdAt(x,y-1));
-            if( stoneGroup.getColor()!=color &&  stoneGroup.getLiberties()-1 == 0){
-                return true;
-            }
-        }
-
-        //bottom
-        if(x+1<19){
-            stoneGroup=getGroupById(getGroupIdAt(x+1,y));
-            if( stoneGroup.getColor()!=color && stoneGroup.getLiberties()-1 == 0){
-                return true;
-            }
-        }
-
-        //right
-        if(y+1<19){
-            stoneGroup=getGroupById(getGroupIdAt(x,y+1));
-            if( stoneGroup.getColor()!=color && stoneGroup.getLiberties()-1 == 0){
-                return true;
-            }
-        }
-
-        return  false;
-    }
-
-    public boolean isKo(int x, int y, Color c){
-        //to do: make the impossible
         return false;
     }
+
+
+    ArrayList<Integer> getGroupsIdToKill(Stone stone){
+        ArrayList<Integer> ids= new ArrayList<Integer>();
+        int stoneX = stone.getX();
+        int stoneY = stone.getY();
+
+        int[] x = {stoneX+1, stoneX, stoneX-1, stoneX};
+        int[] y = {stoneY, stoneY+1, stoneY, stoneY-1};
+
+        StoneGroup stoneGroup;
+
+        for (int i=0; i<4; i++) {
+            if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
+                stoneGroup=getGroupById(getGroupIdAt(x[i],y[i]));
+                if( stoneGroup.getColor()!=stone.getColor() && stoneGroup.getLiberties()-1 == 0){
+                    ids.add(getGroupIdAt(x[i],y[i]));
+                }
+
+            }
+        }
+        return  ids;
+
+    }
+
+    boolean willKill(Stone stone){
+
+        if(getGroupsIdToKill(stone) != null){
+            return true;
+        }
+        return  false;
+    }
+
+
 
     public StoneGroup getGroupById( int id){
         for ( StoneGroup stoneGroup : groups){
@@ -187,7 +167,7 @@ public class Board {
     public boolean move(Color color, int x, int y) {
         //todo: make this for real
         Stone newStone = new Stone(color, x, y);
-        if (verifyMove(newStone.getX(), newStone.getY(), newStone.getColor())) {
+        if (verifyMove(newStone)) {
             addStone(newStone);
             return true;
         }
@@ -199,6 +179,24 @@ public class Board {
      * @param newStone the stone to be included
      */
     private void addStone(Stone newStone) {
+
+        ArrayList<Integer> groupsToJoin = getGroupsIdToJoin(newStone);
+        ArrayList<Integer> groupsToKill = getGroupsIdToJoin(newStone);
+
+        StoneGroup newGroup = new StoneGroup(newStone);
+
+
+        for(int id : groupsToJoin){
+            newGroup.addStones(getGroupById(id));
+            groups.remove(getGroupById(id));
+        }
+        groups.add(newGroup);
+
+
+        for(int id : groupsToKill){
+            groups.remove(getGroupById(id));
+        }
+
         colorBoard[newStone.getX()][newStone.getY()] = newStone.getColorValue();
         updateGroups(newStone);
     }
@@ -209,23 +207,8 @@ public class Board {
      * @param newStone the new stone
      */
     private void updateGroups(Stone newStone) {
-        StoneGroup newGroup = new StoneGroup(newStone);
-        int stoneX = newStone.getX();
-        int stoneY = newStone.getY();
-        int[] x = {stoneX+1, stoneX, stoneX-1, stoneX};
-        int[] y = {stoneY, stoneY+1, stoneY, stoneY-1};
-        StoneGroup neighbor;
-        for (int i=0; i<4; i++) {
-            if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
-                if (colorBoard[x[i]][y[i]] == newStone.getColorValue()) {
-                    neighbor = groups.get(groupBoard[x[i]][y[i]]);
-                    newGroup.addStones(neighbor);
-                    groups.remove(neighbor);
-                    redrawGroupBoard();
-                }
-            }
-        }
-        groups.add(newGroup);
+
+
         redrawGroupBoard();
     }
 
