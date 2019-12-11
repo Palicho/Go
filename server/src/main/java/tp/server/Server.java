@@ -19,7 +19,7 @@ public class Server {
             String line = startReader.readLine();
             if (line.matches("START [12]")) {
                 switch (line.charAt(6)) {
-                    case 1:
+                    case '1':
                         clientSockets = new Socket[1];
                         out = new PrintWriter[1];
                         in = new BufferedReader[1];
@@ -31,7 +31,7 @@ public class Server {
 
                         startWriter.println("READY B");
                         break;
-                    case 2:
+                    case '2':
                         clientSockets = new Socket[2];
                         out = new PrintWriter[2];
                         in = new BufferedReader[2];
@@ -43,6 +43,7 @@ public class Server {
                         clientSockets[1] = serverSocket.accept();
                         out[1] = new PrintWriter(clientSockets[1].getOutputStream(), true);
                         in[1] = new BufferedReader(new InputStreamReader(clientSockets[1].getInputStream()));
+                        in[1].readLine();
 
                         out[0].println("READY B");
                         out[1].println("READY W");
@@ -72,7 +73,7 @@ public class Server {
                     out[i].println(line);
                     clientLine = in[i].readLine();
                     if (clientLine.equals("PAUSE")) {
-                        if (pauseFlag) {
+                        if (pauseFlag || in.length == 1) {
                             line = game.endGame();
                             updateClients(line);
                             return;
@@ -114,6 +115,7 @@ public class Server {
             s.gameEnd();
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 }

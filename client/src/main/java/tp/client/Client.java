@@ -2,8 +2,7 @@ package tp.client;
 
 import java.io.*;
 import java.net.*;
-
-import static java.lang.System.exit;
+import java.util.Scanner;
 
 public class Client {
     Socket socket;
@@ -13,7 +12,7 @@ public class Client {
 
     private Client(int port) throws IOException {
         socket = new Socket("localhost", port);
-        out = new PrintWriter(socket.getOutputStream());
+        out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
@@ -29,16 +28,19 @@ public class Client {
             signature = response.charAt(6);
         } else {
             System.out.println("ERROR");
-            exit(1);
+            System.exit(1);
         }
     }
 
     private boolean gameCourse() throws IOException {
         String serverMsg;
+        Scanner input = new Scanner(System.in);
         while (true) {
             serverMsg = in.readLine();
             if (serverMsg.equals("MOVE")) {
                 //todo: move
+                System.out.print("Your move ("+signature+" X Y): ");
+                out.println(input.nextLine());
             } else if (serverMsg.startsWith("END")) {
                 String[] results = serverMsg.split(" ");
                 int[] scores = new int[2];
@@ -61,6 +63,7 @@ public class Client {
                 return (loser != signature);
             } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
                 //todo: mark the move on your board
+                System.out.println(serverMsg);
             }
         }
     }
@@ -72,7 +75,7 @@ public class Client {
             //c.initializeGame(false);
             c.gameCourse();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.exit(1);
         }
     }
 }
