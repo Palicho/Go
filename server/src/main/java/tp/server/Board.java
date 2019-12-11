@@ -63,7 +63,7 @@ public class Board {
     }
 
     boolean isPositionFree(int x, int y) {
-        if (getColorAt(x, y) != null) return false;
+        if (x<0 || x>18 || y<0 || y>18 || getColorAt(x, y) != null) return false;
         return true;
     }
 
