@@ -10,13 +10,13 @@ public class Client {
     BufferedReader in;
     char signature;
 
-    private Client(int port) throws IOException {
+    Client(int port) throws IOException {
         socket = new Socket("localhost", port);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
-    private void initializeGame(boolean bot) throws IOException {
+    void initializeGame(boolean bot) throws IOException {
         if (bot) out.println("START 1");
         else out.println("START 2");
         String response = in.readLine();

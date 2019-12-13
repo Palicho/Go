@@ -70,6 +70,10 @@ public class Board {
 
     }
 
+    public boolean verifyMove(int x, int y, Color c) {
+        return verifyMove(new Stone(c,x,y));
+    }
+
     boolean isPositionFree(int x, int y) {
         if (x<0 || x>18 || y<0 || y>18 || getColorAt(x, y) != null) return false;
         return true;
