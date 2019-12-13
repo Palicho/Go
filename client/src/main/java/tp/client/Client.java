@@ -46,6 +46,9 @@ public class Client {
                 int[] scores = new int[2];
                 scores[0] = Integer.parseInt(results[2]);
                 scores[1] = Integer.parseInt(results[4]);
+                in.close();
+                out.close();
+                socket.close();
                 char winner;
                 if (scores[0] == scores[1]) System.out.println("TIE (" + scores[0] + " points)");
                 else {
@@ -60,12 +63,17 @@ public class Client {
                 char loser = serverMsg.charAt(10);
                 if (loser == signature) System.out.println("YOU HAVE SURRENDERED!");
                 else System.out.println("YOUR OPPONENT HAS SURRENDERED!");
+                in.close();
+                out.close();
+                socket.close();
                 return (loser != signature);
             } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
                 //todo: mark the move on your board
                 System.out.println(serverMsg);
             } else if (serverMsg.startsWith("REMOVE ")) {
                 //todo: remove the stone from your board
+                System.out.println(serverMsg);
+            } else if (serverMsg.startsWith("PAUSE ")) {
                 System.out.println(serverMsg);
             }
         }
@@ -74,8 +82,8 @@ public class Client {
     public static void main(String[] args) {
         try {
             Client c = new Client(9100);
-            c.initializeGame(true);
-            //c.initializeGame(false);
+            boolean bot = Boolean.parseBoolean(args[0]);
+            c.initializeGame(bot);
             c.gameCourse();
         } catch (IOException e) {
             System.exit(1);

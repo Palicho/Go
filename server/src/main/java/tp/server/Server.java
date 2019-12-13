@@ -72,7 +72,7 @@ public class Server {
                 while (line.equals("MOVE")) {
                     out[i].println(line);
                     clientLine = in[i].readLine();
-                    if (clientLine.equals("PAUSE")) {
+                    if (clientLine.matches("PAUSE [BW]")) {
                         if (pauseFlag || in.length == 1) {
                             line = game.endGame();
                             updateClients(line);
@@ -86,11 +86,9 @@ public class Server {
                         return;
                     } else line = game.move(clientLine);
                 }
-                if (!line.equals("PAUSE")) {
-                    updateClients(line);
-                    for (String msg: game.getRemoved()) updateClients(msg);
-                    pauseFlag = false;
-                }
+                updateClients(line);
+                for (String msg: game.getRemoved()) updateClients(msg);
+                if (!line.startsWith("PAUSE ")) pauseFlag = false;
             }
             if (out.length == 1) out[0].println(game.getBotMove());
             for (String msg: game.getRemoved()) updateClients(msg);
