@@ -88,15 +88,17 @@ public class Server {
                 }
                 if (!line.equals("PAUSE")) {
                     updateClients(line);
+                    for (String msg: game.getRemoved()) updateClients(msg);
                     pauseFlag = false;
                 }
             }
             if (out.length == 1) out[0].println(game.getBotMove());
+            for (String msg: game.getRemoved()) updateClients(msg);
         }
     }
 
     void gameEnd() throws IOException {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < in.length; i++) {
             in[i].close();
             out[i].close();
             clientSockets[i].close();

@@ -64,6 +64,9 @@ public class Client {
             } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
                 //todo: mark the move on your board
                 System.out.println(serverMsg);
+            } else if (serverMsg.startsWith("REMOVE ")) {
+                //todo: remove the stone from your board
+                System.out.println(serverMsg);
             }
         }
     }
