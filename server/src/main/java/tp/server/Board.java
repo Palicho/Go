@@ -11,6 +11,7 @@ public class Board {
 
 
     private LinkedList<StoneGroup> groups;
+    private LinkedList<StoneGroup> deadGroups;
     private LinkedHashSet<Point> koFlaggedTiles;
     public static Board instance = new Board();
 
@@ -18,6 +19,7 @@ public class Board {
         board = new Point[19][19];
         score = new int[2];
         groups = new LinkedList<>();
+        deadGroups = new LinkedList<>();
         koFlaggedTiles = new LinkedHashSet<>();
         redrawBoard();
     }
@@ -32,6 +34,10 @@ public class Board {
 
     public LinkedHashSet<Point> getKoFlaggedTiles() {
         return koFlaggedTiles;
+    }
+
+    public LinkedList<StoneGroup> getDeadGroups() {
+        return deadGroups;
     }
 
     /**
@@ -64,13 +70,14 @@ public class Board {
 
     }
 
-
-
-    boolean isPositionFree(Stone stone){
-        if (getColorAt(stone.getX(),stone.getY()) != null) return false;
+    boolean isPositionFree(int x, int y) {
+        if (x<0 || x>18 || y<0 || y>18 || getColorAt(x, y) != null) return false;
         return true;
     }
 
+    boolean isPositionFree(Stone stone) {
+        return isPositionFree(stone.getX(), stone.getY());
+    }
 
 
 
@@ -233,9 +240,7 @@ public class Board {
         newGroup.setBorder(getTileBorder(newStone.getX(), newStone.getY()));
 
         LinkedList<StoneGroup> groupsToJoin = getGroupsToJoin(newStone);
-        LinkedList<StoneGroup> groupsToKill = getGroupsToKill(newStone);
-
-
+        deadGroups = getGroupsToKill(newStone);
 
         for(StoneGroup stoneGroup : groupsToJoin){
             newGroup.addStones(stoneGroup);
@@ -243,8 +248,7 @@ public class Board {
         }
 
 
-        for(StoneGroup stoneGroup : groupsToKill){
-
+        for(StoneGroup stoneGroup : deadGroups){
             score[newStone.getColor().getValue()] += stoneGroup.getStones().size();
             removeGroup(stoneGroup);
         }
