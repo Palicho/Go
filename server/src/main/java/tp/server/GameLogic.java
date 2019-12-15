@@ -1,7 +1,7 @@
 package tp.server;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class GameLogic {
     Board board = Board.getInstance();
@@ -22,13 +22,30 @@ public class GameLogic {
     }
 
     String getBotMove() {
-        int x = 0, y = 0;
-        Random random = new Random();
-        while (!board.verifyMove(x, y, Color.WHITE)) {
-            x = random.nextInt(18);
-            y = random.nextInt(18);
+        LinkedList<StoneGroup> opponentGroups = new LinkedList<>();
+        for (StoneGroup sg : board.getGroups()) {
+            if (sg.getColor() == Color.BLACK) opponentGroups.add(sg);
         }
-        return move("W " + x + " " + y);
+        LinkedHashSet<Point> movePool;
+        int min;
+        while (!opponentGroups.isEmpty()) {
+            movePool = opponentGroups.element().getBorder();
+            min = opponentGroups.element().getLiberties();
+            for (StoneGroup sg : opponentGroups) {
+                if (sg.getLiberties() < min) {
+                    min = sg.getLiberties();
+                    movePool = sg.getBorder();
+                    opponentGroups.remove(sg);
+                }
+            }
+            int x, y;
+            for (Point p : movePool) {
+                x = p.getX();
+                y = p.getY();
+                if (board.verifyMove(x, y, Color.WHITE)) return move("W " + x + " " + y);
+            }
+        }
+        return "SURRENDER W";
     }
 
     LinkedList<String> getRemoved() {

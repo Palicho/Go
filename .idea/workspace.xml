@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
+    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Get rid of errors that pop up in the end of a game.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +34,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp.client.Client" />
       <module name="client" />
@@ -130,10 +130,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.ServerTest.testSingleplayerInit" />
         <item itemvalue="JUnit.ServerTest.testMultiplayerInit" />
         <item itemvalue="JUnit.ServerTest" />
-        <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +163,11 @@
       <workItem from="1575195855035" duration="3063000" />
       <workItem from="1575274857512" duration="2890000" />
       <workItem from="1576250776847" duration="1852000" />
-      <workItem from="1576252751831" duration="991000" />
+      <workItem from="1576252751831" duration="1316000" />
+      <workItem from="1576342849510" duration="52000" />
+      <workItem from="1576342914258" duration="928000" />
+      <workItem from="1576427801873" duration="21000" />
+      <workItem from="1576427838325" duration="1604000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -179,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576252614080</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Get rid of errors that pop up in the end of a game.">
+      <created>1576253854088</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576253854088</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,7 +209,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add territory counting methods with tests and fix group merging" />
     <MESSAGE value="Tiny tweak in Board to make stuff easier for the GameLogic class. Removed communication tests since they're useless." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tiny tweak in Board to make stuff easier for the GameLogic class. Removed communication tests since they're useless." />
+    <MESSAGE value="Get rid of errors that pop up in the end of a game." />
+    <option name="LAST_COMMIT_MESSAGE" value="Get rid of errors that pop up in the end of a game." />
   </component>
   <component name="WindowStateProjectService">
     <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1576253008006">
@@ -217,42 +229,46 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1575150242183" />
-    <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576252614002">
+    <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576253861299">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576252614002" />
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576253717733">
+    <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576253861299" />
+    <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1576343031240">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576253717733" />
-    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576253717732">
+    <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576343031240" />
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576429470544">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576253717732" />
-    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576253717732">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
+    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576429470544">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576253717732" />
-    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576253717732">
+    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
+    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576429470544">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576253717732" />
-    <state width="1817" height="418" key="GridCell.Tab.1.bottom" timestamp="1576253496537">
+    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576429470544">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576253496537" />
-    <state width="1817" height="418" key="GridCell.Tab.1.center" timestamp="1576253496534">
+    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
+    <state width="1817" height="418" key="GridCell.Tab.1.bottom" timestamp="1576254066840">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576253496534" />
-    <state width="1817" height="418" key="GridCell.Tab.1.left" timestamp="1576253496533">
+    <state width="1817" height="418" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066840" />
+    <state width="1817" height="418" key="GridCell.Tab.1.center" timestamp="1576254066839">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576253496533" />
-    <state width="1817" height="418" key="GridCell.Tab.1.right" timestamp="1576253496535">
+    <state width="1817" height="418" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066839" />
+    <state width="1817" height="418" key="GridCell.Tab.1.left" timestamp="1576254066839">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576253496535" />
+    <state width="1817" height="418" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066839" />
+    <state width="1817" height="418" key="GridCell.Tab.1.right" timestamp="1576254066840">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state width="1817" height="418" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066840" />
     <state x="6" y="116" width="1717" height="872" key="MergeDialog" timestamp="1576251283257">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
