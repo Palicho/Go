@@ -2,6 +2,7 @@ package tp.client;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -133,23 +134,24 @@ public class Client extends Application {
      *                     primary stages.
      * @throws Exception if something goes wrong
      */
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        socket = new Socket("localhost", 9100);
-        out = new PrintWriter(socket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-    }
-/*
-    public static void main(String[] args) {
-        try {
-            Client c = new Client(9100);
-            boolean bot = Boolean.parseBoolean(args[0]);
-            c.initializeGame(bot);
-            c.gameCourse();
-        } catch (IOException e) {
-            System.exit(1);
+
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            socket = new Socket("localhost", 9100);
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            GamePane gamePane = new GamePane(500,500);
+            Scene scene=  new Scene(gamePane, 500, 500);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            initializeGame(true);
+            //gameCourse();
         }
-    }*/
+
+    public static void main(String[] args) {
+      launch();
+    }
 
     public class GamePane extends Pane {
 
