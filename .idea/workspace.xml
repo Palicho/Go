@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Make AI a little smarter">
+    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576429713537</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Baby steps">
+      <created>1576492252327</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1576492252327</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,7 +246,8 @@
     <MESSAGE value="Tiny tweak in Board to make stuff easier for the GameLogic class. Removed communication tests since they're useless." />
     <MESSAGE value="Get rid of errors that pop up in the end of a game." />
     <MESSAGE value="Make AI a little smarter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make AI a little smarter" />
+    <MESSAGE value="Baby steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="Baby steps" />
   </component>
   <component name="WindowStateProjectService">
     <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1576253008006">
@@ -259,30 +266,30 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1575150242183" />
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576489355384">
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576492252233">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576489355384" />
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576492252233" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1576343031240">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576343031240" />
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576492175590">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576492474283">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175590" />
-    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576492175587">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576492474283" />
+    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576492474283">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175587" />
-    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576492175586">
+    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576492474283" />
+    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576492474283">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175586" />
-    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576492175588">
+    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576492474283" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576492474283">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175588" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576492474283" />
     <state width="1817" height="418" key="GridCell.Tab.1.bottom" timestamp="1576490933549">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -307,10 +314,10 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576251289499" />
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1576429716622">
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1576492254181">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1576429716622" />
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1576492254181" />
     <state x="729" y="257" width="509" height="590" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1575135594605">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>

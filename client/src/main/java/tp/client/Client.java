@@ -11,22 +11,20 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Client extends Application {
 
-    static MyCircle[][] circles = new MyCircle[19][19];
-    static boolean move = false;
-    static Socket socket;
-    static PrintWriter out;
-    static BufferedReader in;
-    static char signature;
-    static Color color;
+    MyCircle[][] circles = new MyCircle[19][19];
+    boolean move = false;
+    Socket socket;
+    PrintWriter out;
+    BufferedReader in;
+    char signature;
+    Color color;
 
     static EventHandler<MouseEvent> clickHandler;
 
-    static void initializeGame(boolean bot) throws IOException {
+    void initializeGame(boolean bot) throws IOException {
         if (bot) out.println("START 1");
         else out.println("START 2");
         String response = in.readLine();
@@ -85,6 +83,7 @@ public class Client extends Application {
                 y = Integer.parseInt(results[2]);
                 circles[x][y].setColor(c);
                 circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                move = false;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -106,6 +105,7 @@ public class Client extends Application {
         }
     }
 
+    /*
     public static boolean gameCourse() throws IOException {
         String serverMsg;
         Scanner input = new Scanner(System.in);
@@ -171,7 +171,7 @@ public class Client extends Application {
                 System.out.println(serverMsg);
             }
         }
-    }
+    } */
 
     /**
      * The main entry point for all JavaFX applications.
@@ -199,8 +199,8 @@ public class Client extends Application {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     try {
-                        String serverMsg = in.readLine();
-                        while (serverMsg.equals("MOVE")) {
+                        waitForResponse();
+                        while (move) {
                             MyCircle c = (MyCircle) mouseEvent.getSource();
                             out.println(signature + " " + c.getX() + " " + c.getY());
                             waitForResponse();
