@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Get rid of errors that pop up in the end of a game.">
+    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +30,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="awaria" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UG4feA8XT8XYfgqpUUvjcFDraT" />
@@ -37,7 +50,20 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tp.client.App" />
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Client" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp.client.Client" />
       <module name="client" />
@@ -80,21 +106,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tp.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tp.client" />
-      <option name="MAIN_CLASS_NAME" value="tp.client.ServerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServerTest.testMultiplayerInit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
@@ -129,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.ServerTest.testSingleplayerInit" />
         <item itemvalue="JUnit.ServerTest.testMultiplayerInit" />
-        <item itemvalue="JUnit.ServerTest" />
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -167,7 +178,11 @@
       <workItem from="1576342849510" duration="52000" />
       <workItem from="1576342914258" duration="928000" />
       <workItem from="1576427801873" duration="21000" />
-      <workItem from="1576427838325" duration="1604000" />
+      <workItem from="1576427838325" duration="2478000" />
+      <workItem from="1576441679720" duration="339000" />
+      <workItem from="1576447220944" duration="104000" />
+      <workItem from="1576448880536" duration="1140000" />
+      <workItem from="1576481898249" duration="4842000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -190,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576253854088</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Make AI a little smarter">
+      <created>1576429713537</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1576429713537</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,7 +232,8 @@
     <MESSAGE value="Add territory counting methods with tests and fix group merging" />
     <MESSAGE value="Tiny tweak in Board to make stuff easier for the GameLogic class. Removed communication tests since they're useless." />
     <MESSAGE value="Get rid of errors that pop up in the end of a game." />
-    <option name="LAST_COMMIT_MESSAGE" value="Get rid of errors that pop up in the end of a game." />
+    <MESSAGE value="Make AI a little smarter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make AI a little smarter" />
   </component>
   <component name="WindowStateProjectService">
     <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1576253008006">
@@ -229,30 +252,30 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1575150242183" />
-    <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576253861299">
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576429713066">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="553" y="149" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576253861299" />
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576429713066" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1576343031240">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576343031240" />
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576429470544">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576483630910">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
-    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576429470544">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630910" />
+    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576483630907">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
-    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576429470544">
+    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630907" />
+    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576483630905">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
-    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576429470544">
+    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630905" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576483630908">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576429470544" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630908" />
     <state width="1817" height="418" key="GridCell.Tab.1.bottom" timestamp="1576254066840">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -277,10 +300,10 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576251289499" />
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1576252620460">
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1576429716622">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1576252620460" />
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1576429716622" />
     <state x="729" y="257" width="509" height="590" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1575135594605">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -297,11 +320,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/tp/server/Server.java</url>
           <line>113</line>

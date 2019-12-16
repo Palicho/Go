@@ -8,7 +8,10 @@ public class GameLogic {
 
     String move(String line) {
         String[] command = line.split(" ");
-        Color c = command[0].equals("B") ? Color.BLACK : Color.WHITE;
+        Color c;
+        if (command[0].equals("B")) c = Color.BLACK;
+        else if (command[0].equals("W")) c = Color.WHITE;
+        else return "MOVE";
         int x, y;
         try {
             x = Integer.parseInt(command[1]);

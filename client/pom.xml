@@ -15,12 +15,6 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
-		<dependency>
-      		<groupId>junit</groupId>
-      		<artifactId>junit</artifactId>
-      		<version>4.11</version>
-      		<scope>test</scope>
-    	</dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -42,6 +36,19 @@
                     <release>11</release>
                 </configuration>
             </plugin>
+						<plugin>
+          		<artifactId>maven-jar-plugin</artifactId>
+          		<version>3.0.2</version>
+							<configuration>
+       					<archive>
+          				<manifest>
+            				<addClasspath>true</addClasspath>
+            				<classpathPrefix>lib/</classpathPrefix>
+            				<mainClass>tp.client.Client</mainClass>
+          				</manifest>
+        				</archive>
+      				</configuration>
+        		</plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>

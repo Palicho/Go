@@ -15,13 +15,24 @@ import java.util.Scanner;
 
 public class Client extends Application {
 
-    ArrayList<MyCircle> circles= new ArrayList<>();
-    boolean move=false;
+    MyCircle[][] circles = new MyCircle[19][19];
+    boolean move = false;
     Socket socket;
     PrintWriter out;
     BufferedReader in;
     char signature;
+    Color color;
 
+    EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            if (move) {
+                MyCircle c = (MyCircle) mouseEvent.getSource();
+                out.print(signature + " " + c.getX() + " " + c.getY());
+                move = false;
+            }
+        }
+    };
 
     void initializeGame(boolean bot) throws IOException {
         if (bot) out.println("START 1");
@@ -33,6 +44,7 @@ public class Client extends Application {
         }
         if (response.matches("READY [BW]")) {
             signature = response.charAt(6);
+            color = signature == 'B'? Color.BLACK : Color.WHITE;
         } else {
             System.out.println("ERROR");
             System.exit(1);
@@ -44,12 +56,12 @@ public class Client extends Application {
         Scanner input = new Scanner(System.in);
         while (true) {
             serverMsg = in.readLine();
+            String[] results = serverMsg.split(" ");
             if (serverMsg.equals("MOVE")) {
                 //todo: move
-                move=true;
-                System.out.print("Your move ("+signature+" X Y): ");
+                move = true;
+                //System.out.print("Your move (" + signature + " X Y): ");
             } else if (serverMsg.startsWith("END")) {
-                String[] results = serverMsg.split(" ");
                 int[] scores = new int[2];
                 scores[0] = Integer.parseInt(results[2]);
                 scores[1] = Integer.parseInt(results[4]);
@@ -67,7 +79,8 @@ public class Client extends Application {
                     return (winner == signature);
                 }
             } else if (serverMsg.startsWith("SURRENDER")) {
-                char loser = serverMsg.charAt(10);
+                //char loser = serverMsg.charAt(10);
+                char loser = results[1].charAt(0);
                 if (loser == signature) System.out.println("YOU HAVE SURRENDERED!");
                 else System.out.println("YOUR OPPONENT HAS SURRENDERED!");
                 in.close();
@@ -76,9 +89,28 @@ public class Client extends Application {
                 return (loser != signature);
             } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
                 //todo: mark the move on your board
+                Color c = results[0].equals("B")? Color.BLACK : Color.WHITE;
+                int x, y;
+                try {
+                    x = Integer.parseInt(results[1]);
+                    y = Integer.parseInt(results[2]);
+                    circles[x][y].setColor(c);
+                    circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println(serverMsg);
             } else if (serverMsg.startsWith("REMOVE ")) {
                 //todo: remove the stone from your board
+                int x, y;
+                try {
+                    x = Integer.parseInt(results[1]);
+                    y = Integer.parseInt(results[2]);
+                    circles[x][y].setColor(Color.CORAL);
+                    circles[x][y].setOnMouseClicked(clickHandler);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println(serverMsg);
             } else if (serverMsg.startsWith("PAUSE ")) {
                 System.out.println(serverMsg);
@@ -121,52 +153,42 @@ public class Client extends Application {
 
     public class GamePane extends Pane {
 
-
         public GamePane(double width, double height) {
 
-            double lineWidthSpace = (width-50)/18;
-            double lineHeightSpace = (height-50)/18;
+            double lineWidthSpace = (width - 50) / 18;
+            double lineHeightSpace = (height - 50) / 18;
 
-            for(int i =0; i<19; i++){
+            for (int i = 0; i < 19; i++) {
                 Line line = new Line();
-                line.setStartX(lineWidthSpace*i+25);
+                line.setStartX(lineWidthSpace * i + 25);
                 line.setStartY(25);
-                line.setEndX(lineWidthSpace*i+25);
-                line.setEndY(height-25);
+                line.setEndX(lineWidthSpace * i + 25);
+                line.setEndY(height - 25);
                 getChildren().add(line);
             }
 
-            for(int i =0; i<19; i++){
+            for (int i = 0; i < 19; i++) {
                 Line line = new Line();
                 line.setStartX(25);
-                line.setStartY(lineHeightSpace*i+25);
-                line.setEndX(width-25);
-                line.setEndY(lineHeightSpace*i+25);
+                line.setStartY(lineHeightSpace * i + 25);
+                line.setEndX(width - 25);
+                line.setEndY(lineHeightSpace * i + 25);
                 getChildren().add(line);
             }
 
 
-            for( int i= 0;i<19;i++){
-                for(int j =0; j<19;j++){
-                    MyCircle circle = new MyCircle(i,j);
-                    circle.setCenterX(i*lineWidthSpace+25);
-                    circle.setCenterY(j*lineHeightSpace+25);
+            for (int i = 0; i < 19; i++) {
+                for (int j = 0; j < 19; j++) {
+                    MyCircle circle = new MyCircle(i, j);
+                    circle.setCenterX(i * lineWidthSpace + 25);
+                    circle.setCenterY(j * lineHeightSpace + 25);
                     circle.setRadius(10);
                     circle.setFill(Color.RED);
-                    circle.setOnMouseClicked( new EventHandler<MouseEvent>(){
-                        public void handle(MouseEvent e){
-                            if(move){
-                                out.print( circle.getX()+ " " + circle.getY());
-                                move=false;
-                            }
-
-                        }
-                    });
-                    circles.add(circle);
+                    circle.setOnMouseClicked(clickHandler);
+                    circles[i][j] = circle;
+                    getChildren().add(circle);
                 }
             }
-            getChildren().addAll(circles);
-
         }
     }
 }

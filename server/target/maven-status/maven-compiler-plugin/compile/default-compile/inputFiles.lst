@@ -1,1 +1,8 @@
-/home/patryk/Documents/tp/projekt/go/server/src/main/java/tp/server/App.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/Color.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/GameLogic.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/Stone.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/EmptyCluster.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/Point.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/StoneGroup.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/Server.java
+/home/patryk/Documents/tp/Go/server/src/main/java/tp/server/Board.java

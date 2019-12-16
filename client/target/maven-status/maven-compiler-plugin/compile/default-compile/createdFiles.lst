@@ -1,4 +1,4 @@
 tp/client/App.class
 module-info.class
-tp/client/PrimaryController.class
 tp/client/SecondaryController.class
+tp/client/PrimaryController.class
