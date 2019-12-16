@@ -10,7 +10,7 @@ public class Client {
     BufferedReader in;
     char signature;
 
-    Client(int port) throws IOException {
+    public Client(int port) throws IOException {
         socket = new Socket("localhost", port);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -32,7 +32,7 @@ public class Client {
         }
     }
 
-    private boolean gameCourse() throws IOException {
+    public boolean gameCourse() throws IOException {
         String serverMsg;
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -78,7 +78,7 @@ public class Client {
             }
         }
     }
-
+/*
     public static void main(String[] args) {
         try {
             Client c = new Client(9100);
@@ -88,5 +88,5 @@ public class Client {
         } catch (IOException e) {
             System.exit(1);
         }
-    }
+    }*/
 }
