@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
+    <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Make AI a little smarter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +13,20 @@
   </component>
   <component name="CoverageViewManager">
     <option name="myElementSize" value="263" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -50,7 +57,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp.client.App" />
       <module name="client" />
@@ -140,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.App" />
         <item itemvalue="JUnit.ServerTest.testSingleplayerInit" />
         <item itemvalue="JUnit.ServerTest.testMultiplayerInit" />
         <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -252,46 +259,46 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1575150242183" />
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576429713066">
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576489355384">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576429713066" />
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576489355384" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1576343031240">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576343031240" />
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576483630910">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576492175590">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630910" />
-    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576483630907">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175590" />
+    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576492175587">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630907" />
-    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576483630905">
+    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175587" />
+    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576492175586">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630905" />
-    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576483630908">
+    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175586" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576492175588">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576483630908" />
-    <state width="1817" height="418" key="GridCell.Tab.1.bottom" timestamp="1576254066840">
+    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576492175588" />
+    <state width="1817" height="418" key="GridCell.Tab.1.bottom" timestamp="1576490933549">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066840" />
-    <state width="1817" height="418" key="GridCell.Tab.1.center" timestamp="1576254066839">
+    <state width="1817" height="418" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576490933549" />
+    <state width="1817" height="418" key="GridCell.Tab.1.center" timestamp="1576490933548">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066839" />
-    <state width="1817" height="418" key="GridCell.Tab.1.left" timestamp="1576254066839">
+    <state width="1817" height="418" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576490933548" />
+    <state width="1817" height="418" key="GridCell.Tab.1.left" timestamp="1576490933548">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066839" />
-    <state width="1817" height="418" key="GridCell.Tab.1.right" timestamp="1576254066840">
+    <state width="1817" height="418" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576490933548" />
+    <state width="1817" height="418" key="GridCell.Tab.1.right" timestamp="1576490933548">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="418" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576254066840" />
+    <state width="1817" height="418" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576490933548" />
     <state x="6" y="116" width="1717" height="872" key="MergeDialog" timestamp="1576251283257">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -321,9 +328,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
+          <line>193</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/tp/server/Server.java</url>
-          <line>113</line>
-          <option name="timeStamp" value="2" />
+          <line>64</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
+          <line>223</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

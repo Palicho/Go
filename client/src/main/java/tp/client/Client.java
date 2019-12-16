@@ -16,26 +16,17 @@ import java.util.Scanner;
 
 public class Client extends Application {
 
-    MyCircle[][] circles = new MyCircle[19][19];
-    boolean move = false;
-    Socket socket;
-    PrintWriter out;
-    BufferedReader in;
-    char signature;
-    Color color;
+    static MyCircle[][] circles = new MyCircle[19][19];
+    static boolean move = false;
+    static Socket socket;
+    static PrintWriter out;
+    static BufferedReader in;
+    static char signature;
+    static Color color;
 
-    EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-            if (move) {
-                MyCircle c = (MyCircle) mouseEvent.getSource();
-                out.print(signature + " " + c.getX() + " " + c.getY());
-                move = false;
-            }
-        }
-    };
+    static EventHandler<MouseEvent> clickHandler;
 
-    void initializeGame(boolean bot) throws IOException {
+    static void initializeGame(boolean bot) throws IOException {
         if (bot) out.println("START 1");
         else out.println("START 2");
         String response = in.readLine();
@@ -52,7 +43,70 @@ public class Client extends Application {
         }
     }
 
-    public boolean gameCourse() throws IOException {
+    public void waitForResponse() throws IOException {
+        String serverMsg = in.readLine();
+        String[] results = serverMsg.split(" ");
+        if (serverMsg.equals("MOVE")) {
+            //todo: move
+            move = true;
+            //System.out.print("Your move (" + signature + " X Y): ");
+        } else if (serverMsg.startsWith("END")) {
+            int[] scores = new int[2];
+            scores[0] = Integer.parseInt(results[2]);
+            scores[1] = Integer.parseInt(results[4]);
+            in.close();
+            out.close();
+            socket.close();
+            char winner;
+            if (scores[0] == scores[1]) System.out.println("TIE (" + scores[0] + " points)");
+            else {
+                winner = scores[0] > scores[1] ? 'B' : 'W';
+                if (winner == signature) System.out.println("YOU WON!");
+                else System.out.println("YOU LOST!");
+                System.out.println("black score: " + scores[0]);
+                System.out.println("white score: " + scores[1]);
+                return;
+            }
+        } else if (serverMsg.startsWith("SURRENDER")) {
+            //char loser = serverMsg.charAt(10);
+            char loser = results[1].charAt(0);
+            if (loser == signature) System.out.println("YOU HAVE SURRENDERED!");
+            else System.out.println("YOUR OPPONENT HAS SURRENDERED!");
+            in.close();
+            out.close();
+            socket.close();
+            return;
+        } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
+            //todo: mark the move on your board
+            Color c = results[0].equals("B")? Color.BLACK : Color.WHITE;
+            int x, y;
+            try {
+                x = Integer.parseInt(results[1]);
+                y = Integer.parseInt(results[2]);
+                circles[x][y].setColor(c);
+                circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println(serverMsg);
+        } else if (serverMsg.startsWith("REMOVE ")) {
+            //todo: remove the stone from your board
+            int x, y;
+            try {
+                x = Integer.parseInt(results[1]);
+                y = Integer.parseInt(results[2]);
+                circles[x][y].setColor(Color.CORAL);
+                circles[x][y].setOnMouseClicked(clickHandler);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println(serverMsg);
+        } else if (serverMsg.startsWith("PAUSE ")) {
+            System.out.println(serverMsg);
+        }
+    }
+
+    public static boolean gameCourse() throws IOException {
         String serverMsg;
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -140,17 +194,35 @@ public class Client extends Application {
             socket = new Socket("localhost", 9100);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            initializeGame(true);
+            clickHandler = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    try {
+                        String serverMsg = in.readLine();
+                        while (serverMsg.equals("MOVE")) {
+                            MyCircle c = (MyCircle) mouseEvent.getSource();
+                            out.println(signature + " " + c.getX() + " " + c.getY());
+                            waitForResponse();
+                        }
+                        waitForResponse();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            };
             GamePane gamePane = new GamePane(500,500);
-            Scene scene=  new Scene(gamePane, 500, 500);
+            Scene scene = new Scene(gamePane, 500, 500);
             primaryStage.setScene(scene);
             primaryStage.show();
-
-            initializeGame(true);
-            //gameCourse();
         }
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws IOException {
       launch();
+
+        //gameCourse();
     }
 
     public class GamePane extends Pane {
