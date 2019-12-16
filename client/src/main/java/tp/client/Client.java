@@ -15,7 +15,7 @@ import java.net.*;
 public class Client extends Application {
 
     MyCircle[][] circles = new MyCircle[19][19];
-    boolean move = false;
+    boolean move = true;
     Socket socket;
     PrintWriter out;
     BufferedReader in;
@@ -45,7 +45,7 @@ public class Client extends Application {
     public void waitForResponse() throws IOException {
         String serverMsg = in.readLine();
         String[] results = serverMsg.split(" ");
-
+        move = false;
         if (serverMsg.equals("MOVE")) {
             //todo: move
             move = true;
@@ -76,36 +76,26 @@ public class Client extends Application {
             out.close();
             socket.close();
             return;
-        } else if (serverMsg.startsWith("B ")) {
+        } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
             //todo: mark the move on your board
             System.out.println(serverMsg);
             move = false;
-            //Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
-            Color c = Color.WHITE;
+            Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
             int x, y;
-            x = Integer.parseInt(results[1]);
-            y = Integer.parseInt(results[2]);
-            circles[x][y].setColor(color);
-            circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
-            serverMsg = in.readLine();
-            results = serverMsg.split(" ");
-            while (serverMsg.startsWith("REMOVE ")) {
-                x = Integer.parseInt(results[1]);
-                y = Integer.parseInt(results[2]);
-                circles[x][y].setColor(Color.CORAL);
-                circles[x][y].setOnMouseClicked(clickHandler);
-                System.out.println(serverMsg);
-                serverMsg = in.readLine();
-                results = serverMsg.split(" ");
-            }
             x = Integer.parseInt(results[1]);
             y = Integer.parseInt(results[2]);
             circles[x][y].setColor(c);
             circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
-            //move = true;
-            System.out.println(serverMsg);
+            waitForResponse();
         } else if (serverMsg.startsWith("PAUSE ")) {
             System.out.println(serverMsg);
+        } else if (serverMsg.startsWith("REMOVE ")) {
+            int x = Integer.parseInt(results[1]);
+            int y = Integer.parseInt(results[2]);
+            circles[x][y].setColor(Color.CORAL);
+            circles[x][y].setOnMouseClicked(clickHandler);
+            System.out.println(serverMsg);
+            waitForResponse();
         }
     }
 
@@ -130,16 +120,16 @@ public class Client extends Application {
         socket = new Socket("localhost", 9100);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        initializeGame(true);
+        initializeGame(false);
         clickHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 try {
                     waitForResponse();
-                    while(move) {
+                    if (move) {
                         MyCircle c = (MyCircle) mouseEvent.getSource();
                         out.println(signature + " " + c.getX() + " " + c.getY());
-                        waitForResponse();
+                        //waitForResponse();
                     }
 
                 } catch (IOException ex) {
