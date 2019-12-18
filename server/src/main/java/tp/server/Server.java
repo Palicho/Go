@@ -89,12 +89,16 @@ public class Server {
                 updateClients(line);
                 for (String msg: game.getRemoved()) updateClients(msg);
                 if (!line.startsWith("PAUSE ")) pauseFlag = false;
+                updateClients("EOF");
             }
-            if (out.length == 1) out[0].println(game.getBotMove());
-            for (String msg: game.getRemoved()) {
-                updateClients(msg);
+
+            if (out.length == 1) {
+                out[0].println(game.getBotMove());
+                for (String msg: game.getRemoved()) {
+                    updateClients(msg);
+                }
+                updateClients("EOF");
             }
-            updateClients("EOF");
         }
     }
 

@@ -37,7 +37,9 @@ public class Board {
     }
 
     public LinkedList<StoneGroup> getDeadGroups() {
-        return deadGroups;
+        LinkedList<StoneGroup> response = (LinkedList<StoneGroup>) deadGroups.clone();
+        deadGroups.clear();
+        return response;
     }
 
     /**

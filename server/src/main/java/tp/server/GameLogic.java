@@ -32,16 +32,23 @@ public class GameLogic {
         LinkedHashSet<Point> movePool;
         int min;
         while (!opponentGroups.isEmpty()) {
-            StoneGroup target = opponentGroups.poll();
-            movePool = target.getBorder();
-            min = target.getLiberties();
-            for (StoneGroup sg : opponentGroups) {
+            StoneGroup target = opponentGroups.getFirst();
+
+            /*
+            while (!opponentGroups.isEmpty()) {
+                StoneGroup sg = opponentGroups.poll();
                 if (sg.getLiberties() < min) {
                     min = sg.getLiberties();
                     movePool = sg.getBorder();
-                    opponentGroups.remove(sg);
+                }
+            } */
+            for (StoneGroup sg : opponentGroups) {
+                if (sg.getLiberties() < target.getLiberties()) {
+                    target = sg;
                 }
             }
+            opponentGroups.remove(target);
+            movePool = target.getBorder();
             int x, y;
             for (Point p : movePool) {
                 x = p.getX();

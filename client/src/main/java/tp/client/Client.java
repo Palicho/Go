@@ -1,6 +1,12 @@
 package tp.client;
 
 import javafx.application.Application;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.BooleanPropertyBase;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -19,16 +25,60 @@ import java.util.Map;
 public class Client extends Application {
 
     MyCircle[][] circles = new MyCircle[19][19];
-    boolean move = false;
+    static volatile boolean move = false;
+    static volatile boolean draw = false;
     Socket socket;
     PrintWriter out;
     BufferedReader in;
     char signature;
     Color color;
-    LinkedHashMap<MyCircle,Color> changedColor = new LinkedHashMap<>();
+    LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
 
     static EventHandler<MouseEvent> clickHandler;
     static EventHandler<MouseEvent> afterClickHandler;
+
+    void drawStones() {
+        Color color;
+        for (MyCircle circle : changedColor.keySet()) {
+            color = changedColor.get(circle);
+            circle.setColor(color);
+            /*
+            if (color == Color.TRANSPARENT) {
+                circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+            }
+            else {
+                circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+            } */
+        }
+        //changedColor.clear();
+    }
+
+    void updateStoneHandlers() {
+        Color color;
+        for (MyCircle circle : changedColor.keySet()) {
+            color = changedColor.get(circle);
+            if (color == Color.TRANSPARENT) {
+                circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+            } else {
+                circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+            }
+        }
+        changedColor.clear();
+    }
+
+    void switchClicking(EventHandler<MouseEvent> handler) {
+        for (int i=0; i<19; i++)
+            for (int j=0; j<19; j++) circles[i][j].setOnMousePressed(handler);
+    }
+
+    void switchDrawing(EventHandler<MouseEvent> handler) {
+        for (int i=0; i<19; i++)
+            for (int j=0; j<19; j++) circles[i][j].setOnMouseReleased(handler);
+    }
 
     void initializeGame(boolean bot) throws IOException {
         if (bot) out.println("START 1");
@@ -86,7 +136,8 @@ public class Client extends Application {
             int x, y;
             x = Integer.parseInt(results[1]);
             y = Integer.parseInt(results[2]);
-            changedColor.put(circles[x][y],c);
+            changedColor.remove(circles[x][y]);
+            changedColor.put(circles[x][y], c);
             //circles[x][y].setColor(c);
             //circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
             waitForResponse();
@@ -95,29 +146,14 @@ public class Client extends Application {
         } else if (serverMsg.startsWith("REMOVE ")) {
             int x = Integer.parseInt(results[1]);
             int y = Integer.parseInt(results[2]);
-            changedColor.put(circles[x][y],Color.CORAL);
+            changedColor.remove(circles[x][y]);
+            changedColor.put(circles[x][y], Color.TRANSPARENT);
             //circles[x][y].setColor(Color.CORAL);
             //circles[x][y].setOnMouseClicked(clickHandler);
             System.out.println(serverMsg);
             waitForResponse();
         }
     }
-
-    /**
-     * The main entry point for all JavaFX applications.
-     * The start method is called after the init method has returned,
-     * and after the system is ready for the application to begin running.
-     *
-     * <p>
-     * NOTE: This method is called on the JavaFX Application Thread.
-     * </p>
-     *
-     * @param primaryStage the primary stage for this application, onto which
-     *                     the application scene can be set.
-     *                     Applications may create other stages, if needed, but they will not be
-     *                     primary stages.
-     * @throws Exception if something goes wrong
-     */
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -128,57 +164,48 @@ public class Client extends Application {
         clickHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                try {
-                    if (move) {
-                        move = false;
+               if (move) {
+                   move = false;
+                //if (canMove()) {
+                    //setMove(false);
+                    //switchClicking(e -> {System.out.println("ZATRZYMANY");});
+                    try {
                         MyCircle c = (MyCircle) mouseEvent.getSource();
                         out.println(signature + " " + c.getX() + " " + c.getY());
+                        //move = false;
                         waitForResponse();
+                        if (!move) {
+                            drawStones();
+                            draw = true;
+                            //switchDrawing(afterClickHandler);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
-                } catch (IOException ex) {
-                    ex.printStackTrace();
                 }
+                //else System.out.println("Nie dalem zakolejkowac");
             }
         };
         afterClickHandler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Color color;
-                for (MyCircle circle: changedColor.keySet()) {
-                    color = changedColor.get(circle);
-                    circle.setColor(color);
-                    if (color == Color.CORAL) {
-                        circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                        circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-                    }
-                    else {
-                        circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                        circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+                if (draw) {
+                    //setMove(false);
+                    System.out.println(move);
+                    draw = false;
+                    //switchDrawing(null);
+                    try {
+                        waitForResponse();
+                        drawStones();
+                        updateStoneHandlers();
+                        waitForResponse();
+                        //switchClicking(clickHandler);
+                        System.out.println("JUZNIE");
+                    } catch (IOException e) {
+                        System.exit(1);
                     }
                 }
-                changedColor.clear();
-                try {
-                    waitForResponse();
-                    for (MyCircle circle: changedColor.keySet()) {
-                        color = changedColor.get(circle);
-                        circle.setColor(color);
-                        if (color == Color.CORAL) {
-                            circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-                        }
-                        else {
-                            circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                            circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-                        }
-                    }
-                    changedColor.clear();
-                    move = true;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
             }
         };
         GamePane gamePane = new GamePane(500, 500);
@@ -186,9 +213,19 @@ public class Client extends Application {
         scene.setFill(Color.INDIANRED);
         primaryStage.setScene(scene);
         primaryStage.show();
-
+        /*
+        canMoveProperty().addListener((observableValue, was, is) -> {
+            if (!is) scene.addEventFilter(MouseEvent.ANY, Event::consume);
+            else scene.removeEventFilter(MouseEvent.ANY, Event::consume);
+        });
+         */
         initializeGame(true);
-        //waitForResponse();
+        waitForResponse();
+        if (!move) {
+            drawStones();
+            updateStoneHandlers();
+            waitForResponse();
+        }
     }
 
 
@@ -228,11 +265,11 @@ public class Client extends Application {
                     circle.setCenterX(i * lineWidthSpace + 25);
                     circle.setCenterY(j * lineHeightSpace + 25);
                     circle.setRadius(10);
-                    circle.setFill(Color.RED);
-                    circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                    circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-                    //circle.setOnMousePressed(clickHandler);
-                    //circle.setOnMouseReleased(afterClickHandler);
+                    circle.setFill(Color.TRANSPARENT);
+                    //circle.addEventFilter(MouseEvent.MOUSE_PRESSED, clickHandler);
+                    //circle.addEventFilter(MouseEvent.MOUSE_RELEASED, afterClickHandler);
+                    circle.setOnMousePressed(clickHandler);
+                    circle.setOnMouseReleased(afterClickHandler);
                     circles[i][j] = circle;
                     getChildren().add(circle);
                 }
