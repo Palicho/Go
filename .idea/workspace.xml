@@ -4,7 +4,6 @@
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,8 +156,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Maven.client [javafx:run]" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Maven.client [javafx:run]" />
         <item itemvalue="JUnit.BoardTest.testRegularKo" />
         <item itemvalue="Application.App" />
         <item itemvalue="JUnit.ServerTest.testSingleplayerInit" />
@@ -205,6 +204,7 @@
       <workItem from="1576664599965" duration="7191000" />
       <workItem from="1576673720725" duration="1013000" />
       <workItem from="1576675180651" duration="217000" />
+      <workItem from="1576675473738" duration="1636000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -262,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576500678046</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="SP works.">
+      <created>1576675632397</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1576675632397</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -287,7 +294,8 @@
     <MESSAGE value="Something works now!" />
     <MESSAGE value="Singleplayer works until bot kills" />
     <MESSAGE value="Everything semi-works." />
-    <option name="LAST_COMMIT_MESSAGE" value="Everything semi-works." />
+    <MESSAGE value="SP works." />
+    <option name="LAST_COMMIT_MESSAGE" value="SP works." />
   </component>
   <component name="WindowStateProjectService">
     <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1576253008006">
@@ -306,46 +314,46 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1575150242183" />
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576500677762">
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576675631882">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576500677762" />
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576675631882" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1576343031240">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576343031240" />
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576675419834">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom" timestamp="1576676752266">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419834" />
-    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576675419833">
+    <state width="1817" height="437" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576676752266" />
+    <state width="1817" height="437" key="GridCell.Tab.0.center" timestamp="1576676752266">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419833" />
-    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576675419832">
+    <state width="1817" height="437" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576676752266" />
+    <state width="1817" height="437" key="GridCell.Tab.0.left" timestamp="1576676752266">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419832" />
-    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576675419833">
+    <state width="1817" height="437" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576676752266" />
+    <state width="1817" height="437" key="GridCell.Tab.0.right" timestamp="1576676752266">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419833" />
-    <state width="1817" height="278" key="GridCell.Tab.1.bottom" timestamp="1576675419790">
+    <state width="1817" height="437" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576676752266" />
+    <state width="1817" height="278" key="GridCell.Tab.1.bottom" timestamp="1576676328692">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419790" />
-    <state width="1817" height="278" key="GridCell.Tab.1.center" timestamp="1576675419790">
+    <state width="1817" height="278" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576676328692" />
+    <state width="1817" height="278" key="GridCell.Tab.1.center" timestamp="1576676328692">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419790" />
-    <state width="1817" height="278" key="GridCell.Tab.1.left" timestamp="1576675419790">
+    <state width="1817" height="278" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576676328692" />
+    <state width="1817" height="278" key="GridCell.Tab.1.left" timestamp="1576676328692">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419790" />
-    <state width="1817" height="278" key="GridCell.Tab.1.right" timestamp="1576675419790">
+    <state width="1817" height="278" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576676328692" />
+    <state width="1817" height="278" key="GridCell.Tab.1.right" timestamp="1576676328692">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576675419790" />
+    <state width="1817" height="278" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576676328692" />
     <state x="6" y="116" width="1717" height="872" key="MergeDialog" timestamp="1576251283257">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -391,12 +399,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
-          <line>136</line>
+          <line>135</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
-          <line>147</line>
+          <line>146</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>

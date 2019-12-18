@@ -81,7 +81,7 @@ public class Client extends Application {
             socket.close();
         } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
             //todo: mark the move on your board
-            //System.out.println(serverMsg);
+            System.out.println(serverMsg);
             Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
             int x, y;
             x = Integer.parseInt(results[1]);
@@ -132,9 +132,8 @@ public class Client extends Application {
                     if (move) {
                         move = false;
                         MyCircle c = (MyCircle) mouseEvent.getSource();
-                        c.setColor(Color.CORNFLOWERBLUE);
                         out.println(signature + " " + c.getX() + " " + c.getY());
-                            waitForResponse();
+                        waitForResponse();
                     }
 
                 } catch (IOException ex) {
@@ -149,14 +148,35 @@ public class Client extends Application {
                 for (MyCircle circle: changedColor.keySet()) {
                     color = changedColor.get(circle);
                     circle.setColor(color);
-                    changedColor.remove(circle);
+                    if (color == Color.CORAL) {
+                        circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                        circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+                    }
+                    else {
+                        circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                        circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+                    }
                 }
-                /*
+                changedColor.clear();
                 try {
                     waitForResponse();
+                    for (MyCircle circle: changedColor.keySet()) {
+                        color = changedColor.get(circle);
+                        circle.setColor(color);
+                        if (color == Color.CORAL) {
+                            circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+                        }
+                        else {
+                            circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                            circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+                        }
+                    }
+                    changedColor.clear();
+                    move = true;
                 } catch (IOException e) {
                     e.printStackTrace();
-                } */
+                }
 
 
             }
@@ -167,8 +187,8 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        initializeGame(false);
-        waitForResponse();
+        initializeGame(true);
+        //waitForResponse();
     }
 
 
@@ -209,8 +229,10 @@ public class Client extends Application {
                     circle.setCenterY(j * lineHeightSpace + 25);
                     circle.setRadius(10);
                     circle.setFill(Color.RED);
-                    circle.setOnMousePressed(clickHandler);
-                    circle.setOnMouseReleased(afterClickHandler);
+                    circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
+                    circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
+                    //circle.setOnMousePressed(clickHandler);
+                    //circle.setOnMouseReleased(afterClickHandler);
                     circles[i][j] = circle;
                     getChildren().add(circle);
                 }
