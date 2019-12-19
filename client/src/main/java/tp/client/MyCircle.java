@@ -1,11 +1,7 @@
 package tp.client;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import java.util.EventListener;
 
 public class MyCircle extends Circle  {
     private int x;
@@ -16,7 +12,7 @@ public class MyCircle extends Circle  {
     public MyCircle(int x, int y){
         this.x=x;
         this.y=y;
-        this.color = null;
+        this.color = Color.TRANSPARENT;
     }
 
     public int getY() {
@@ -34,6 +30,10 @@ public class MyCircle extends Circle  {
 
     public Color getColor() {
         return color;
+    }
+
+    public boolean canClick() {
+        return color == Color.TRANSPARENT;
     }
 
     public void makeInvisible() {

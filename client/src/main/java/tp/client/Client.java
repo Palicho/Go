@@ -1,12 +1,7 @@
 package tp.client;
 
 import javafx.application.Application;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.BooleanPropertyBase;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -17,16 +12,15 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.*;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
+
 
 public class Client extends Application {
 
     MyCircle[][] circles = new MyCircle[19][19];
-    static volatile boolean move = false;
-    static volatile boolean draw = false;
+    boolean move = false;
+    boolean realMove = false;
+    boolean draw = false;
     Socket socket;
     PrintWriter out;
     BufferedReader in;
@@ -42,42 +36,8 @@ public class Client extends Application {
         for (MyCircle circle : changedColor.keySet()) {
             color = changedColor.get(circle);
             circle.setColor(color);
-            /*
-            if (color == Color.TRANSPARENT) {
-                circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-            }
-            else {
-                circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-            } */
-        }
-        //changedColor.clear();
-    }
-
-    void updateStoneHandlers() {
-        Color color;
-        for (MyCircle circle : changedColor.keySet()) {
-            color = changedColor.get(circle);
-            if (color == Color.TRANSPARENT) {
-                circle.addEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                circle.addEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-            } else {
-                circle.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickHandler);
-                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, afterClickHandler);
-            }
         }
         changedColor.clear();
-    }
-
-    void switchClicking(EventHandler<MouseEvent> handler) {
-        for (int i=0; i<19; i++)
-            for (int j=0; j<19; j++) circles[i][j].setOnMousePressed(handler);
-    }
-
-    void switchDrawing(EventHandler<MouseEvent> handler) {
-        for (int i=0; i<19; i++)
-            for (int j=0; j<19; j++) circles[i][j].setOnMouseReleased(handler);
     }
 
     void initializeGame(boolean bot) throws IOException {
@@ -91,7 +51,7 @@ public class Client extends Application {
         if (response.matches("READY [BW]")) {
             signature = response.charAt(6);
             color = signature == 'B' ? Color.BLACK : Color.WHITE;
-            move = signature == 'B';
+            //move = signature == 'B';
         } else {
             System.out.println("ERROR");
             System.exit(1);
@@ -104,6 +64,13 @@ public class Client extends Application {
         if (serverMsg.equals("MOVE")) {
             //todo: move
             move = true;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    move = true;
+                }
+            });
+            //setMoving(true);
             //System.out.print("Your move (" + signature + " X Y): ");
         } else if (serverMsg.startsWith("END")) {
             int[] scores = new int[2];
@@ -161,70 +128,73 @@ public class Client extends Application {
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        clickHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-               if (move) {
-                   move = false;
-                //if (canMove()) {
-                    //setMove(false);
-                    //switchClicking(e -> {System.out.println("ZATRZYMANY");});
-                    try {
-                        MyCircle c = (MyCircle) mouseEvent.getSource();
-                        out.println(signature + " " + c.getX() + " " + c.getY());
-                        //move = false;
+        clickHandler = mouseEvent -> {
+            move = realMove;
+            System.out.println(move);
+            if (move) {
+                move = false;
+                MyCircle circle = null;
+                for (int i = 0; i < 19; i++) {
+                    for (int j = 0; j < 19; j++) {
+                        if (circles[i][j].isPressed()) {
+                            circle = circles[i][j];
+                            break;
+                        }
+                    }
+                }
+                try {
+                    if (circle != null && circle.canClick()) {
+                        out.println(signature + " " + circle.getX() + " " + circle.getY());
                         waitForResponse();
                         if (!move) {
                             drawStones();
                             draw = true;
-                            //switchDrawing(afterClickHandler);
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    } else move = true;
+                    Platform.runLater(() -> realMove = move);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-                }
-                //else System.out.println("Nie dalem zakolejkowac");
-            }
+            } else System.out.println("Nie dalem zakolejkowac");
         };
-        afterClickHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (draw) {
-                    //setMove(false);
-                    System.out.println(move);
-                    draw = false;
-                    //switchDrawing(null);
-                    try {
-                        waitForResponse();
-                        drawStones();
-                        updateStoneHandlers();
-                        waitForResponse();
-                        //switchClicking(clickHandler);
-                        System.out.println("JUZNIE");
-                    } catch (IOException e) {
-                        System.exit(1);
-                    }
+
+        afterClickHandler = mouseEvent -> {
+            if (draw) {
+                //setMoving(false);
+                //switchDrawing(null);
+                draw = false;
+                try {
+                    waitForResponse();
+                    drawStones();
+                    //updateStoneHandlers();
+                    waitForResponse();
+                    Platform.runLater(() -> realMove = move);
+                    //switchClicking(beforeClickHandler);
+                } catch (IOException e) {
+                    System.exit(1);
                 }
             }
         };
+
         GamePane gamePane = new GamePane(500, 500);
         Scene scene = new Scene(gamePane, 500, 500);
         scene.setFill(Color.INDIANRED);
+        scene.setOnMousePressed(clickHandler);
+        scene.setOnMouseReleased(afterClickHandler);
         primaryStage.setScene(scene);
         primaryStage.show();
-        /*
-        canMoveProperty().addListener((observableValue, was, is) -> {
-            if (!is) scene.addEventFilter(MouseEvent.ANY, Event::consume);
-            else scene.removeEventFilter(MouseEvent.ANY, Event::consume);
-        });
-         */
-        initializeGame(true);
+
+
+        initializeGame(false);
         waitForResponse();
+        realMove = move;
         if (!move) {
+        //if (!canMove()) {
             drawStones();
-            updateStoneHandlers();
+            //updateStoneHandlers();
             waitForResponse();
+            realMove = move;
         }
     }
 
@@ -266,10 +236,12 @@ public class Client extends Application {
                     circle.setCenterY(j * lineHeightSpace + 25);
                     circle.setRadius(10);
                     circle.setFill(Color.TRANSPARENT);
-                    //circle.addEventFilter(MouseEvent.MOUSE_PRESSED, clickHandler);
-                    //circle.addEventFilter(MouseEvent.MOUSE_RELEASED, afterClickHandler);
-                    circle.setOnMousePressed(clickHandler);
-                    circle.setOnMouseReleased(afterClickHandler);
+                    //circle.addEventFilter(MouseEvent.MOUSE_PRESSED, beforeClickHandler);
+                    //circle.addEventHandler(MouseEvent.MOUSE_PRESSED, clickHandler);
+                    //circle.addEventFilter(MouseEvent.MOUSE_RELEASED, midClickHandler);
+                    //circle.addEventHandler(MouseEvent.MOUSE_RELEASED, afterClickHandler);
+                    //circle.setOnMousePressed(clickHandler);
+                    //circle.setOnMouseReleased(afterClickHandler);
                     circles[i][j] = circle;
                     getChildren().add(circle);
                 }

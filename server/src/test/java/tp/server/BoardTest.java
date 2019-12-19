@@ -2,7 +2,6 @@ package tp.server;
 
 import org.junit.Test;
 
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 import static org.junit.Assert.*;
@@ -10,7 +9,6 @@ import static org.junit.Assert.*;
 public class BoardTest {
     @Test
     public void testMoveRejection() {
-        //todo: make this for real too
         Board board = Board.getInstance();
 
         assertTrue(board.move(Color.BLACK, 2, 2));
@@ -174,7 +172,30 @@ public class BoardTest {
         board.move(Color.BLACK, 2, 0);
 
         assertEquals(3, board.getGroups().size());
+        assertEquals(1, board.getDeadGroups().size());
         assertEquals(3, board.getScore(Color.BLACK));
+        board.reset();
+    }
+
+    @Test
+    public void testStoneStrangulation2() {
+        Board board = Board.getInstance();
+
+        board.move(Color.BLACK, 1, 0);
+        board.move(Color.WHITE, 1, 1);
+        board.move(Color.BLACK, 2, 1);
+        board.move(Color.WHITE, 3, 1);
+        board.move(Color.BLACK, 3, 0);
+        board.move(Color.WHITE, 2, 2);
+        board.move(Color.BLACK, 2, 0);
+        board.move(Color.WHITE, 0, 0);
+        board.move(Color.BLACK, 2, 3);
+        board.move(Color.WHITE, 4, 0);
+
+
+        assertEquals(6, board.getGroups().size());
+        assertEquals(1, board.getDeadGroups().size());
+        assertEquals(4, board.getScore(Color.WHITE));
         board.reset();
     }
 

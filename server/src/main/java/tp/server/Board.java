@@ -125,13 +125,16 @@ public class Board {
 
 
         StoneGroup stoneGroup;
+        int commonLiberties;
         for (int i=0; i<4; i++) {
             if (x[i] >= 0 && x[i] <= 18 && y[i] >= 0 && y[i] <= 18) {
                 stoneGroup=getGroupById(getGroupIdAt(x[i],y[i]));
                 if(stoneGroup != null){
-
-                    if( stoneGroup.getColor()==stone.getColor() &&  stoneGroup.getLiberties() + newLiberties -1 != 0){
+                    commonLiberties = 1;
+                    for (Point p: stoneGroup.getBorder()) if(tileBorder.contains(p)) commonLiberties++;
+                    if( stoneGroup.getColor()==stone.getColor() &&  stoneGroup.getLiberties() + newLiberties - commonLiberties != 0){
                         stoneGroups.add(stoneGroup);
+                        newLiberties += stoneGroup.getLiberties() - commonLiberties;
                     }
                 }
 
