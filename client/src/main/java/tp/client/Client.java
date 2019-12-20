@@ -62,16 +62,8 @@ public class Client extends Application {
         String serverMsg = in.readLine();
         String[] results = serverMsg.split(" ");
         if (serverMsg.equals("MOVE")) {
-            //todo: move
             move = true;
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    move = true;
-                }
-            });
-            //setMoving(true);
-            //System.out.print("Your move (" + signature + " X Y): ");
+
         } else if (serverMsg.startsWith("END")) {
             int[] scores = new int[2];
             scores[0] = Integer.parseInt(results[2]);
@@ -88,16 +80,16 @@ public class Client extends Application {
                 System.out.println("black score: " + scores[0]);
                 System.out.println("white score: " + scores[1]);
             }
+
         } else if (serverMsg.startsWith("SURRENDER")) {
-            //char loser = serverMsg.charAt(10);
             char loser = results[1].charAt(0);
             if (loser == signature) System.out.println("YOU HAVE SURRENDERED!");
             else System.out.println("YOUR OPPONENT HAS SURRENDERED!");
             in.close();
             out.close();
             socket.close();
+
         } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
-            //todo: mark the move on your board
             System.out.println(serverMsg);
             Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
             int x, y;
@@ -105,18 +97,16 @@ public class Client extends Application {
             y = Integer.parseInt(results[2]);
             changedColor.remove(circles[x][y]);
             changedColor.put(circles[x][y], c);
-            //circles[x][y].setColor(c);
-            //circles[x][y].removeEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
             waitForResponse();
+
         } else if (serverMsg.startsWith("PAUSE ")) {
             System.out.println(serverMsg);
+
         } else if (serverMsg.startsWith("REMOVE ")) {
             int x = Integer.parseInt(results[1]);
             int y = Integer.parseInt(results[2]);
             changedColor.remove(circles[x][y]);
             changedColor.put(circles[x][y], Color.TRANSPARENT);
-            //circles[x][y].setColor(Color.CORAL);
-            //circles[x][y].setOnMouseClicked(clickHandler);
             System.out.println(serverMsg);
             waitForResponse();
         }
@@ -129,48 +119,36 @@ public class Client extends Application {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         clickHandler = mouseEvent -> {
-            move = realMove;
-            System.out.println(move);
-            if (move) {
-                move = false;
-                MyCircle circle = null;
-                for (int i = 0; i < 19; i++) {
-                    for (int j = 0; j < 19; j++) {
-                        if (circles[i][j].isPressed()) {
-                            circle = circles[i][j];
-                            break;
-                        }
+                move = realMove;
+                System.out.println(move);
+                if (move) {
+                    move = false;
+                    MyCircle circle = (MyCircle) mouseEvent.getSource();
+                    try {
+                        if (circle.canClick()) {
+                            out.println(signature + " " + circle.getX() + " " + circle.getY());
+                            waitForResponse();
+                            if (!move) {
+                                drawStones();
+                                draw = true;
+                            }
+                        } else move = true;
+                        Platform.runLater(() -> realMove = move);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                }
-                try {
-                    if (circle != null && circle.canClick()) {
-                        out.println(signature + " " + circle.getX() + " " + circle.getY());
-                        waitForResponse();
-                        if (!move) {
-                            drawStones();
-                            draw = true;
-                        }
-                    } else move = true;
-                    Platform.runLater(() -> realMove = move);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
-            } else System.out.println("Nie dalem zakolejkowac");
+                } else System.out.println("Nie dalem zakolejkowac");
         };
 
         afterClickHandler = mouseEvent -> {
             if (draw) {
-                //setMoving(false);
-                //switchDrawing(null);
                 draw = false;
                 try {
                     waitForResponse();
                     drawStones();
-                    //updateStoneHandlers();
                     waitForResponse();
-                    Platform.runLater(() -> realMove = move);
-                    //switchClicking(beforeClickHandler);
+                    Platform.runLater(() -> realMove = true);
                 } catch (IOException e) {
                     System.exit(1);
                 }
@@ -180,19 +158,14 @@ public class Client extends Application {
         GamePane gamePane = new GamePane(500, 500);
         Scene scene = new Scene(gamePane, 500, 500);
         scene.setFill(Color.INDIANRED);
-        scene.setOnMousePressed(clickHandler);
-        scene.setOnMouseReleased(afterClickHandler);
         primaryStage.setScene(scene);
         primaryStage.show();
-
 
         initializeGame(false);
         waitForResponse();
         realMove = move;
         if (!move) {
-        //if (!canMove()) {
             drawStones();
-            //updateStoneHandlers();
             waitForResponse();
             realMove = move;
         }
@@ -236,12 +209,8 @@ public class Client extends Application {
                     circle.setCenterY(j * lineHeightSpace + 25);
                     circle.setRadius(10);
                     circle.setFill(Color.TRANSPARENT);
-                    //circle.addEventFilter(MouseEvent.MOUSE_PRESSED, beforeClickHandler);
-                    //circle.addEventHandler(MouseEvent.MOUSE_PRESSED, clickHandler);
-                    //circle.addEventFilter(MouseEvent.MOUSE_RELEASED, midClickHandler);
-                    //circle.addEventHandler(MouseEvent.MOUSE_RELEASED, afterClickHandler);
-                    //circle.setOnMousePressed(clickHandler);
-                    //circle.setOnMouseReleased(afterClickHandler);
+                    circle.setOnMousePressed(clickHandler);
+                    circle.setOnMouseReleased(afterClickHandler);
                     circles[i][j] = circle;
                     getChildren().add(circle);
                 }
