@@ -13,6 +13,7 @@ public class Board {
     private LinkedList<StoneGroup> groups;
     private LinkedList<StoneGroup> deadGroups;
     private LinkedHashSet<Point> koFlaggedTiles;
+    private boolean triedKo = false;
     public static Board instance = new Board();
 
     private Board() {
@@ -51,17 +52,24 @@ public class Board {
 
         if ( isPositionFree(stone)){
             if( haveLiberties(stone)){
+                if (triedKo) koFlaggedTiles.clear();
+                triedKo = false;
                 return true;
             }
             else{
                 if(willJoin(stone)){
+                    if (triedKo) koFlaggedTiles.clear();
+                    triedKo = false;
                     return true;
                 }
 
                 if(willKill(stone)){
                     if (isKo(stone)) {
+                        triedKo = true;
                         return false;
                     }
+                    if (triedKo) koFlaggedTiles.clear();
+                    triedKo = false;
                     return true;
 
                 }
@@ -199,13 +207,12 @@ public class Board {
         else {
             for (Point koPoint: koFlaggedTiles) {
                 if (koPoint.getX() == x && koPoint.getY() == y) {
-                    ko = true;
-                    break;
+                    return true;
                 }
-    }
-            koFlaggedTiles = new LinkedHashSet<>();
         }
-        return ko;
+            koFlaggedTiles.clear();
+        }
+        return false;
     }
 
     boolean willKill(Stone stone){

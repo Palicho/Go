@@ -101,6 +101,7 @@ public class Client extends Application {
 
         } else if (serverMsg.startsWith("PAUSE ")) {
             System.out.println(serverMsg);
+            waitForResponse();
 
         } else if (serverMsg.startsWith("REMOVE ")) {
             int x = Integer.parseInt(results[1]);
@@ -119,26 +120,25 @@ public class Client extends Application {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         clickHandler = mouseEvent -> {
-                move = realMove;
-                System.out.println(move);
-                if (move) {
-                    move = false;
-                    MyCircle circle = (MyCircle) mouseEvent.getSource();
-                    try {
-                        if (circle.canClick()) {
-                            out.println(signature + " " + circle.getX() + " " + circle.getY());
-                            waitForResponse();
-                            if (!move) {
-                                drawStones();
-                                draw = true;
-                            }
-                        } else move = true;
-                        Platform.runLater(() -> realMove = move);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                } else System.out.println("Nie dalem zakolejkowac");
+            move = realMove;
+            System.out.println(move);
+            if (move) {
+                move = false;
+                MyCircle circle = (MyCircle) mouseEvent.getSource();
+                try {
+                    if (circle.canClick()) {
+                        out.println(signature + " " + circle.getX() + " " + circle.getY());
+                        waitForResponse();
+                        if (!move) {
+                            drawStones();
+                            draw = true;
+                        }
+                    } else move = true;
+                    Platform.runLater(() -> realMove = move);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else System.out.println("Nie dalem zakolejkowac");
         };
 
         afterClickHandler = mouseEvent -> {
@@ -164,7 +164,7 @@ public class Client extends Application {
         initializeGame(false);
         waitForResponse();
         realMove = move;
-        if (!move) {
+        if (!realMove) {
             drawStones();
             waitForResponse();
             realMove = move;
