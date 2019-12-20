@@ -32,7 +32,7 @@ public class GameLogic {
             if (sg.getColor() == Color.BLACK) opponentGroups.add(sg);
         }
         LinkedHashSet<Point> movePool;
-        int min;
+        String result;
         while (!opponentGroups.isEmpty()) {
             StoneGroup target = opponentGroups.getFirst();
 
@@ -55,7 +55,8 @@ public class GameLogic {
             for (Point p : movePool) {
                 x = p.getX();
                 y = p.getY();
-                if (board.verifyMove(x, y, Color.WHITE)) return move("W " + x + " " + y);
+                result = move("W " + x + " " + y);
+                if (!result.equals("MOVE")) return result;
             }
         }
         return "SURRENDER W";

@@ -161,7 +161,7 @@ public class Client extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        initializeGame(false);
+        initializeGame(true);
         waitForResponse();
         realMove = move;
         if (!realMove) {
