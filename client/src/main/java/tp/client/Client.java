@@ -4,10 +4,14 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -26,6 +30,7 @@ public class Client extends Application {
     BufferedReader in;
     char signature;
     Color color;
+    Text field = new Text();
     LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
 
     static EventHandler<MouseEvent> clickHandler;
@@ -44,7 +49,7 @@ public class Client extends Application {
         if (bot) out.println("START 1");
         else out.println("START 2");
         String response = in.readLine();
-        while (response.equals("WAITING")) {
+        if (response.equals("WAITING")) {
             //todo: change to if and go to loading screen
             response = in.readLine();
         }
@@ -68,29 +73,24 @@ public class Client extends Application {
             int[] scores = new int[2];
             scores[0] = Integer.parseInt(results[2]);
             scores[1] = Integer.parseInt(results[4]);
-            in.close();
-            out.close();
-            socket.close();
             char winner;
-            if (scores[0] == scores[1]) System.out.println("TIE (" + scores[0] + " points)");
+            if (scores[0] == scores[1]) field.setText("TIE: "+scores[0] + " points");//System.out.println("TIE (" + scores[0] + " points)");
             else {
                 winner = scores[0] > scores[1] ? 'B' : 'W';
-                if (winner == signature) System.out.println("YOU WON!");
-                else System.out.println("YOU LOST!");
+                if (winner == signature) field.setText("YOU WON");//System.out.println("YOU WON!");
+                else field.setText("YOU LOST");//System.out.println("YOU LOST!");
                 System.out.println("black score: " + scores[0]);
                 System.out.println("white score: " + scores[1]);
             }
 
         } else if (serverMsg.startsWith("SURRENDER")) {
             char loser = results[1].charAt(0);
-            if (loser == signature) System.out.println("YOU HAVE SURRENDERED!");
-            else System.out.println("YOUR OPPONENT HAS SURRENDERED!");
-            in.close();
-            out.close();
-            socket.close();
+            if (loser == signature) field.setText(serverMsg);//System.out.println("YOU HAVE SURRENDERED!");
+            else field.setText(serverMsg);//System.out.println("YOUR OPPONENT HAS SURRENDERED!");
 
         } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
             System.out.println(serverMsg);
+            field.setText(serverMsg);
             Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
             int x, y;
             x = Integer.parseInt(results[1]);
@@ -101,6 +101,7 @@ public class Client extends Application {
 
         } else if (serverMsg.startsWith("PAUSE ")) {
             System.out.println(serverMsg);
+            field.setText(serverMsg);
             waitForResponse();
 
         } else if (serverMsg.startsWith("REMOVE ")) {
@@ -156,19 +157,9 @@ public class Client extends Application {
         };
 
         GamePane gamePane = new GamePane(500, 500);
-        Scene scene = new Scene(gamePane, 500, 500);
-        scene.setFill(Color.INDIANRED);
+        Scene scene = new Scene(gamePane, 500, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        initializeGame(true);
-        waitForResponse();
-        realMove = move;
-        if (!realMove) {
-            drawStones();
-            waitForResponse();
-            realMove = move;
-        }
     }
 
 
@@ -215,6 +206,82 @@ public class Client extends Application {
                     getChildren().add(circle);
                 }
             }
+
+            ButtonBar buttonBar = new ButtonBar();
+            Button pass = new Button("PASS");
+            pass.setOnMousePressed(mouseEvent -> {
+                move = realMove;
+                if (move) {
+                    out.println("PAUSE "+signature);
+                    try {
+                        waitForResponse();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    draw = true;
+                    Platform.runLater(() -> realMove = false);
+                }
+            });
+            pass.setOnMouseReleased(afterClickHandler);
+            Button surrender = new Button("SURRENDER");
+            surrender.setOnMousePressed(mouseEvent -> {
+                move = realMove;
+                if (move) {
+                    out.println("SURRENDER "+signature);
+                    try {
+                        waitForResponse();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(() -> realMove = false);
+                }
+            });
+            Button single = new Button("SINGLE");
+            single.setOnMousePressed(mouseEvent -> {
+                try {
+                    initializeGame(true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            single.setOnMouseReleased(mouseEvent -> {
+                try {
+                    waitForResponse();
+                    buttonBar.getButtons().clear();
+                    buttonBar.getButtons().addAll(pass,surrender,field);
+                    Platform.runLater(() -> realMove = true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            Button start = new Button("MULTI");
+            start.setOnMousePressed(mouseEvent -> {
+                try {
+                    initializeGame(false);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            start.setOnMouseReleased(mouseEvent -> {
+                try {
+                    waitForResponse();
+                    if (!move) {
+                        drawStones();
+                        waitForResponse();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                buttonBar.getButtons().clear();
+                buttonBar.getButtons().addAll(pass,surrender,field);
+                Platform.runLater(() -> realMove = true);
+            });
+            field.setTextAlignment(TextAlignment.CENTER);
+            buttonBar.getButtons().add(single);
+            buttonBar.getButtons().add(start);
+            buttonBar.setLayoutY(19 * lineHeightSpace + 25);
+            getChildren().add(buttonBar);
+            setStyle("-fx-background-color: indianred;");
         }
     }
 }
