@@ -23,7 +23,7 @@ public class StoneGroup {
 
     StoneGroup(Stone stone) {
         stones.add(stone);
-        this.color= stone.getColor();
+        this.color = stone.getColor();
     }
 
     /**
@@ -54,7 +54,7 @@ public class StoneGroup {
 
     void setLiberties() {
         int l = 0;
-        for (Point p: border) {
+        for (Point p : border) {
             if (!(p instanceof Stone)) l++;
         }
         liberties = l;
@@ -65,12 +65,10 @@ public class StoneGroup {
     }
 
     public boolean isAlive() {
-        //todo: make this return true only if liberties > 1
-        return true;
+        return liberties > 1;
     }
 
     public void setBorder(LinkedHashSet<Point> border) {
-        //border.removeAll(stones);
         this.border = border;
     }
 }

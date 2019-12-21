@@ -21,20 +21,23 @@ import java.util.LinkedHashMap;
 
 public class Client extends Application {
 
-    MyCircle[][] circles = new MyCircle[19][19];
-    boolean move = false;
+    boolean localMove = false;
     boolean realMove = false;
-    boolean draw = false;
+    boolean canDraw = false;
+    boolean gameEnded = false;
+
     Socket socket;
     PrintWriter out;
     BufferedReader in;
     char signature;
-    Color color;
-    Text field = new Text();
-    LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
 
-    static EventHandler<MouseEvent> clickHandler;
-    static EventHandler<MouseEvent> afterClickHandler;
+    Color color;
+    Text textField = new Text();
+    LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
+    MyCircle[][] circles = new MyCircle[19][19];
+
+    EventHandler<MouseEvent> clickHandler;
+    EventHandler<MouseEvent> afterClickHandler;
 
     void drawStones() {
         Color color;
@@ -49,14 +52,15 @@ public class Client extends Application {
         if (bot) out.println("START 1");
         else out.println("START 2");
         String response = in.readLine();
+
         if (response.equals("WAITING")) {
-            //todo: change to if and go to loading screen
             response = in.readLine();
+
         }
         if (response.matches("READY [BW]")) {
             signature = response.charAt(6);
             color = signature == 'B' ? Color.BLACK : Color.WHITE;
-            //move = signature == 'B';
+
         } else {
             System.out.println("ERROR");
             System.exit(1);
@@ -66,31 +70,36 @@ public class Client extends Application {
     public void waitForResponse() throws IOException {
         String serverMsg = in.readLine();
         String[] results = serverMsg.split(" ");
+
         if (serverMsg.equals("MOVE")) {
-            move = true;
+            localMove = true;
 
         } else if (serverMsg.startsWith("END")) {
             int[] scores = new int[2];
             scores[0] = Integer.parseInt(results[2]);
             scores[1] = Integer.parseInt(results[4]);
-            char winner;
-            if (scores[0] == scores[1]) field.setText("TIE: "+scores[0] + " points");//System.out.println("TIE (" + scores[0] + " points)");
+
+            if (scores[0] == scores[1])
+                textField.setText("TIE: " + scores[0] + " points");
             else {
-                winner = scores[0] > scores[1] ? 'B' : 'W';
-                if (winner == signature) field.setText("YOU WON");//System.out.println("YOU WON!");
-                else field.setText("YOU LOST");//System.out.println("YOU LOST!");
-                System.out.println("black score: " + scores[0]);
-                System.out.println("white score: " + scores[1]);
+                String finalMessage = "YOU ";
+                char winner = scores[0] > scores[1] ? 'B' : 'W';
+                if (winner == signature) finalMessage += "WON\n";
+                else finalMessage += "LOST\n";
+                finalMessage += ("black score: " + scores[0] + "\n");
+                finalMessage += ("white score: " + scores[1] + "\n");
+                textField.setText(finalMessage);
             }
+            gameEnded = true;
 
         } else if (serverMsg.startsWith("SURRENDER")) {
             char loser = results[1].charAt(0);
-            if (loser == signature) field.setText(serverMsg);//System.out.println("YOU HAVE SURRENDERED!");
-            else field.setText(serverMsg);//System.out.println("YOUR OPPONENT HAS SURRENDERED!");
+            gameEnded = true;
+            if (loser == signature) textField.setText("YOU HAVE SURRENDERED");
+            else textField.setText("YOUR OPPONENT HAS SURRENDERED");
 
         } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
-            System.out.println(serverMsg);
-            field.setText(serverMsg);
+            textField.setText(serverMsg);
             Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
             int x, y;
             x = Integer.parseInt(results[1]);
@@ -100,8 +109,7 @@ public class Client extends Application {
             waitForResponse();
 
         } else if (serverMsg.startsWith("PAUSE ")) {
-            System.out.println(serverMsg);
-            field.setText(serverMsg);
+            textField.setText(serverMsg);
             waitForResponse();
 
         } else if (serverMsg.startsWith("REMOVE ")) {
@@ -109,7 +117,6 @@ public class Client extends Application {
             int y = Integer.parseInt(results[2]);
             changedColor.remove(circles[x][y]);
             changedColor.put(circles[x][y], Color.TRANSPARENT);
-            System.out.println(serverMsg);
             waitForResponse();
         }
     }
@@ -121,43 +128,52 @@ public class Client extends Application {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         clickHandler = mouseEvent -> {
-            move = realMove;
-            System.out.println(move);
-            if (move) {
-                move = false;
+            localMove = realMove;
+            if (localMove) {
+                localMove = false;
                 MyCircle circle = (MyCircle) mouseEvent.getSource();
                 try {
                     if (circle.canClick()) {
                         out.println(signature + " " + circle.getX() + " " + circle.getY());
                         waitForResponse();
-                        if (!move) {
+                        if (!localMove) {
                             drawStones();
-                            draw = true;
+                            canDraw = true;
                         }
-                    } else move = true;
-                    Platform.runLater(() -> realMove = move);
+                    } else localMove = true;
+                    Platform.runLater(() -> realMove = localMove);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else System.out.println("Nie dalem zakolejkowac");
+            }
         };
 
         afterClickHandler = mouseEvent -> {
-            if (draw) {
-                draw = false;
+            if (canDraw) {
+                canDraw = false;
                 try {
                     waitForResponse();
                     drawStones();
-                    waitForResponse();
+                    if (!gameEnded) waitForResponse();
                     Platform.runLater(() -> realMove = true);
                 } catch (IOException e) {
-                    System.exit(1);
+                    e.printStackTrace();
                 }
             }
         };
 
         GamePane gamePane = new GamePane(500, 500);
-        Scene scene = new Scene(gamePane, 500, 600);
+        Scene scene = new Scene(gamePane, 500, 550);
+        primaryStage.setOnCloseRequest(windowEvent -> {
+            try {
+                in.close();
+                out.close();
+                socket.close();
+                Platform.exit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -208,26 +224,28 @@ public class Client extends Application {
             }
 
             ButtonBar buttonBar = new ButtonBar();
+
             Button pass = new Button("PASS");
             pass.setOnMousePressed(mouseEvent -> {
-                move = realMove;
-                if (move) {
-                    out.println("PAUSE "+signature);
+                localMove = realMove;
+                if (localMove) {
+                    out.println("PAUSE " + signature);
                     try {
                         waitForResponse();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    draw = true;
+                    canDraw = !gameEnded;
                     Platform.runLater(() -> realMove = false);
                 }
             });
             pass.setOnMouseReleased(afterClickHandler);
+
             Button surrender = new Button("SURRENDER");
             surrender.setOnMousePressed(mouseEvent -> {
-                move = realMove;
-                if (move) {
-                    out.println("SURRENDER "+signature);
+                localMove = realMove;
+                if (localMove) {
+                    out.println("SURRENDER " + signature);
                     try {
                         waitForResponse();
                     } catch (IOException e) {
@@ -236,36 +254,38 @@ public class Client extends Application {
                     Platform.runLater(() -> realMove = false);
                 }
             });
-            Button single = new Button("SINGLE");
-            single.setOnMousePressed(mouseEvent -> {
+
+            Button singleplayer = new Button("SINGLE");
+            singleplayer.setOnMousePressed(mouseEvent -> {
                 try {
                     initializeGame(true);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            single.setOnMouseReleased(mouseEvent -> {
+            singleplayer.setOnMouseReleased(mouseEvent -> {
                 try {
                     waitForResponse();
                     buttonBar.getButtons().clear();
-                    buttonBar.getButtons().addAll(pass,surrender,field);
+                    buttonBar.getButtons().addAll(pass, surrender, textField);
                     Platform.runLater(() -> realMove = true);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            Button start = new Button("MULTI");
-            start.setOnMousePressed(mouseEvent -> {
+
+            Button multiplayer = new Button("MULTI");
+            multiplayer.setOnMousePressed(mouseEvent -> {
                 try {
                     initializeGame(false);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            start.setOnMouseReleased(mouseEvent -> {
+            multiplayer.setOnMouseReleased(mouseEvent -> {
                 try {
                     waitForResponse();
-                    if (!move) {
+                    if (!localMove) {
                         drawStones();
                         waitForResponse();
                     }
@@ -273,12 +293,14 @@ public class Client extends Application {
                     e.printStackTrace();
                 }
                 buttonBar.getButtons().clear();
-                buttonBar.getButtons().addAll(pass,surrender,field);
+                buttonBar.getButtons().addAll(pass, surrender, textField);
                 Platform.runLater(() -> realMove = true);
             });
-            field.setTextAlignment(TextAlignment.CENTER);
-            buttonBar.getButtons().add(single);
-            buttonBar.getButtons().add(start);
+
+            textField.setTextAlignment(TextAlignment.CENTER);
+
+            buttonBar.getButtons().add(singleplayer);
+            buttonBar.getButtons().add(multiplayer);
             buttonBar.setLayoutY(19 * lineHeightSpace + 25);
             getChildren().add(buttonBar);
             setStyle("-fx-background-color: indianred;");

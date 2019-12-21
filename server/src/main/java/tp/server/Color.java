@@ -12,11 +12,4 @@ public enum Color {
     public int getValue() {
         return value;
     }
-
-    public static Color getColorByValue(int value) {
-        if (value == 0) return BLACK;
-        else if (value == 1) return WHITE;
-        else return null;
-    }
-
 }

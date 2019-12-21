@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Most things work now.">
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/GameLogicTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="283" />
+    <option name="myElementSize" value="328" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -52,13 +59,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.tp.server in server">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp.client.Client" />
       <module name="client" />
       <option name="PROGRAM_PARAMETERS" value="false" />
@@ -73,7 +81,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Server" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp.server.Server" />
       <module name="server" />
       <extension name="coverage">
@@ -86,93 +94,98 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tp.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tp.server" />
-      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BoardTest.testMultiKo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tp.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tp.server" />
-      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
-      <option name="METHOD_NAME" value="testMultiKo" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BoardTest.testRegularKo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tp.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tp.server" />
-      <option name="MAIN_CLASS_NAME" value="tp.server.BoardTest" />
-      <option name="METHOD_NAME" value="testRegularKo" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="client [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="javafx:run" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/client" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="Client (1)" type="Application" />
+      <toRun name="Client" type="Application" />
+      <toRun name="Server" type="Application" />
       <method v="2" />
     </configuration>
+    <configuration name="All in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameLogicTest.testBasicBotMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.GameLogicTest" />
+      <option name="METHOD_NAME" value="testBasicBotMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameLogicTest.testBotChoice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.GameLogicTest" />
+      <option name="METHOD_NAME" value="testBotChoice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameLogicTest.testBotPassing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="MAIN_CLASS_NAME" value="tp.server.GameLogicTest" />
+      <option name="METHOD_NAME" value="testBotPassing" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tp.server in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tp.server" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Client" />
       <item itemvalue="Application.Server" />
-      <item itemvalue="JUnit.BoardTest" />
-      <item itemvalue="JUnit.BoardTest.testRegularKo" />
-      <item itemvalue="JUnit.BoardTest.testMultiKo" />
-      <item itemvalue="Maven.client [javafx:run]" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="JUnit.All in server" />
+      <item itemvalue="JUnit.GameLogicTest.testBasicBotMove" />
+      <item itemvalue="JUnit.tp.server in server" />
+      <item itemvalue="JUnit.GameLogicTest.testBotChoice" />
+      <item itemvalue="JUnit.GameLogicTest.testBotPassing" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Maven.client [javafx:run]" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="JUnit.BoardTest.testMultiKo" />
-        <item itemvalue="JUnit.BoardTest.testRegularKo" />
+        <item itemvalue="JUnit.tp.server in server" />
+        <item itemvalue="JUnit.GameLogicTest.testBotPassing" />
+        <item itemvalue="JUnit.GameLogicTest.testBotChoice" />
+        <item itemvalue="JUnit.GameLogicTest.testBasicBotMove" />
+        <item itemvalue="JUnit.All in server" />
       </list>
     </recent_temporary>
   </component>
@@ -228,6 +241,7 @@
       <workItem from="1576850624852" duration="7250000" />
       <workItem from="1576859650101" duration="906000" />
       <workItem from="1576877874604" duration="7157000" />
+      <workItem from="1576941660623" duration="5729000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -379,10 +393,10 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="583" y="214" width="800" height="677" key="#Notifications/57.27.1863.1053@57.27.1863.1053" timestamp="1576781107991" />
-    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576706462767">
+    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576889153556">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576706462767" />
+    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576889153556" />
     <state x="157" y="125" width="1663" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1575145441150">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -411,38 +425,38 @@
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576701974358" />
-    <state width="1817" height="166" key="GridCell.Tab.0.bottom" timestamp="1576885217935">
+    <state width="1817" height="166" key="GridCell.Tab.0.bottom" timestamp="1576947340131">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576885217935" />
-    <state width="1817" height="166" key="GridCell.Tab.0.center" timestamp="1576885217935">
+    <state width="1817" height="166" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340131" />
+    <state width="1817" height="166" key="GridCell.Tab.0.center" timestamp="1576947340130">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576885217935" />
-    <state width="1817" height="166" key="GridCell.Tab.0.left" timestamp="1576885217934">
+    <state width="1817" height="166" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340130" />
+    <state width="1817" height="166" key="GridCell.Tab.0.left" timestamp="1576947340130">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576885217934" />
-    <state width="1817" height="166" key="GridCell.Tab.0.right" timestamp="1576885217935">
+    <state width="1817" height="166" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340130" />
+    <state width="1817" height="166" key="GridCell.Tab.0.right" timestamp="1576947340131">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576885217935" />
-    <state width="1817" height="278" key="GridCell.Tab.1.bottom" timestamp="1576883509735">
+    <state width="1817" height="166" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340131" />
+    <state width="1817" height="278" key="GridCell.Tab.1.bottom" timestamp="1576943130035">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576883509735" />
-    <state width="1817" height="278" key="GridCell.Tab.1.center" timestamp="1576883509734">
+    <state width="1817" height="278" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130035" />
+    <state width="1817" height="278" key="GridCell.Tab.1.center" timestamp="1576943130033">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576883509734" />
-    <state width="1817" height="278" key="GridCell.Tab.1.left" timestamp="1576883509734">
+    <state width="1817" height="278" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130033" />
+    <state width="1817" height="278" key="GridCell.Tab.1.left" timestamp="1576943130032">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576883509734" />
-    <state width="1817" height="278" key="GridCell.Tab.1.right" timestamp="1576883509735">
+    <state width="1817" height="278" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130032" />
+    <state width="1817" height="278" key="GridCell.Tab.1.right" timestamp="1576943130034">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576883509735" />
+    <state width="1817" height="278" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130034" />
     <state width="1817" height="278" key="GridCell.Tab.2.bottom" timestamp="1576785554666">
       <screen x="57" y="27" width="1863" height="1053" />
     </state>
@@ -492,29 +506,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/tp/server/Board.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java</url>
           <line>189</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/tp/server/Board.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
-          <line>146</line>
+          <line>152</line>
           <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -525,7 +529,14 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1576857821323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1576944772882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tp.server.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/go$tp_server_in_server.ic" NAME="tp.server in server Coverage Results" MODIFIED="1576947241684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tp.server.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/go$GameLogicTest.ic" NAME="GameLogicTest Coverage Results" MODIFIED="1576945920444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
   </component>

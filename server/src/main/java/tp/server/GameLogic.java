@@ -36,14 +36,6 @@ public class GameLogic {
         while (!opponentGroups.isEmpty()) {
             StoneGroup target = opponentGroups.getFirst();
 
-            /*
-            while (!opponentGroups.isEmpty()) {
-                StoneGroup sg = opponentGroups.poll();
-                if (sg.getLiberties() < min) {
-                    min = sg.getLiberties();
-                    movePool = sg.getBorder();
-                }
-            } */
             for (StoneGroup sg : opponentGroups) {
                 if (sg.getLiberties() < target.getLiberties()) {
                     target = sg;
@@ -59,7 +51,7 @@ public class GameLogic {
                 if (!result.equals("MOVE")) return result;
             }
         }
-        return "SURRENDER W";
+        return "PAUSE W";
     }
 
     LinkedList<String> getRemoved() {

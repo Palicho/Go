@@ -3,15 +3,14 @@ package tp.client;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class MyCircle extends Circle  {
+public class MyCircle extends Circle {
     private int x;
     private int y;
     Color color;
 
-
-    public MyCircle(int x, int y){
-        this.x=x;
-        this.y=y;
+    public MyCircle(int x, int y) {
+        this.x = x;
+        this.y = y;
         this.color = Color.TRANSPARENT;
     }
 
@@ -28,16 +27,8 @@ public class MyCircle extends Circle  {
         this.setFill(c);
     }
 
-    public Color getColor() {
-        return color;
-    }
-
     public boolean canClick() {
         return color == Color.TRANSPARENT;
     }
 
-    public void makeInvisible() {
-        this.color = Color.TRANSPARENT;
-
-    }
 }

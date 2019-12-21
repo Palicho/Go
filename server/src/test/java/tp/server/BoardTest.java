@@ -75,7 +75,7 @@ public class BoardTest {
     public void testBorderGeneration() {
         Board board = Board.getInstance();
 
-        board.move(Color.BLACK, 13,13);
+        board.move(Color.BLACK, 13, 13);
 
         board.move(Color.WHITE, 0, 2);
         board.move(Color.WHITE, 0, 3);
@@ -178,7 +178,7 @@ public class BoardTest {
     }
 
     @Test
-    public void testStoneStrangulation2() {
+    public void testComplexStoneStrangulation() {
         Board board = Board.getInstance();
 
         board.move(Color.BLACK, 1, 0);

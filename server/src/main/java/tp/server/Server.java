@@ -73,7 +73,7 @@ public class Server {
                     out[i].println(line);
                     clientLine = in[i].readLine();
                     if (clientLine.matches("PAUSE [BW]")) {
-                        if (pauseFlag || in.length == 1) {
+                        if (pauseFlag || (in.length == 1 && clientLine.endsWith("B"))) {
                             line = game.endGame();
                             updateClients(line);
                             return;
