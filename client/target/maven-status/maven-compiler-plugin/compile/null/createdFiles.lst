@@ -1,2 +1,5 @@
+tp/client/GamePane.class
+tp/client/MenuPane.class
+tp/client/ModePane.class
 tp/client/ModeMenuController.class
 tp/client/MainMenuController.class

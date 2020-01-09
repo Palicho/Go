@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -161,7 +162,7 @@ public class Client extends Application {
                 }
             }
         };
-        scene = new Scene(loadFXML("mainMenu"), 640, 480);
+        scene = new Scene(new MenuPane(this, 640, 480));
         primaryStage.setScene(scene);
         primaryStage.show();
 /*
@@ -215,4 +216,9 @@ public class Client extends Application {
         stage.show();
     }
 
+    public void close() throws IOException {
+        in.close();
+        out.close();
+        socket.close();
+    }
 }

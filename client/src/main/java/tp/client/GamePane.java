@@ -10,6 +10,8 @@ import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 
+import static java.lang.StrictMath.min;
+
 public class GamePane extends Pane {
 
     private final Client client;
@@ -17,15 +19,16 @@ public class GamePane extends Pane {
     public GamePane(Client client, double width, double height) {
         this.client = client;
 
-        double lineWidthSpace = (width - 50) / 18;
-        double lineHeightSpace = (height - 50) / 18;
+        double size= min(width,height);
+        double lineWidthSpace = (size - 50) / 18;
+        double lineHeightSpace = (size - 50) / 18;
 
         for (int i = 0; i < 19; i++) {
             Line line = new Line();
             line.setStartX(lineWidthSpace * i + 25);
             line.setStartY(25);
             line.setEndX(lineWidthSpace * i + 25);
-            line.setEndY(height - 25);
+            line.setEndY(size - 25);
             getChildren().add(line);
         }
 
@@ -33,7 +36,7 @@ public class GamePane extends Pane {
             Line line = new Line();
             line.setStartX(25);
             line.setStartY(lineHeightSpace * i + 25);
-            line.setEndX(width - 25);
+            line.setEndX(size - 25);
             line.setEndY(lineHeightSpace * i + 25);
             getChildren().add(line);
         }
@@ -84,53 +87,9 @@ public class GamePane extends Pane {
                 Platform.runLater(() -> client.realMove = false);
             }
         });
-
-        Button singleplayer = new Button("SINGLE");
-        singleplayer.setOnMousePressed(mouseEvent -> {
-            try {
-                client.initializeGame(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        singleplayer.setOnMouseReleased(mouseEvent -> {
-            try {
-                client.waitForResponse();
-                buttonBar.getButtons().clear();
-                buttonBar.getButtons().addAll(pass, surrender, client.textField);
-                Platform.runLater(() -> client.realMove = true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        Button multiplayer = new Button("MULTI");
-        multiplayer.setOnMousePressed(mouseEvent -> {
-            try {
-                client.initializeGame(false);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        multiplayer.setOnMouseReleased(mouseEvent -> {
-            try {
-                client.waitForResponse();
-                if (!client.localMove) {
-                    client.drawStones();
-                    client.waitForResponse();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            buttonBar.getButtons().clear();
-            buttonBar.getButtons().addAll(pass, surrender, client.textField);
-            Platform.runLater(() -> client.realMove = true);
-        });
-
         client.textField.setTextAlignment(TextAlignment.CENTER);
 
-        buttonBar.getButtons().add(singleplayer);
-        buttonBar.getButtons().add(multiplayer);
+        buttonBar.getButtons().addAll(pass, surrender, client.textField);
         buttonBar.setLayoutY(19 * lineHeightSpace + 25);
         getChildren().add(buttonBar);
         setStyle("-fx-background-color: indianred;");
