@@ -1,11 +1,14 @@
 package tp.client;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
@@ -15,13 +18,24 @@ import static java.lang.StrictMath.min;
 public class GamePane extends Pane {
 
     private final Client client;
+    private VBox vBox;
 
     public GamePane(Client client, double width, double height) {
+
+
         this.client = client;
 
         double size= min(width,height);
         double lineWidthSpace = (size - 50) / 18;
         double lineHeightSpace = (size - 50) / 18;
+        vBox= new VBox();
+
+        Rectangle rectangle = new Rectangle(lineWidthSpace*19,lineWidthSpace*19);
+
+        rectangle.setX(12.5);
+        rectangle.setY(12.5);
+        rectangle.setFill(Color.INDIANRED);
+        getChildren().add(rectangle);
 
         for (int i = 0; i < 19; i++) {
             Line line = new Line();
@@ -56,9 +70,10 @@ public class GamePane extends Pane {
             }
         }
 
-        ButtonBar buttonBar = new ButtonBar();
+
 
         Button pass = new Button("PASS");
+        pass.setPrefSize(width-height-20,20);
         pass.setOnMousePressed(mouseEvent -> {
             client.localMove = client.realMove;
             if (client.localMove) {
@@ -75,6 +90,7 @@ public class GamePane extends Pane {
         pass.setOnMouseReleased(client.afterClickHandler);
 
         Button surrender = new Button("SURRENDER");
+        surrender.setPrefSize(width-height-20,20);
         surrender.setOnMousePressed(mouseEvent -> {
             client.localMove = client.realMove;
             if (client.localMove) {
@@ -88,10 +104,13 @@ public class GamePane extends Pane {
             }
         });
         client.textField.setTextAlignment(TextAlignment.CENTER);
+        vBox.getChildren().addAll(pass,surrender, client.textField);
+        vBox.setSpacing(10);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setLayoutX(19*lineWidthSpace+30);
+        vBox.setLayoutY(20);
 
-        buttonBar.getButtons().addAll(pass, surrender, client.textField);
-        buttonBar.setLayoutY(19 * lineHeightSpace + 25);
-        getChildren().add(buttonBar);
-        setStyle("-fx-background-color: indianred;");
+        getChildren().add(vBox);
+        //setStyle("-fx-background-color: indianred;");
     }
 }

@@ -162,7 +162,7 @@ public class Client extends Application {
                 }
             }
         };
-        scene = new Scene(new MenuPane(this, 640, 480));
+        scene = new Scene(new MenuPane(this, 680, 480));
         primaryStage.setScene(scene);
         primaryStage.show();
 /*

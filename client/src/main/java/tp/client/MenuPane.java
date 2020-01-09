@@ -1,5 +1,6 @@
 package tp.client;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -7,10 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MenuPane extends GridPane {
+public class MenuPane extends VBox {
 
     private Button newGameButton, loadGameButton, exitButton;
-    private VBox vBox;
     private Client client;
 
     public MenuPane(Client client, double width, double height){
@@ -18,13 +18,17 @@ public class MenuPane extends GridPane {
         this.client= client;
 
         newGameButton= new Button("NEW GAME");
+        newGameButton.setPrefSize(width*0.75, height*0.1);
         loadGameButton = new Button("LOAD GAME");
+        loadGameButton.setPrefSize(width*0.75, height*0.1);
+
         exitButton = new Button("EXIT");
+        exitButton.setPrefSize(width*0.75, height*0.1);
 
         setPrefSize(width,height);
-        add(newGameButton,0,0);
-        add(loadGameButton,0,1);
-        add(exitButton,0,2);
+        setSpacing(10);
+        setAlignment(Pos.CENTER);
+        getChildren().addAll(newGameButton,loadGameButton,exitButton);
         newGameButton.setOnMouseClicked(mouseEvent -> {
             getScene().setRoot(new ModePane(client,width,height));
         });
@@ -51,3 +55,4 @@ public class MenuPane extends GridPane {
     }
 
 }
+

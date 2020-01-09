@@ -1,21 +1,29 @@
 package tp.client;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.ref.Cleaner;
 
-public class ModePane extends GridPane {
+public class ModePane extends VBox {
     private Button singleplayerButton , multiplayerButton, returnButton;
 
     public ModePane(Client client, double width, double height){
         singleplayerButton=new Button("SINGLEPLAYER");
+        singleplayerButton.setPrefSize(width*0.75,height*0.1);
+
         multiplayerButton = new Button("MULTIPLAYER");
+        multiplayerButton.setPrefSize(width*0.75, height*0.1);
         returnButton = new Button("RETURN");
+        returnButton.setPrefSize(width*0.75, height*0.1);
+        setAlignment(Pos.CENTER);
+        setSpacing(20);
 
         singleplayerButton.setOnMousePressed(mouseEvent -> {
             try {
@@ -61,9 +69,7 @@ public class ModePane extends GridPane {
             getScene().setRoot(new MenuPane(client, height,width));
         });
 
-        add(singleplayerButton, 0,0);
-        add(multiplayerButton,0,1);
-
+        getChildren().addAll(singleplayerButton, multiplayerButton, returnButton);
     }
 
     public void newGameWindow(Client client, double width, double height){
