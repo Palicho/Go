@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -38,6 +39,7 @@ public class ModePane extends VBox {
         singleplayerButton.setOnMouseReleased(mouseEvent -> {
             try {
                 client.waitForResponse();
+
                 Platform.runLater(() -> client.realMove = true);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -45,6 +47,8 @@ public class ModePane extends VBox {
         });
 
         multiplayerButton.setOnMousePressed(mouseEvent -> {
+
+            newGameWindow(client,width,height);
             try {
                 client.initializeGame(false);
             } catch (IOException e) {
@@ -53,8 +57,9 @@ public class ModePane extends VBox {
         });
         multiplayerButton.setOnMouseReleased(mouseEvent -> {
             try {
-                newGameWindow(client,width,height);
+
                 client.waitForResponse();
+
                 if (!client.localMove) {
                     client.drawStones();
                     client.waitForResponse();
@@ -62,7 +67,9 @@ public class ModePane extends VBox {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             Platform.runLater(() -> client.realMove = true);
+
         });
 
         returnButton.setOnMouseClicked(event -> {
@@ -75,6 +82,10 @@ public class ModePane extends VBox {
     public void newGameWindow(Client client, double width, double height){
 
         getScene().setRoot(new GamePane(client, width, height));
+    }
+
+    public void waiting(){
+        getScene().setRoot(new Pane());
     }
 
 }

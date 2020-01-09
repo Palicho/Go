@@ -18,7 +18,9 @@ import static java.lang.StrictMath.min;
 public class GamePane extends Pane {
 
     private final Client client;
+
     private VBox vBox;
+
 
     public GamePane(Client client, double width, double height) {
 

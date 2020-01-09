@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -20,7 +19,6 @@ import java.util.LinkedHashMap;
 public class Client extends Application {
 
     private static Scene scene;
-    private static GamePane gamePane;
 
     boolean localMove = false;
     boolean realMove = false;
@@ -34,6 +32,7 @@ public class Client extends Application {
 
     Color color;
     Text textField = new Text();
+    String message;
     LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
     MyCircle[][] circles = new MyCircle[19][19];
 
@@ -70,7 +69,13 @@ public class Client extends Application {
 
     public void waitForResponse() throws IOException {
         String serverMsg = in.readLine();
-        String[] results = serverMsg.split(" ");
+        String[] results;
+        try {
+            results = serverMsg.split(" ");
+        } catch (NullPointerException e){
+            serverMsg = signature == 'W' ? "SURRENDER B" : "SURRENDER W";
+            results = serverMsg.split("");
+        }
 
         if (serverMsg.equals("MOVE")) {
             localMove = true;
@@ -80,8 +85,9 @@ public class Client extends Application {
             scores[0] = Integer.parseInt(results[2]);
             scores[1] = Integer.parseInt(results[4]);
 
-            if (scores[0] == scores[1])
+            if (scores[0] == scores[1]){
                 textField.setText("TIE: " + scores[0] + " points");
+                message= "TIE: " + scores[0] + " points";}
             else {
                 String finalMessage = "YOU ";
                 char winner = scores[0] > scores[1] ? 'B' : 'W';
@@ -90,6 +96,7 @@ public class Client extends Application {
                 finalMessage += ("black score: " + scores[0] + "\n");
                 finalMessage += ("white score: " + scores[1] + "\n");
                 textField.setText(finalMessage);
+                message= finalMessage;
             }
             gameEnded = true;
 
@@ -97,7 +104,10 @@ public class Client extends Application {
             char loser = results[1].charAt(0);
             gameEnded = true;
             if (loser == signature) textField.setText("YOU HAVE SURRENDERED");
-            else textField.setText("YOUR OPPONENT HAS SURRENDERED");
+            else {
+                textField.setText("YOUR OPPONENT HAS SURRENDERED");
+                message = "YOUR OPPONENT HAS SURRENDERED";
+            }
 
         } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
             textField.setText(serverMsg);
@@ -111,6 +121,7 @@ public class Client extends Application {
 
         } else if (serverMsg.startsWith("PAUSE ")) {
             textField.setText(serverMsg);
+            message= serverMsg;
             waitForResponse();
 
         } else if (serverMsg.startsWith("REMOVE ")) {
@@ -124,6 +135,10 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("GO");
+        textField.setWrappingWidth(100);
         socket = new Socket("localhost", 9100);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -162,24 +177,9 @@ public class Client extends Application {
                 }
             }
         };
-        scene = new Scene(new MenuPane(this, 680, 480));
+        scene = new Scene(new MenuPane(this, 700, 480));
         primaryStage.setScene(scene);
         primaryStage.show();
-/*
-        gamePane = new GamePane(500, 500);
-        Scene scene = new Scene(gamePane, 500, 550);
-        primaryStage.setOnCloseRequest(windowEvent -> {
-            try {
-                in.close();
-                out.close();
-                socket.close();
-                Platform.exit();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
     }
 
 
@@ -198,22 +198,6 @@ public class Client extends Application {
     }
 
     public void newGame(){
-
-        Stage stage= new Stage();
-        gamePane = new GamePane(this, 500, 500);
-        Scene scene = new Scene(gamePane, 500, 550);
-        stage.setOnCloseRequest(windowEvent -> {
-            try {
-                in.close();
-                out.close();
-                socket.close();
-                Platform.exit();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void close() throws IOException {
