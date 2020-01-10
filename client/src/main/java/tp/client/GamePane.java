@@ -4,11 +4,13 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
@@ -21,7 +23,6 @@ public class GamePane extends Pane {
 
     private VBox vBox;
 
-
     public GamePane(Client client, double width, double height) {
 
 
@@ -31,7 +32,6 @@ public class GamePane extends Pane {
         double lineWidthSpace = (size - 50) / 18;
         double lineHeightSpace = (size - 50) / 18;
         vBox= new VBox();
-
         Rectangle rectangle = new Rectangle(lineWidthSpace*19,lineWidthSpace*19);
 
         rectangle.setX(12.5);
@@ -75,7 +75,7 @@ public class GamePane extends Pane {
 
 
         Button pass = new Button("PASS");
-        pass.setPrefSize(width-height-20,20);
+        pass.setPrefSize(width-height-20,40);
         pass.setOnMousePressed(mouseEvent -> {
             client.localMove = client.realMove;
             if (client.localMove) {
@@ -92,7 +92,7 @@ public class GamePane extends Pane {
         pass.setOnMouseReleased(client.afterClickHandler);
 
         Button surrender = new Button("SURRENDER");
-        surrender.setPrefSize(width-height-20,20);
+        surrender.setPrefSize(width-height-20,40);
         surrender.setOnMousePressed(mouseEvent -> {
             client.localMove = client.realMove;
             if (client.localMove) {
@@ -105,11 +105,14 @@ public class GamePane extends Pane {
                 Platform.runLater(() -> client.realMove = false);
             }
         });
+
+
         client.textField.setTextAlignment(TextAlignment.CENTER);
+        client.textField.setWrappingWidth(width-height-20);
         vBox.getChildren().addAll(pass,surrender, client.textField);
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.CENTER);
-        vBox.setLayoutX(19*lineWidthSpace+30);
+        vBox.setLayoutX(19*lineWidthSpace+25);
         vBox.setLayoutY(20);
 
         getChildren().add(vBox);

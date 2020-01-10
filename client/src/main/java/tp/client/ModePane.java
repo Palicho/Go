@@ -2,16 +2,11 @@ package tp.client;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.ref.Cleaner;
-
 public class ModePane extends VBox {
     private Button singleplayerButton , multiplayerButton, returnButton;
 
@@ -24,7 +19,7 @@ public class ModePane extends VBox {
         returnButton = new Button("RETURN");
         returnButton.setPrefSize(width*0.75, height*0.1);
         setAlignment(Pos.CENTER);
-        setSpacing(20);
+        setSpacing(10);
 
         singleplayerButton.setOnMousePressed(mouseEvent -> {
             try {

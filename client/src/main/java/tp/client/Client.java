@@ -74,7 +74,7 @@ public class Client extends Application {
             results = serverMsg.split(" ");
         } catch (NullPointerException e){
             serverMsg = signature == 'W' ? "SURRENDER B" : "SURRENDER W";
-            results = serverMsg.split("");
+            results = serverMsg.split(" ");
         }
 
         if (serverMsg.equals("MOVE")) {
@@ -86,15 +86,15 @@ public class Client extends Application {
             scores[1] = Integer.parseInt(results[4]);
 
             if (scores[0] == scores[1]){
-                textField.setText("TIE: " + scores[0] + " points");
-                message= "TIE: " + scores[0] + " points";}
+                textField.setText("TIE: " + scores[0] + " POINTS");
+                message= "TIE: " + scores[0] + " POINTS";}
             else {
                 String finalMessage = "YOU ";
                 char winner = scores[0] > scores[1] ? 'B' : 'W';
                 if (winner == signature) finalMessage += "WON\n";
                 else finalMessage += "LOST\n";
-                finalMessage += ("black score: " + scores[0] + "\n");
-                finalMessage += ("white score: " + scores[1] + "\n");
+                finalMessage += ("WHITE SCORE: " + scores[0] + "\n");
+                finalMessage += ("BLACK SCORE: " + scores[1] + "\n");
                 textField.setText(finalMessage);
                 message= finalMessage;
             }
@@ -138,7 +138,6 @@ public class Client extends Application {
 
         primaryStage.setResizable(false);
         primaryStage.setTitle("GO");
-        textField.setWrappingWidth(100);
         socket = new Socket("localhost", 9100);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
