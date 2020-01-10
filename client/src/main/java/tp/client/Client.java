@@ -3,15 +3,12 @@ package tp.client;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -20,6 +17,8 @@ import java.util.LinkedHashMap;
 
 
 public class Client extends Application {
+
+    private static Scene scene;
 
     boolean localMove = false;
     boolean realMove = false;
@@ -33,6 +32,7 @@ public class Client extends Application {
 
     Color color;
     Text textField = new Text();
+    String message;
     LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
     MyCircle[][] circles = new MyCircle[19][19];
 
@@ -69,7 +69,13 @@ public class Client extends Application {
 
     public void waitForResponse() throws IOException {
         String serverMsg = in.readLine();
-        String[] results = serverMsg.split(" ");
+        String[] results;
+        try {
+            results = serverMsg.split(" ");
+        } catch (NullPointerException e){
+            serverMsg = signature == 'W' ? "SURRENDER B" : "SURRENDER W";
+            results = serverMsg.split(" ");
+        }
 
         if (serverMsg.equals("MOVE")) {
             localMove = true;
@@ -79,16 +85,18 @@ public class Client extends Application {
             scores[0] = Integer.parseInt(results[2]);
             scores[1] = Integer.parseInt(results[4]);
 
-            if (scores[0] == scores[1])
-                textField.setText("TIE: " + scores[0] + " points");
+            if (scores[0] == scores[1]){
+                textField.setText("TIE: " + scores[0] + " POINTS");
+                message= "TIE: " + scores[0] + " POINTS";}
             else {
                 String finalMessage = "YOU ";
                 char winner = scores[0] > scores[1] ? 'B' : 'W';
                 if (winner == signature) finalMessage += "WON\n";
                 else finalMessage += "LOST\n";
-                finalMessage += ("black score: " + scores[0] + "\n");
-                finalMessage += ("white score: " + scores[1] + "\n");
+                finalMessage += ("WHITE SCORE: " + scores[0] + "\n");
+                finalMessage += ("BLACK SCORE: " + scores[1] + "\n");
                 textField.setText(finalMessage);
+                message= finalMessage;
             }
             gameEnded = true;
 
@@ -96,7 +104,10 @@ public class Client extends Application {
             char loser = results[1].charAt(0);
             gameEnded = true;
             if (loser == signature) textField.setText("YOU HAVE SURRENDERED");
-            else textField.setText("YOUR OPPONENT HAS SURRENDERED");
+            else {
+                textField.setText("YOUR OPPONENT HAS SURRENDERED");
+                message = "YOUR OPPONENT HAS SURRENDERED";
+            }
 
         } else if (serverMsg.startsWith("B ") || serverMsg.startsWith("W ")) {
             textField.setText(serverMsg);
@@ -110,6 +121,7 @@ public class Client extends Application {
 
         } else if (serverMsg.startsWith("PAUSE ")) {
             textField.setText(serverMsg);
+            message= serverMsg;
             waitForResponse();
 
         } else if (serverMsg.startsWith("REMOVE ")) {
@@ -123,6 +135,9 @@ public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("GO");
         socket = new Socket("localhost", 9100);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -161,19 +176,7 @@ public class Client extends Application {
                 }
             }
         };
-
-        GamePane gamePane = new GamePane(500, 500);
-        Scene scene = new Scene(gamePane, 500, 550);
-        primaryStage.setOnCloseRequest(windowEvent -> {
-            try {
-                in.close();
-                out.close();
-                socket.close();
-                Platform.exit();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        scene = new Scene(new MenuPane(this, 700, 480));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -183,127 +186,22 @@ public class Client extends Application {
         launch();
     }
 
-    public class GamePane extends Pane {
 
-        public GamePane(double width, double height) {
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
 
-            double lineWidthSpace = (width - 50) / 18;
-            double lineHeightSpace = (height - 50) / 18;
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Client.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
 
-            for (int i = 0; i < 19; i++) {
-                Line line = new Line();
-                line.setStartX(lineWidthSpace * i + 25);
-                line.setStartY(25);
-                line.setEndX(lineWidthSpace * i + 25);
-                line.setEndY(height - 25);
-                getChildren().add(line);
-            }
+    public void newGame(){
+    }
 
-            for (int i = 0; i < 19; i++) {
-                Line line = new Line();
-                line.setStartX(25);
-                line.setStartY(lineHeightSpace * i + 25);
-                line.setEndX(width - 25);
-                line.setEndY(lineHeightSpace * i + 25);
-                getChildren().add(line);
-            }
-
-
-            for (int i = 0; i < 19; i++) {
-                for (int j = 0; j < 19; j++) {
-                    MyCircle circle = new MyCircle(i, j);
-                    circle.setCenterX(i * lineWidthSpace + 25);
-                    circle.setCenterY(j * lineHeightSpace + 25);
-                    circle.setRadius(10);
-                    circle.setFill(Color.TRANSPARENT);
-                    circle.setOnMousePressed(clickHandler);
-                    circle.setOnMouseReleased(afterClickHandler);
-                    circles[i][j] = circle;
-                    getChildren().add(circle);
-                }
-            }
-
-            ButtonBar buttonBar = new ButtonBar();
-
-            Button pass = new Button("PASS");
-            pass.setOnMousePressed(mouseEvent -> {
-                localMove = realMove;
-                if (localMove) {
-                    out.println("PAUSE " + signature);
-                    try {
-                        waitForResponse();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    canDraw = !gameEnded;
-                    Platform.runLater(() -> realMove = false);
-                }
-            });
-            pass.setOnMouseReleased(afterClickHandler);
-
-            Button surrender = new Button("SURRENDER");
-            surrender.setOnMousePressed(mouseEvent -> {
-                localMove = realMove;
-                if (localMove) {
-                    out.println("SURRENDER " + signature);
-                    try {
-                        waitForResponse();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Platform.runLater(() -> realMove = false);
-                }
-            });
-
-            Button singleplayer = new Button("SINGLE");
-            singleplayer.setOnMousePressed(mouseEvent -> {
-                try {
-                    initializeGame(true);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            singleplayer.setOnMouseReleased(mouseEvent -> {
-                try {
-                    waitForResponse();
-                    buttonBar.getButtons().clear();
-                    buttonBar.getButtons().addAll(pass, surrender, textField);
-                    Platform.runLater(() -> realMove = true);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            Button multiplayer = new Button("MULTI");
-            multiplayer.setOnMousePressed(mouseEvent -> {
-                try {
-                    initializeGame(false);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            multiplayer.setOnMouseReleased(mouseEvent -> {
-                try {
-                    waitForResponse();
-                    if (!localMove) {
-                        drawStones();
-                        waitForResponse();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                buttonBar.getButtons().clear();
-                buttonBar.getButtons().addAll(pass, surrender, textField);
-                Platform.runLater(() -> realMove = true);
-            });
-
-            textField.setTextAlignment(TextAlignment.CENTER);
-
-            buttonBar.getButtons().add(singleplayer);
-            buttonBar.getButtons().add(multiplayer);
-            buttonBar.setLayoutY(19 * lineHeightSpace + 25);
-            getChildren().add(buttonBar);
-            setStyle("-fx-background-color: indianred;");
-        }
+    public void close() throws IOException {
+        in.close();
+        out.close();
+        socket.close();
     }
 }
