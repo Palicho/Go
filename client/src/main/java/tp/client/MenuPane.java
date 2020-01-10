@@ -46,7 +46,7 @@ public class MenuPane extends VBox {
 
         loadGameButton.setOnMouseClicked(mouseEvent -> {
             try {
-                getScene().setRoot(new GamePane(client, width, height));
+                getScene().setRoot(new BoardPane(client,width,height));
                 client.loadGame();
 
             } catch (Exception e) {
