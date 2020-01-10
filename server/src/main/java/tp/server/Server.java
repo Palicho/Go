@@ -9,6 +9,9 @@ public class Server {
     private PrintWriter[] out;
     private BufferedReader[] in;
     private GameLogic game = new GameLogic();
+    private int gameID = 0;
+    private int moveID = 0;
+    private boolean load = false;
 
     public Server(int port) {
         try {
@@ -26,8 +29,6 @@ public class Server {
                         clientSockets[0] = startingClient;
                         out[0] = startWriter;
                         in[0] = startReader;
-
-                        //bot
 
                         startWriter.println("READY B");
                         break;
@@ -53,12 +54,37 @@ public class Server {
                         System.out.println("SWITCH ERROR");
                         break;
                 }
-            } else startWriter.println("NO");
+            } else if (line.startsWith("LOAD ")) {
+                clientSockets = new Socket[1];
+                out = new PrintWriter[1];
+                in = new BufferedReader[1];
+                clientSockets[0] = startingClient;
+                out[0] = startWriter;
+                in[0] = startReader;
+
+                while (!load) {
+                    String[] command = line.split(" ");
+                    try {
+                        gameID = Integer.parseInt(command[1]);
+                        // czy w bazie
+                        load = true;
+                        startWriter.println("OK");
+                    } catch (Exception e) {
+                        startWriter.println("BAD ID");
+                        line = startReader.readLine();
+                    }
+                }
+            }
+            else startWriter.println("NO");
         } catch (IOException e) {
             System.out.println("IO ERROR");
             System.exit(1);
         }
 
+    }
+
+    boolean isLoaded() {
+        return load;
     }
 
     void gameCourse() throws IOException {
@@ -111,14 +137,30 @@ public class Server {
         serverSocket.close();
     }
 
+    void loadGame() {
+        updateClients("B 1 1");
+        updateClients("W 0 1");
+        updateClients("SURRENDER W");
+        /*String line = "";
+        do {
+            updateClients(line);
+            //update line
+        } while (!line.startsWith("END ") || line.startsWith("SURRENDER ")); */
+    }
+
     void updateClients(String line) {
         for (PrintWriter out: out) out.println(line);
+        if (!line.equals("EOF")) {
+            //add to moves
+            moveID++;
+        }
     }
 
     public static void main(String[] args) {
         try {
             Server s = new Server(9100);
-            s.gameCourse();
+            if (s.isLoaded()) s.loadGame();
+            else s.gameCourse();
             s.gameEnd();
         } catch (IOException e) {
             e.printStackTrace();

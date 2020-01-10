@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -65,6 +66,37 @@ public class Client extends Application {
             System.out.println("ERROR");
             System.exit(1);
         }
+    }
+
+    void loadGame() throws IOException {
+        String line;
+        String[] results;
+        TextInputDialog getID = new TextInputDialog();
+        getID.setHeaderText("Game ID:");
+        do {
+            getID.showAndWait();
+            out.println("LOAD "+getID.getEditor().getText());
+            line = in.readLine();
+        } while (line.equals("BAD ID"));
+
+        do {
+            line = in.readLine();
+            results = line.split(" ");
+            textField.setText(line);
+            if (line.startsWith("B ") || line.startsWith("W ")) {
+                Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
+                int x, y;
+                x = Integer.parseInt(results[1]);
+                y = Integer.parseInt(results[2]);
+                circles[x][y].setColor(c);
+            }
+            else if (line.startsWith("REMOVE ")) {
+                int x, y;
+                x = Integer.parseInt(results[1]);
+                y = Integer.parseInt(results[2]);
+                circles[x][y].setColor(Color.TRANSPARENT);
+            }
+        } while (!line.startsWith("SURRENDER ") && !line.startsWith("END "));
     }
 
     public void waitForResponse() throws IOException {

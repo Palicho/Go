@@ -3,6 +3,7 @@ package tp.client;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -43,15 +44,15 @@ public class MenuPane extends VBox {
             getScene().setRoot(new ModePane(client,width,height));
         });
 
-        /*
         loadGameButton.setOnMouseClicked(mouseEvent -> {
             try {
-                client.initializeGame(true);
-            } catch (IOException e) {
+                getScene().setRoot(new GamePane(client, width, height));
+                client.loadGame();
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        */
 
         exitButton.setOnMouseClicked(mouseEvent -> {
             try {
