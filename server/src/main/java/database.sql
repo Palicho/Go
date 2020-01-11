@@ -1,5 +1,3 @@
-DROP DATABASE goRecords;
-DROP USER 'go'@'localhost';
 CREATE DATABASE goRecords;
 USE goRecords;
 CREATE TABLE games (

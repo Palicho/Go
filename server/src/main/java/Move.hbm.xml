@@ -1,0 +1,12 @@
+<hibernate-mapping package="tp.server">
+
+    <class name="Move" table="Moves">
+        <id name="gameID" column="GameID">
+            <generator class="native"/>
+
+        </id>
+        <property name="moveNumber"  column="MoveNumber"/>
+        <property name="message" column="Message"/>
+    </class>
+
+</hibernate-mapping>

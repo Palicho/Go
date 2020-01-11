@@ -2,17 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Most things work now.">
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/GameLogicTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Go.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_fastinfoset_FastInfoset_1_2_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_0_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_24_0_GA.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_1_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_2_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_staxex_stax_ex_1_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/Move.hbm.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/MyCircle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/StoneGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tp/server/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database.sql" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,18 +57,23 @@
     <expand />
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Go" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="FxmlFile" />
+        <option value="Tag Library Descriptor" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="awaria" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,10 +89,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/server" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/BASIC" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
-  <component name="RunManager" selected="JUnit.tp.server in server">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp.client.Client" />
       <module name="client" />
@@ -189,18 +231,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -242,6 +272,10 @@
       <workItem from="1576859650101" duration="906000" />
       <workItem from="1576877874604" duration="7157000" />
       <workItem from="1576941660623" duration="5729000" />
+      <workItem from="1578659949393" duration="2357000" />
+      <workItem from="1578662605363" duration="620000" />
+      <workItem from="1578663576001" duration="385000" />
+      <workItem from="1578664872927" duration="2936000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -351,6 +385,9 @@
     <option name="localTasksCounter" value="16" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -385,122 +422,68 @@
     <option name="LAST_COMMIT_MESSAGE" value="Most things work now." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1576253008006">
-      <screen x="57" y="27" width="1863" height="1053" />
+    <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1578662333955" />
+    <state x="648" y="223" width="671" height="659" key="#Client/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="583" y="214" width="800" height="677" key="#Notifications" timestamp="1578662333956" />
+    <state x="583" y="214" width="800" height="677" key="#Notifications/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578662333956" />
+    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="157" y="125" width="1663" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1578662333956" />
+    <state x="157" y="125" width="1663" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1578662333956" />
+    <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="924" y="308" width="118" height="488" key="#xdebugger.XInspectDialog" timestamp="1578662333956" />
+    <state x="924" y="308" width="118" height="488" key="#xdebugger.XInspectDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1578662333956" />
+    <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1578662333956" />
+    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="157" y="125" width="1663" height="855" key="DiffContextDialog" timestamp="1578662333956" />
+    <state x="157" y="125" width="1663" height="855" key="DiffContextDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1578662333956" />
+    <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.bottom" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.center" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.left" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.right" timestamp="1578662333956" />
+    <state width="1817" height="166" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.bottom" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.center" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.left" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.right" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.bottom" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.center" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.center/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.left" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.left/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.right" timestamp="1578662333956" />
+    <state width="1817" height="278" key="GridCell.Tab.2.right/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="6" y="116" width="1717" height="872" key="MergeDialog" timestamp="1578662333956" />
+    <state x="6" y="116" width="1717" height="872" key="MergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1578662333956" />
+    <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog" timestamp="1578662333956" />
+    <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333956" />
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1578662333957" />
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333957" />
+    <state x="339" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1578662343697">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="648" y="223" width="671" height="659" key="#Client/57.27.1863.1053@57.27.1863.1053" timestamp="1576253008006" />
-    <state x="583" y="214" width="800" height="677" key="#Notifications" timestamp="1576781107991">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="583" y="214" width="800" height="677" key="#Notifications/57.27.1863.1053@57.27.1863.1053" timestamp="1576781107991" />
-    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576889153556">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="446" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576889153556" />
-    <state x="157" y="125" width="1663" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1575145441150">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="157" y="125" width="1663" height="855" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1575145441150" />
-    <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1575136842604">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/57.27.1863.1053@57.27.1863.1053" timestamp="1575136842604" />
-    <state x="924" y="308" width="118" height="488" key="#xdebugger.XInspectDialog" timestamp="1576833800192">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="924" y="308" width="118" height="488" key="#xdebugger.XInspectDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576833800191" />
-    <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1575150242183">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="724" y="390" width="518" height="325" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/57.27.1863.1053@57.27.1863.1053" timestamp="1575150242183" />
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2" timestamp="1576885077748">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="640" y="137" width="860" height="807" key="CommitChangelistDialog2/57.27.1863.1053@57.27.1863.1053" timestamp="1576885077748" />
-    <state x="157" y="125" width="1663" height="855" key="DiffContextDialog" timestamp="1576885152445">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="157" y="125" width="1663" height="855" key="DiffContextDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576885152445" />
-    <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1576701974358">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1576701974358" />
-    <state width="1817" height="166" key="GridCell.Tab.0.bottom" timestamp="1576947340131">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340131" />
-    <state width="1817" height="166" key="GridCell.Tab.0.center" timestamp="1576947340130">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340130" />
-    <state width="1817" height="166" key="GridCell.Tab.0.left" timestamp="1576947340130">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340130" />
-    <state width="1817" height="166" key="GridCell.Tab.0.right" timestamp="1576947340131">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="166" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576947340131" />
-    <state width="1817" height="278" key="GridCell.Tab.1.bottom" timestamp="1576943130035">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130035" />
-    <state width="1817" height="278" key="GridCell.Tab.1.center" timestamp="1576943130033">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130033" />
-    <state width="1817" height="278" key="GridCell.Tab.1.left" timestamp="1576943130032">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130032" />
-    <state width="1817" height="278" key="GridCell.Tab.1.right" timestamp="1576943130034">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.1.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576943130034" />
-    <state width="1817" height="278" key="GridCell.Tab.2.bottom" timestamp="1576785554666">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.2.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1576785554666" />
-    <state width="1817" height="278" key="GridCell.Tab.2.center" timestamp="1576785554666">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.2.center/57.27.1863.1053@57.27.1863.1053" timestamp="1576785554666" />
-    <state width="1817" height="278" key="GridCell.Tab.2.left" timestamp="1576785554666">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.2.left/57.27.1863.1053@57.27.1863.1053" timestamp="1576785554666" />
-    <state width="1817" height="278" key="GridCell.Tab.2.right" timestamp="1576785554666">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state width="1817" height="278" key="GridCell.Tab.2.right/57.27.1863.1053@57.27.1863.1053" timestamp="1576785554666" />
-    <state x="6" y="116" width="1717" height="872" key="MergeDialog" timestamp="1576251283257">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="6" y="116" width="1717" height="872" key="MergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576251283257" />
-    <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1576251289499">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576251289499" />
-    <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog" timestamp="1576855445671">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1576855445671" />
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2" timestamp="1576857421617">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1576857421617" />
-    <state x="729" y="257" width="509" height="590" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1575135594605">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="729" y="257" width="509" height="590" key="com.intellij.testIntegration.createTest.CreateTestDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1575135594604" />
-    <state x="721" y="307" width="568" height="500" key="extract.method.dialog" timestamp="1574975962897">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="721" y="307" width="568" height="500" key="extract.method.dialog/57.27.1863.1053@57.27.1863.1053" timestamp="1574975962897" />
-    <state x="652" y="253" key="run.anything.popup" timestamp="1575136646647">
-      <screen x="57" y="27" width="1863" height="1053" />
-    </state>
-    <state x="652" y="253" key="run.anything.popup/57.27.1863.1053@57.27.1863.1053" timestamp="1575136646647" />
+    <state x="339" y="225" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1578662343697" />
+    <state x="729" y="257" width="509" height="590" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1578662333957" />
+    <state x="729" y="257" width="509" height="590" key="com.intellij.testIntegration.createTest.CreateTestDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333957" />
+    <state x="721" y="307" width="568" height="500" key="extract.method.dialog" timestamp="1578662333957" />
+    <state x="721" y="307" width="568" height="500" key="extract.method.dialog/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333957" />
+    <state x="652" y="253" key="run.anything.popup" timestamp="1578662333957" />
+    <state x="652" y="253" key="run.anything.popup/57.27.1863.1053@57.27.1863.1053" timestamp="1578662333957" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -515,11 +498,6 @@
           <line>152</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/java/tp/client/Client.java</url>
-          <line>230</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -529,15 +507,65 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1576944772882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>tp.server.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/go$tp_server_in_server.ic" NAME="tp.server in server Coverage Results" MODIFIED="1576947241684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/go$GameLogicTest.ic" NAME="GameLogicTest Coverage Results" MODIFIED="1576945920444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/go$tp_server_in_server.ic" NAME="tp.server in server Coverage Results" MODIFIED="1576947241684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tp.server.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="simpleUML.UMLToolWindowPlugin">
+    <General>
+      <option name="birdViewUpdateDelay" value="2000" />
+      <option name="defaultFileLocation" value="file://$PROJECT_DIR$/.." />
+    </General>
+    <Classdiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="defaultFieldsExpanded" value="false" />
+      <option name="defaultContructorsExpanded" value="false" />
+      <option name="defaultMethodsExpanded" value="false" />
+      <option name="showParameters" value="true" />
+      <option name="showTooltip" value="true" />
+      <option name="showReturnValues" value="true" />
+      <option name="longModifier" value="true" />
+      <option name="implementsBehaviour" value="1" />
+      <option name="extendsBehaviour" value="1" />
+      <option name="compartmentBehaviour" value="1" />
+      <option name="interfaceBackgroundColor" value="-6494306" />
+      <option name="abstractClassBackgroundColor" value="-1580132" />
+      <option name="classBackgroundColor" value="-6508057" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="quickSourceLinkColor" value="-16776961" />
+      <option name="quickDiagramLinkColor" value="-8454144" />
+      <option name="drawDecorations" value="false" />
+      <option name="hideFieldList" value="" />
+      <option name="showFieldList" value="" />
+      <option name="hideConstructorList" value="" />
+      <option name="showConstructorList" value="" />
+      <option name="hideMethodList" value="" />
+      <option name="showMethodList" value="" />
+      <option name="minimumFigureSize" value="0,0" />
+    </Classdiagram>
+    <Dependencydiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="0" />
+    </Dependencydiagram>
+    <Packagediagram>
+      <option name="diagramTitleFont" value="SansSerif,0,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="packageBackgroundColor" value="-4144960" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="2" />
+    </Packagediagram>
   </component>
 </project>
