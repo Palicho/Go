@@ -9,22 +9,26 @@
         </property>
 
         <property name = "hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            com.mysql.jdbc
+
         </property>
 
+        <!-- Assume test is the database name -->
+
         <property name = "hibernate.connection.url">
-            jdbc:mysql://localhost/goRecords
+            jdbc:mysql://localhost/test
         </property>
 
         <property name = "hibernate.connection.username">
-            go
+            root
         </property>
 
         <property name = "hibernate.connection.password">
-            game
+
         </property>
 
-        <!-- <mapping resource = "Employee.hbm.xml"/> -->
+        <!-- List of XML mapping files -->
+        <mapping resource = "Move.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

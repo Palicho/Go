@@ -13,13 +13,17 @@ public class Server {
     private int moveID = 0;
     private boolean load = false;
 
+    private HibernateUtil hibernateUtil;
+
     public Server(int port) {
         try {
+
             serverSocket = new ServerSocket(port);
             Socket startingClient = serverSocket.accept();
             BufferedReader startReader = new BufferedReader(new InputStreamReader(startingClient.getInputStream()));
             PrintWriter startWriter = new PrintWriter(startingClient.getOutputStream(), true);
             String line = startReader.readLine();
+            hibernateUtil= new HibernateUtil();
             if (line.matches("START [12]")) {
                 switch (line.charAt(6)) {
                     case '1':
