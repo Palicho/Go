@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.*;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 
 public class Client extends Application {
@@ -72,9 +74,13 @@ public class Client extends Application {
         String line;
         String[] results;
         TextInputDialog getID = new TextInputDialog();
-        getID.setHeaderText("Game ID:");
+        getID.setTitle("Load game");
+        getID.setContentText("Game ID:");
+        Optional<String> id;
         do {
-            getID.showAndWait();
+            do {
+                id = getID.showAndWait();
+            } while (id.isEmpty());
             out.println("LOAD "+getID.getEditor().getText());
             line = in.readLine();
         } while (line.equals("BAD ID"));
