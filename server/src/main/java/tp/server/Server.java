@@ -29,7 +29,8 @@ public class Server {
             String line = startReader.readLine();
             hu = new HibernateUtil();
 
-            moves= new ArrayList<String>();
+
+            moves = new ArrayList<String>();
             if (line.matches("START [12]")) {
                 switch (line.charAt(6)) {
                     case '1':
@@ -84,8 +85,7 @@ public class Server {
                         line = startReader.readLine();
                     }
                 }
-            }
-            else startWriter.println("NO");
+            } else startWriter.println("NO");
         } catch (IOException e) {
             System.out.println("IO ERROR");
             System.exit(1);
@@ -113,8 +113,7 @@ public class Server {
                             line = game.endGame();
                             updateClients(line);
                             return;
-                        }
-                        else pauseFlag = true;
+                        } else pauseFlag = true;
                         line = clientLine;
                     } else if (clientLine.matches("SURRENDER [BW]")) {
                         line = clientLine;
@@ -123,14 +122,14 @@ public class Server {
                     } else line = game.move(clientLine);
                 }
                 updateClients(line);
-                for (String msg: game.getRemoved()) updateClients(msg);
+                for (String msg : game.getRemoved()) updateClients(msg);
                 if (!line.startsWith("PAUSE ")) pauseFlag = false;
                 updateClients("EOF");
             }
 
             if (out.length == 1) {
                 out[0].println(game.getBotMove());
-                for (String msg: game.getRemoved()) {
+                for (String msg : game.getRemoved()) {
                     updateClients(msg);
                 }
                 updateClients("EOF");
@@ -139,12 +138,25 @@ public class Server {
     }
 
     void gameEnd() throws IOException {
+        save();
         for (int i = 0; i < in.length; i++) {
             in[i].close();
             out[i].close();
             clientSockets[i].close();
         }
         serverSocket.close();
+    }
+
+    public void save() {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+
+        session.save(new Move(0,0,"hello"));
+        session.getTransaction().commit();
+
+        session.close();
     }
 
     void loadGame() {
@@ -159,7 +171,7 @@ public class Server {
     }
 
     void updateClients(String line) {
-        for (PrintWriter out: out) out.println(line);
+        for (PrintWriter out : out) out.println(line);
         if (!line.equals("EOF")) {
             //add to moves
             moveNumber++;

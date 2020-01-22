@@ -1,10 +1,11 @@
 package tp.server;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "moves")
-public class Move {
+@Table(name = "move")
+public class Move implements Serializable {
     @Id @Column(name = "gameId")
     private int gameId;
     @Id @Column(name = "moveNumber")
