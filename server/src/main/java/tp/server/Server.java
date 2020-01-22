@@ -2,11 +2,9 @@ package tp.server;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Server {
@@ -29,8 +27,6 @@ public class Server {
             BufferedReader startReader = new BufferedReader(new InputStreamReader(startingClient.getInputStream()));
             PrintWriter startWriter = new PrintWriter(startingClient.getOutputStream(), true);
             String line = startReader.readLine();
-            hu = new HibernateUtil();
-
 
             moves = new ArrayList<String>();
             if (line.matches("START [12]")) {
@@ -79,7 +75,6 @@ public class Server {
                     String[] command = line.split(" ");
                     try {
                         gameID = Integer.parseInt(command[1]);
-
                         load = true;
                         startWriter.println("OK");
                     } catch (Exception e) {
@@ -140,7 +135,6 @@ public class Server {
     }
 
     void gameEnd() throws IOException {
-        save();
         for (int i = 0; i < in.length; i++) {
             in[i].close();
             out[i].close();
@@ -187,7 +181,10 @@ public class Server {
         try {
             Server s = new Server(9100);
             if (s.isLoaded()) s.loadGame();
-            else s.gameCourse();
+            else {
+                s.gameCourse();
+                s.save();
+            }
             s.gameEnd();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
