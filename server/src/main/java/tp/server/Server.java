@@ -158,14 +158,13 @@ public class Server {
         session.close();
     }
 
-    void loadGame() throws InterruptedException {
+    void loadGame() throws InterruptedException, IOException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         List<String> rows = session.createSQLQuery("SELECT message FROM move WHERE gameId="+gameID+" ORDER BY moveNumber ASC").list();
+        updateClients(rows.size()+" LINES");
         for( String  string: rows){
             updateClients(string);
-            Thread.sleep(100);
-
         }
     }
 

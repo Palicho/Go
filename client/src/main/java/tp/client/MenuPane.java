@@ -1,10 +1,9 @@
 package tp.client;
 
+import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -48,7 +47,6 @@ public class MenuPane extends VBox {
             try {
                 getScene().setRoot(new BoardPane(client,width,height));
                 client.loadGame();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

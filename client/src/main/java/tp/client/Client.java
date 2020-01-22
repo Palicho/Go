@@ -2,6 +2,8 @@ package tp.client;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.*;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Optional;
 
 
@@ -37,6 +40,7 @@ public class Client extends Application {
     Text textField = new Text();
     String message;
     LinkedHashMap<MyCircle, Color> changedColor = new LinkedHashMap<>();
+    LinkedList<String> loadOrder = new LinkedList<>();
     MyCircle[][] circles = new MyCircle[19][19];
 
     EventHandler<MouseEvent> clickHandler;
@@ -84,25 +88,44 @@ public class Client extends Application {
             out.println("LOAD "+getID.getEditor().getText());
             line = in.readLine();
         } while (line.equals("BAD ID"));
-
-        do {
+        line = in.readLine();
+        results = line.split(" ");
+        final int lines = Integer.parseInt(results[0]);
+        for (int i = 0; i < lines; i++) {
             line = in.readLine();
-            results = line.split(" ");
-            textField.setText(line);
-            if (line.startsWith("B ") || line.startsWith("W ")) {
-                Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
-                int x, y;
-                x = Integer.parseInt(results[1]);
-                y = Integer.parseInt(results[2]);
-                circles[x][y].setColor(c);
+            loadOrder.add(line);
+        }
+        drawLoadedGame();
+    }
+
+    public void drawLoadedGame() {
+        Task drawer = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                String[] results;
+
+                for (String line : loadOrder) {
+                    System.out.println(line);
+                    results = line.split(" ");
+                    if (line.startsWith("B ") || line.startsWith("W ")) {
+                        Color c = results[0].equals("W") ? Color.WHITE : Color.BLACK;
+                        int x, y;
+                        x = Integer.parseInt(results[1]);
+                        y = Integer.parseInt(results[2]);
+                        Platform.runLater(() -> circles[x][y].setColor(c));
+                    } else if (line.startsWith("REMOVE ")) {
+                        int x, y;
+                        x = Integer.parseInt(results[1]);
+                        y = Integer.parseInt(results[2]);
+                        Platform.runLater(() -> circles[x][y].setColor(Color.TRANSPARENT));
+                    }
+                    Platform.runLater(() -> textField.setText(line));
+                    Thread.sleep(1000);
+                }
+                return null;
             }
-            else if (line.startsWith("REMOVE ")) {
-                int x, y;
-                x = Integer.parseInt(results[1]);
-                y = Integer.parseInt(results[2]);
-                circles[x][y].setColor(Color.TRANSPARENT);
-            }
-        } while (!line.startsWith("SURRENDER ") && !line.startsWith("END "));
+        };
+        new Thread(drawer).start();
     }
 
     public void waitForResponse() throws IOException {
