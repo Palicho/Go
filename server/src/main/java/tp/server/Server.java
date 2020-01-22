@@ -2,9 +2,7 @@ package tp.server;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.NativeQuery;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -31,6 +29,8 @@ public class Server {
             BufferedReader startReader = new BufferedReader(new InputStreamReader(startingClient.getInputStream()));
             PrintWriter startWriter = new PrintWriter(startingClient.getOutputStream(), true);
             String line = startReader.readLine();
+            hu = new HibernateUtil();
+
 
             moves = new ArrayList<String>();
             if (line.matches("START [12]")) {
@@ -79,6 +79,7 @@ public class Server {
                     String[] command = line.split(" ");
                     try {
                         gameID = Integer.parseInt(command[1]);
+
                         load = true;
                         startWriter.println("OK");
                     } catch (Exception e) {
@@ -163,7 +164,15 @@ public class Server {
         session.close();
     }
 
-    void loadGame() {
+    void loadGame() throws InterruptedException {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<String> rows = session.createSQLQuery("SELECT message FROM move WHERE gameId="+gameID+" ORDER BY moveNumber ASC").list();
+        for( String  string: rows){
+            updateClients(string);
+            Thread.sleep(100);
+
+        }
     }
 
     void updateClients(String line) {
@@ -180,7 +189,7 @@ public class Server {
             if (s.isLoaded()) s.loadGame();
             else s.gameCourse();
             s.gameEnd();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             System.exit(1);
         }

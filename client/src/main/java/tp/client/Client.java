@@ -70,7 +70,7 @@ public class Client extends Application {
         }
     }
 
-    void loadGame() throws IOException {
+    void loadGame() throws IOException, InterruptedException {
         String line;
         String[] results;
         TextInputDialog getID = new TextInputDialog();
