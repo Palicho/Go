@@ -2,10 +2,14 @@ package tp.server;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -27,8 +31,6 @@ public class Server {
             BufferedReader startReader = new BufferedReader(new InputStreamReader(startingClient.getInputStream()));
             PrintWriter startWriter = new PrintWriter(startingClient.getOutputStream(), true);
             String line = startReader.readLine();
-            hu = new HibernateUtil();
-
 
             moves = new ArrayList<String>();
             if (line.matches("START [12]")) {
@@ -77,7 +79,6 @@ public class Server {
                     String[] command = line.split(" ");
                     try {
                         gameID = Integer.parseInt(command[1]);
-
                         load = true;
                         startWriter.println("OK");
                     } catch (Exception e) {
@@ -128,7 +129,7 @@ public class Server {
             }
 
             if (out.length == 1) {
-                out[0].println(game.getBotMove());
+                updateClients(game.getBotMove());
                 for (String msg : game.getRemoved()) {
                     updateClients(msg);
                 }
@@ -148,15 +149,11 @@ public class Server {
     }
 
     public void save() {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        gameID = (Integer)(s.createQuery("SELECT DISTINCT gameId FROM Move ORDER BY gameId DESC").list().get(0)) + 1;
+        s.close();
 
-
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        gameID = session.createQuery("SELECT MAX(gameId) FROM Move ").getFirstResult()+2;
-        System.out.println(gameID);
-
-        session.close();
-        session= sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         for(String move : moves){
             session.save(new Move(gameID,moves.indexOf(move),move));

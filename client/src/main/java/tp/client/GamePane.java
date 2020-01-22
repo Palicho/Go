@@ -9,8 +9,6 @@ public class GamePane extends BoardPane {
 
     private final Button surrender;
     private final Button pass;
-    ///private final Button back;
-    private final Button save;
 
     public GamePane(Client client, double width, double height) {
         super(client,width,height);
@@ -54,14 +52,7 @@ public class GamePane extends BoardPane {
             }
         });
 
-        save = new Button("SAVE");
-        save.setPrefSize(width-height-20,40);
-        save.setOnMousePressed(mouseEvent -> {
-
-        });
-
-
         this.vBox.getChildren().remove(client.textField);
-        this.vBox.getChildren().addAll(pass, surrender,save,client.textField);
+        this.vBox.getChildren().addAll(pass, surrender,client.textField);
     }
 }

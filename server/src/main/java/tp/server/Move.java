@@ -19,9 +19,9 @@ public class Move implements Serializable {
     }
 
     public Move(int gameId, int moveNumber, String message){
-
-        this.moveNumber= moveNumber;
-        this.message =message;
+        this.gameId = gameId;
+        this.moveNumber = moveNumber;
+        this.message = message;
     }
 
     public void setGameId(int gameId) {
