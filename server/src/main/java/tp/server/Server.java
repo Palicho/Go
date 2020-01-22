@@ -75,6 +75,16 @@ public class Server {
                     String[] command = line.split(" ");
                     try {
                         gameID = Integer.parseInt(command[1]);
+                        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+                        Session session = sessionFactory.openSession();
+
+                        List<String> rows = session.createSQLQuery("SELECT message FROM move WHERE gameId="+gameID).list();
+                        if( rows.isEmpty()){
+                            throw new Exception();
+                        }
+
+                        session.close();
+
                         load = true;
                         startWriter.println("OK");
                     } catch (Exception e) {

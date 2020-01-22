@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/MenuPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/MenuPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -313,6 +312,7 @@
       <workItem from="1579686228420" duration="1126000" />
       <workItem from="1579689683925" duration="3467000" />
       <workItem from="1579694081685" duration="5792000" />
+      <workItem from="1579717253274" duration="56000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -535,25 +535,25 @@
     <state x="90" y="79" width="492" height="643" key="ExecutionTargetDialog/0.27.1366.741@0.27.1366.741" timestamp="1579680122247" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1579290380533" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
-    <state width="1817" height="189" key="GridCell.Tab.0.bottom" timestamp="1579699990163">
-      <screen x="57" y="27" width="1863" height="1053" />
+    <state width="1320" height="171" key="GridCell.Tab.0.bottom" timestamp="1579717320266">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="555" height="171" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1579686154429" />
+    <state width="1320" height="171" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1579717320266" />
     <state width="1817" height="189" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1579699990163" />
-    <state width="1817" height="189" key="GridCell.Tab.0.center" timestamp="1579699990162">
-      <screen x="57" y="27" width="1863" height="1053" />
+    <state width="1320" height="171" key="GridCell.Tab.0.center" timestamp="1579717320265">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="555" height="171" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1579686154428" />
+    <state width="1320" height="171" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1579717320265" />
     <state width="1817" height="189" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1579699990162" />
-    <state width="1817" height="189" key="GridCell.Tab.0.left" timestamp="1579699990162">
-      <screen x="57" y="27" width="1863" height="1053" />
+    <state width="1320" height="171" key="GridCell.Tab.0.left" timestamp="1579717320265">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="555" height="171" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1579686154427" />
+    <state width="1320" height="171" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1579717320265" />
     <state width="1817" height="189" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1579699990162" />
-    <state width="1817" height="189" key="GridCell.Tab.0.right" timestamp="1579699990163">
-      <screen x="57" y="27" width="1863" height="1053" />
+    <state width="1320" height="171" key="GridCell.Tab.0.right" timestamp="1579717320266">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="555" height="171" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1579686154428" />
+    <state width="1320" height="171" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1579717320266" />
     <state width="1817" height="189" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1579699990163" />
     <state width="1817" height="478" key="GridCell.Tab.1.bottom" timestamp="1579698876513">
       <screen x="57" y="27" width="1863" height="1053" />
@@ -598,7 +598,10 @@
     </state>
     <state x="693" y="204" key="MultipleFileMergeDialog/0.27.1366.741@0.27.1366.741" timestamp="1579457286870" />
     <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1579694919564" />
-    <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog" timestamp="1579290380534" />
+    <state x="792" y="194" width="382" height="574" key="RollbackChangesDialog" timestamp="1579717322319">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="792" y="194" key="RollbackChangesDialog/0.27.1366.741@0.27.1366.741" timestamp="1579717322319" />
     <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380534" />
     <state x="471" y="130" width="847" height="595" key="SettingsEditor" timestamp="1579686419647">
       <screen x="57" y="27" width="1863" height="1053" />
@@ -609,10 +612,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="100" y="127" width="1166" height="541" key="ShowDiffWithBranchDialog/0.27.1366.741@0.27.1366.741" timestamp="1579683231055" />
-    <state x="583" y="277" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579694939997">
-      <screen x="57" y="27" width="1863" height="1053" />
+    <state x="381" y="203" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579717314324">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="381" y="203" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1579683243214" />
+    <state x="381" y="203" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1579717314324" />
     <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1579694939997" />
     <state x="100" y="127" width="1166" height="541" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1579454951000">
       <screen x="0" y="27" width="1366" height="741" />
@@ -679,13 +682,13 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1576944772882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>tp.server.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/go$tp_server_in_server.ic" NAME="tp.server in server Coverage Results" MODIFIED="1576947241684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1576944772882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tp.server.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/go$GameLogicTest.ic" NAME="GameLogicTest Coverage Results" MODIFIED="1576945920444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
