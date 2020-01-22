@@ -1,14 +1,9 @@
-CREATE DATABASE goRecords;
 USE goRecords;
-CREATE TABLE games (
-    id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    date date NOT NULL
+
+DROP TABLE IF EXISTS move;
+
+CREATE TABLE move (
+    gameId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    moveNumber INTEGER NOT NULL,
+    message VARCHAR(20) NOT NULL
 );
-CREATE TABLE moves (
-    gameID int,
-    moveID int NOT NULL,
-    command varchar(20) NOT NULL,
-    FOREIGN KEY (gameID) REFERENCES games (id)
-);
-CREATE USER 'go'@'localhost' IDENTIFIED BY 'game';
-GRANT ALL PRIVILEGES ON goRecords.* TO 'go'@'localhost';

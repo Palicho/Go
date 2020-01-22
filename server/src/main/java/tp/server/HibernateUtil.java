@@ -1,26 +1,22 @@
 package tp.server;
 
+import java.util.List;
+import java.util.Iterator;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+public class HibernateUtil {private static final SessionFactory sessionFactory;
+    private static final ServiceRegistry serviceRegistry;
 
-public class HibernateUtil {
-
-    private static final SessionFactory sessionFactory = buildSessionFactory();
-
-    private static SessionFactory buildSessionFactory() {
+    static {
+        Configuration conf = new Configuration();
+        conf.configure();
+        serviceRegistry = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
         try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-
-            StandardServiceRegistryBuilder standardServiceRegistryBuilder = new StandardServiceRegistryBuilder();
-            standardServiceRegistryBuilder.applySettings(configuration.getProperties());
-            ServiceRegistry serviceRegistry = standardServiceRegistryBuilder.build();
-
-            return configuration.buildSessionFactory(serviceRegistry);
-        }
-        catch(Exception e) {
+            sessionFactory = conf.buildSessionFactory(serviceRegistry);
+        } catch (Exception e) {
+            System.err.println("Initial SessionFactory creation failed." + e);
             throw new ExceptionInInitializerError(e);
         }
     }

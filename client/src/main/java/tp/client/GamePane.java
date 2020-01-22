@@ -7,6 +7,11 @@ import java.io.IOException;
 
 public class GamePane extends BoardPane {
 
+    private final Button surrender;
+    private final Button pass;
+    ///private final Button back;
+    private final Button save;
+
     public GamePane(Client client, double width, double height) {
         super(client,width,height);
 
@@ -17,7 +22,7 @@ public class GamePane extends BoardPane {
             }
         }
 
-        Button pass = new Button("PASS");
+        pass = new Button("PASS");
         pass.setPrefSize(width-height-20,40);
         pass.setOnMousePressed(mouseEvent -> {
             client.localMove = client.realMove;
@@ -34,7 +39,7 @@ public class GamePane extends BoardPane {
         });
         pass.setOnMouseReleased(client.afterClickHandler);
 
-        Button surrender = new Button("SURRENDER");
+        surrender = new Button("SURRENDER");
         surrender.setPrefSize(width-height-20,40);
         surrender.setOnMousePressed(mouseEvent -> {
             client.localMove = client.realMove;
@@ -49,7 +54,14 @@ public class GamePane extends BoardPane {
             }
         });
 
+        save = new Button("SAVE");
+        save.setPrefSize(width-height-20,40);
+        save.setOnMousePressed(mouseEvent -> {
+
+        });
+
+
         this.vBox.getChildren().remove(client.textField);
-        this.vBox.getChildren().addAll(pass,surrender,client.textField);
+        this.vBox.getChildren().addAll(pass, surrender,save,client.textField);
     }
 }

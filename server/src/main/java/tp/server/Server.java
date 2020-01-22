@@ -1,7 +1,11 @@
 package tp.server;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -10,10 +14,9 @@ public class Server {
     private BufferedReader[] in;
     private GameLogic game = new GameLogic();
     private int gameID = 0;
-    private int moveID = 0;
+    private int moveNumber = 0;
     private boolean load = false;
-
-    private HibernateUtil hibernateUtil;
+    private ArrayList<String> moves;
 
     public Server(int port) {
         try {
@@ -23,7 +26,8 @@ public class Server {
             BufferedReader startReader = new BufferedReader(new InputStreamReader(startingClient.getInputStream()));
             PrintWriter startWriter = new PrintWriter(startingClient.getOutputStream(), true);
             String line = startReader.readLine();
-            hibernateUtil= new HibernateUtil();
+
+            moves= new ArrayList<String>();
             if (line.matches("START [12]")) {
                 switch (line.charAt(6)) {
                     case '1':
@@ -156,7 +160,7 @@ public class Server {
         for (PrintWriter out: out) out.println(line);
         if (!line.equals("EOF")) {
             //add to moves
-            moveID++;
+            moveNumber++;
         }
     }
 
@@ -171,4 +175,6 @@ public class Server {
             System.exit(1);
         }
     }
+
+
 }

@@ -23,8 +23,9 @@ public class ModePane extends VBox {
 
         singleplayerButton.setOnMousePressed(mouseEvent -> {
             try {
-                client.initializeGame(true);
                 newGameWindow(client, width, height);
+
+                client.initializeGame(true);
 
             } catch (IOException e) {
                 e.printStackTrace();

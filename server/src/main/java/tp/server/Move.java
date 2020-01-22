@@ -1,7 +1,14 @@
 package tp.server;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Move {
-    private int gameID;
+
+
+    @Id
+    @GeneratedValue
+    private int gameId;
     private int moveNumber;
     private String message;
 
@@ -10,14 +17,14 @@ public class Move {
 
     }
 
-    public Move(int gameID, int moveNumber, String message){
-        this.gameID=gameID;
+    public Move(int gameId, int moveNumber, String message){
+
         this.moveNumber= moveNumber;
         this.message =message;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
     public void setMessage(String message) {
@@ -28,8 +35,8 @@ public class Move {
         this.moveNumber = moveNumber;
     }
 
-    public int getGameID() {
-        return gameID;
+    public int getGameId() {
+        return gameId;
     }
 
     public int getMoveNumber() {

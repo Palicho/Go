@@ -1,12 +1,16 @@
 <hibernate-mapping package="tp.server">
 
-    <class name="Move" table="Moves">
-        <id name="gameID" column="GameID">
+    <meta attribute = "class-description">
+        This class contains the employee detail.
+    </meta>
+
+    <class name="tp.server.Move" table="Moves">
+        <id name="gameId" column="gameId" type="int">
             <generator class="native"/>
 
         </id>
-        <property name="moveNumber"  column="MoveNumber"/>
-        <property name="message" column="Message"/>
+        <property name="moveNumber"  column="moveNumber" type="int"/>
+        <property name="message" column="message" type="string"/>
     </class>
 
 </hibernate-mapping>
