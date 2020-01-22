@@ -77,7 +77,7 @@ public class Server {
                     String[] command = line.split(" ");
                     try {
                         gameID = Integer.parseInt(command[1]);
-                        // czy w bazie
+
                         load = true;
                         startWriter.println("OK");
                     } catch (Exception e) {
@@ -148,32 +148,31 @@ public class Server {
     }
 
     public void save() {
+
+
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
+        gameID = session.createQuery("SELECT MAX(gameId) FROM Move ").getFirstResult()+2;
+        System.out.println(gameID);
+
+        session.close();
+        session= sessionFactory.openSession();
         session.beginTransaction();
-
-
-        session.save(new Move(0,0,"hello"));
+        for(String move : moves){
+            session.save(new Move(gameID,moves.indexOf(move),move));
+        }
         session.getTransaction().commit();
 
         session.close();
     }
 
     void loadGame() {
-        updateClients("B 1 1");
-        updateClients("W 0 1");
-        updateClients("SURRENDER W");
-        /*String line = "";
-        do {
-            updateClients(line);
-            //update line
-        } while (!line.startsWith("END ") || line.startsWith("SURRENDER ")); */
     }
 
     void updateClients(String line) {
         for (PrintWriter out : out) out.println(line);
         if (!line.equals("EOF")) {
-            //add to moves
+            moves.add(line);
             moveNumber++;
         }
     }
