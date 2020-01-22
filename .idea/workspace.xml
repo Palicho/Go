@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9404d541-673c-4065-8f0a-fec7a33f508a" name="Default Changelist" comment="Most things work now.">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_fastinfoset_FastInfoset_1_2_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_24_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_1_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_2_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_staxex_stax_ex_1_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/GamePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/GamePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/tp/client/ModePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/tp/client/ModePane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/Move.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/Move.hbm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/database.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/hibernate.cnf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/hibernate.cnf.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/Move.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/resources/Move.hbm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/hibernate.cnf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/HibernateUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Move.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tp/server/Server.java" afterDir="false" />
@@ -104,11 +85,24 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/BASIC" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="tp.server" />
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/main/java/resources" />
+      <recent name="$PROJECT_DIR$/server/src/main/java" />
+      <recent name="$PROJECT_DIR$/server/src/main/java/tp/server" />
+      <recent name="$PROJECT_DIR$/server/src" />
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
@@ -131,7 +125,7 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp.server.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -157,7 +151,7 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp.server.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -173,7 +167,7 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp.server.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -189,7 +183,7 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp.server.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -205,7 +199,7 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp.server.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -296,6 +290,7 @@
       <workItem from="1579676553283" duration="516000" />
       <workItem from="1579677076504" duration="815000" />
       <workItem from="1579677911187" duration="3942000" />
+      <workItem from="1579683386822" duration="2036000" />
     </task>
     <task id="LOCAL-00001" summary="Add territory counting methods with tests and fix group merging">
       <created>1575148799978</created>
@@ -442,10 +437,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="Most things work now." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="278" y="59" width="800" height="684" key="#Assign_Data_Sources" timestamp="1579678219141">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="436" y="72" width="800" height="677" key="#Assign_Data_Sources" timestamp="1579683620659">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="278" y="59" width="800" height="684" key="#Assign_Data_Sources/0.27.1366.741@0.27.1366.741" timestamp="1579678219141" />
+    <state x="436" y="72" width="800" height="677" key="#Assign_Data_Sources/57.27.1863.1053@57.27.1863.1053" timestamp="1579683620659" />
     <state x="648" y="223" width="671" height="659" key="#Client" timestamp="1579290380531" />
     <state x="648" y="223" width="671" height="659" key="#Client/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
     <state x="583" y="214" width="800" height="677" key="#Notifications" timestamp="1579290380533" />
@@ -462,10 +458,15 @@
     </state>
     <state x="796" y="176" width="374" height="582" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1579479590016" />
     <state x="796" y="256" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
-    <state x="524" y="289" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1579457272354">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="772" y="399" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1579683440395">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="524" y="289" width="308" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1366.741@0.27.1366.741" timestamp="1579457272354" />
+    <state x="772" y="399" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1579683440395" />
+    <state x="741" y="413" width="494" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1579684308904">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state x="741" y="413" width="494" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/57.27.1863.1053@57.27.1863.1053" timestamp="1579684308904" />
     <state x="237" y="27" width="881" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579477902141">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -490,26 +491,26 @@
     <state x="90" y="79" width="492" height="643" key="ExecutionTargetDialog/0.27.1366.741@0.27.1366.741" timestamp="1579680122247" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl" timestamp="1579290380533" />
     <state x="757" y="281" width="452" height="543" key="FileChooserDialogImpl/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
-    <state width="555" height="171" key="GridCell.Tab.0.bottom" timestamp="1579683252141">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1817" height="209" key="GridCell.Tab.0.bottom" timestamp="1579685150867">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state width="555" height="171" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1579683252141" />
-    <state width="1817" height="166" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
-    <state width="555" height="171" key="GridCell.Tab.0.center" timestamp="1579683252140">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1817" height="209" key="GridCell.Tab.0.bottom/57.27.1863.1053@57.27.1863.1053" timestamp="1579685150867" />
+    <state width="1817" height="209" key="GridCell.Tab.0.center" timestamp="1579685150866">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state width="555" height="171" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1579683252140" />
-    <state width="1817" height="166" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
-    <state width="555" height="171" key="GridCell.Tab.0.left" timestamp="1579683252140">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1817" height="209" key="GridCell.Tab.0.center/57.27.1863.1053@57.27.1863.1053" timestamp="1579685150866" />
+    <state width="1817" height="209" key="GridCell.Tab.0.left" timestamp="1579685150866">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state width="555" height="171" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1579683252140" />
-    <state width="1817" height="166" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
-    <state width="555" height="171" key="GridCell.Tab.0.right" timestamp="1579683252141">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1817" height="209" key="GridCell.Tab.0.left/57.27.1863.1053@57.27.1863.1053" timestamp="1579685150866" />
+    <state width="1817" height="209" key="GridCell.Tab.0.right" timestamp="1579685150867">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state width="555" height="171" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1579683252141" />
-    <state width="1817" height="166" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380533" />
+    <state width="1817" height="209" key="GridCell.Tab.0.right/57.27.1863.1053@57.27.1863.1053" timestamp="1579685150867" />
     <state width="1320" height="200" key="GridCell.Tab.1.bottom" timestamp="1579486712423">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -554,15 +555,19 @@
     <state x="693" y="270" width="580" height="564" key="MultipleFileMergeDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380534" />
     <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog" timestamp="1579290380534" />
     <state x="792" y="265" width="382" height="574" key="RollbackChangesDialog/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380534" />
+    <state x="471" y="130" width="1024" height="845" key="SettingsEditor" timestamp="1579684727109">
+      <screen x="57" y="27" width="1863" height="1053" />
+    </state>
+    <state x="471" y="130" width="1024" height="845" key="SettingsEditor/57.27.1863.1053@57.27.1863.1053" timestamp="1579684727109" />
     <state x="100" y="127" width="1166" height="541" key="ShowDiffWithBranchDialog" timestamp="1579683231055">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="100" y="127" width="1166" height="541" key="ShowDiffWithBranchDialog/0.27.1366.741@0.27.1366.741" timestamp="1579683231055" />
-    <state x="381" y="203" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579683243214">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="583" y="277" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579685526682">
+      <screen x="57" y="27" width="1863" height="1053" />
     </state>
     <state x="381" y="203" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1579683243214" />
-    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1579290380534" />
+    <state x="583" y="277" width="800" height="551" key="Vcs.Push.Dialog.v2/57.27.1863.1053@57.27.1863.1053" timestamp="1579685526682" />
     <state x="100" y="127" width="1166" height="541" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1579454951000">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -617,13 +622,13 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go$tp_server_in_server.ic" NAME="tp.server in server Coverage Results" MODIFIED="1576947241684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>tp.server.*</FILTER>
-    </SUITE>
+    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/go$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1576944772882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/go$All_in_server.ic" NAME="All in server Coverage Results" MODIFIED="1576946207164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go$tp_server_in_server.ic" NAME="tp.server in server Coverage Results" MODIFIED="1576947241684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tp.server.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/go$GameLogicTest.ic" NAME="GameLogicTest Coverage Results" MODIFIED="1576945920444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>tp.server.*</FILTER>
     </SUITE>

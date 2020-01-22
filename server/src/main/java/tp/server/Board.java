@@ -1,7 +1,6 @@
 package tp.server;
 
 import java.util.LinkedHashSet;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Board {

@@ -17,6 +17,7 @@ public class Server {
     private int moveNumber = 0;
     private boolean load = false;
     private ArrayList<String> moves;
+    private HibernateUtil hu;
 
     public Server(int port) {
         try {
@@ -26,6 +27,7 @@ public class Server {
             BufferedReader startReader = new BufferedReader(new InputStreamReader(startingClient.getInputStream()));
             PrintWriter startWriter = new PrintWriter(startingClient.getOutputStream(), true);
             String line = startReader.readLine();
+            hu = new HibernateUtil();
 
             moves= new ArrayList<String>();
             if (line.matches("START [12]")) {

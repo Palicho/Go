@@ -1,15 +1,15 @@
 package tp.server;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "moves")
 public class Move {
-
-
-    @Id
-    @GeneratedValue
+    @Id @Column(name = "gameId")
     private int gameId;
+    @Id @Column(name = "moveNumber")
     private int moveNumber;
+    @Column(name = "message")
     private String message;
 
 
