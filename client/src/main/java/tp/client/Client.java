@@ -118,6 +118,7 @@ public class Client extends Application {
                         x = Integer.parseInt(results[1]);
                         y = Integer.parseInt(results[2]);
                         Platform.runLater(() -> circles[x][y].setColor(Color.TRANSPARENT));
+                        continue;
                     }
                     Platform.runLater(() -> textField.setText(line));
                     Thread.sleep(1000);
